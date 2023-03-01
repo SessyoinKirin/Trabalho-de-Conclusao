@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         margin: 12,
         paddingLeft: 10,
     },
-    buttonCalculator: {
+    btnEntrar: {
         borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
         marginLeft: 12,
         marginTop: 30,
     },
-    textButtonCalculator: {
+    txtEntrar: {
         fontSize: 20,
         color: '#3c3c3c',
     }

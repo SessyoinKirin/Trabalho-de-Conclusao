@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 10:39:23
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-01 10:49:10
+ * @LastEditTime: 2023-03-01 11:05:41
  * @FilePath: \6Semestre\TrabalhoDeConclusao\src\components\login\Form\index.js
  * @Description: 
  * 
@@ -56,10 +56,10 @@ const [textButton, setTextButton] = useState("Entrar")
                 keyboardType="visible-password"></TextInput>
                 <TouchableOpacity 
             style={
-                styles.buttonCalculator
+                styles.btnEntrar
             }
             >
-                <Text style={styles.textButtonCalculator}>{textButton}</Text>
+                <Text style={styles.txtEntrar}>{textButton}</Text>
             </TouchableOpacity>
             </View>
             
