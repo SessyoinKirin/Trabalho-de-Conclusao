@@ -45,6 +45,16 @@ const styles = StyleSheet.create({
     txtEntrar: {
         fontSize: 20,
         color: '#3c3c3c',
+    },
+    boxTitle: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 10,
+    },
+    textTitle:{
+        color:'#f23045',
+        fontSize:30,
+        fontWeight:'bold',
     }
 });
 
