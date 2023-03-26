@@ -42,7 +42,7 @@ export default function Login({ navigation }) {
                         style={
                             styles.btnEntrar
                         }
-                        onPress={() => navigation.navigate('Home')}
+                        onPress={() => navigation.navigate('Cardápio')}
                     >
                         <Text style={styles.txtEntrar}>{textButton}</Text>
                     </TouchableOpacity>

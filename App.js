@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-17 14:19:19
+ * @LastEditTime: 2023-03-26 13:31:16
  * @FilePath: \6Semestre\TrabalhoDeConclusao\App.js
  * @Description: 
  * 
@@ -13,6 +13,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 import Login from './src/components/login';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import axios from 'axios'
 
 function App() {
   return (
@@ -21,20 +22,33 @@ function App() {
     // </View>
     <NavigationContainer>
       <Stack.Navigator>
-      
-      <Stack.Screen name="login" component={Login} />
-      <Stack.Screen name="Home" component={HomeScreen} />
-        
+
+        <Stack.Screen name="Los Hermanos" component={Login} />
+        <Stack.Screen name="Cardápio" component={HomeScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+// Página inicial
+function HomeScreen({ navigation }) {
+  const [data, setData] = React.useState([])
 
-function HomeScreen({navigation}) {
+  React.useEffect(() => {
+    axios.get('https://api.mercadolibre.com/sites/MLB/search?q=celular').then(res => {
+      console.log(res.data.results)
+      setData(res.data.results)
+    })
+  }, [])
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Home Screen</Text>
-      <Button title='click' onPress={() => navigation.navigate('login')}></Button>
+    
+    <View>
+      {
+        data.map(item => <div key={item.id}>
+          <h4>{item.title}</h4>
+          <img src={item.thumbnail} alt="" />
+        </div>)
+      }
     </View>
   );
 }
