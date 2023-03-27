@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-26 20:16:14
+ * @LastEditTime: 2023-03-27 11:38:57
  * @FilePath: \6Semestre\TrabalhoDeConclusao\App.js
  * @Description: 
  * 
@@ -36,26 +36,40 @@ function HomeScreen({ navigation }) {
   const [data, setData] = React.useState([])
   // const { width } = Dimensions.get('window');
   // const MAX_WIDTH = width;
+  const [dados, setDados] = React.useState([])
 
 
   React.useEffect(() => {
     axios.get('https://api.mercadolibre.com/sites/MLB/search?q=celular').then(res => {
       console.log(res.data.results)
-      setData(res.data.results)
+      setData(res.data.results.slice(0, 25))
+      setDados(res.data.results.slice(-25))
     })
   }, [])
-  
+
   return (
 
     <View style={styles.container}>
-      {
-        data.map(item => <div key={item.id}>
-          <TouchableOpacity style={styles.elemento}>
-            <img src={item.thumbnail} alt="" className='p-2' />
-            <Text style={styles.texto} numberOfLines={2} >{item.title}</Text>
-          </TouchableOpacity>
-        </div>)
-      }
+      <View style={styles.colunas}>
+        {
+          data.map(item => <View key={item.id} >
+            <TouchableOpacity style={styles.elemento}>
+              <img src={item.thumbnail} alt="" className='p-2' />
+              <Text style={styles.texto} numberOfLines={2} >{item.title}</Text>
+            </TouchableOpacity>
+          </View>)
+        }
+      </View>
+      <View style={styles.colunas}>
+        {
+          dados.map(item => <View key={item.id} >
+            <TouchableOpacity style={styles.elemento}>
+              <img src={item.thumbnail} alt="" className='p-2' />
+              <Text style={styles.texto} numberOfLines={2} >{item.title}</Text>
+            </TouchableOpacity>
+          </View>)
+        }
+      </View>
     </View>
   );
 }
@@ -67,13 +81,14 @@ export default App;
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    flex:1,
-    maxWidth: Dimensions.get('window')
+    // flex:1,
+    // maxWidth: Dimensions.get('window')
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
   },
-  // elemento: {
-  //   width: '100%',
-  //   height: '100%'
-  // },
+  colunas: {
+    flex: 1
+  },
   texto: {
     padding: 2,
     margin: 2,
