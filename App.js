@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-27 13:07:25
+ * @LastEditTime: 2023-03-27 13:35:21
  * @FilePath: \6Semestre\TrabalhoDeConclusao\App.js
  * @Description: 
  * 
@@ -24,8 +24,9 @@ function App() {
     // </View>
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Cardápio" component={HomeScreen} />
         <Stack.Screen name="Los Hermanos" component={Login} />
+        <Stack.Screen name="Cardápio" component={HomeScreen} />
+
         <Stack.Screen name="Detalhe" component={Detail} />
 
 
@@ -53,7 +54,7 @@ function HomeScreen({ navigation }) {
       <View style={styles.colunas}>
         {
           data.map(item => <View key={item.id} >
-            <TouchableOpacity style={styles.elemento} onPress={()=>navigation.navigate('Detalhe')}>
+            <TouchableOpacity style={styles.elemento} onPress={() => navigation.navigate('Detalhe', { item })}>
               <img src={item.thumbnail} alt="" className='p-2' />
               <Text style={styles.texto} numberOfLines={2} >{item.title}</Text>
             </TouchableOpacity>
@@ -63,7 +64,7 @@ function HomeScreen({ navigation }) {
       <View style={styles.colunas}>
         {
           dados.map(item => <View key={item.id} >
-            <TouchableOpacity style={styles.elemento}>
+            <TouchableOpacity style={styles.elemento} onPress={() => navigation.navigate('Detalhe', { item })}>
               <img src={item.thumbnail} alt="" className='p-2' />
               <Text style={styles.texto} numberOfLines={2} >{item.title}</Text>
             </TouchableOpacity>
