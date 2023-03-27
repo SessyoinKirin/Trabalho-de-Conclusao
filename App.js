@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-27 11:38:57
+ * @LastEditTime: 2023-03-27 13:07:25
  * @FilePath: \6Semestre\TrabalhoDeConclusao\App.js
  * @Description: 
  * 
@@ -10,11 +10,12 @@
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
-import Login from './src/components/login';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios'
 import './node_modules/bootstrap/dist/css/bootstrap.min.css'
+import Login from './src/components/login';
+import Detail from './src/components/detalhes';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
       <Stack.Navigator>
         <Stack.Screen name="Cardápio" component={HomeScreen} />
         <Stack.Screen name="Los Hermanos" component={Login} />
+        <Stack.Screen name="Detalhe" component={Detail} />
 
 
       </Stack.Navigator>
@@ -34,8 +36,6 @@ function App() {
 // Cardápio
 function HomeScreen({ navigation }) {
   const [data, setData] = React.useState([])
-  // const { width } = Dimensions.get('window');
-  // const MAX_WIDTH = width;
   const [dados, setDados] = React.useState([])
 
 
@@ -53,7 +53,7 @@ function HomeScreen({ navigation }) {
       <View style={styles.colunas}>
         {
           data.map(item => <View key={item.id} >
-            <TouchableOpacity style={styles.elemento}>
+            <TouchableOpacity style={styles.elemento} onPress={()=>navigation.navigate('Detalhe')}>
               <img src={item.thumbnail} alt="" className='p-2' />
               <Text style={styles.texto} numberOfLines={2} >{item.title}</Text>
             </TouchableOpacity>
