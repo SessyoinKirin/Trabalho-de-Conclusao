@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-27 13:35:21
+ * @LastEditTime: 2023-03-27 14:30:28
  * @FilePath: \6Semestre\TrabalhoDeConclusao\App.js
  * @Description: 
  * 
@@ -16,6 +16,8 @@ import axios from 'axios'
 import './node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Login from './src/components/login';
 import Detail from './src/components/detalhes';
+import {BsFillCartCheckFill} from 'react-icons/bs'
+import Carrinho from './src/components/carrinho';
 
 function App() {
   return (
@@ -24,10 +26,15 @@ function App() {
     // </View>
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Los Hermanos" component={Login} />
-        <Stack.Screen name="Cardápio" component={HomeScreen} />
-
-        <Stack.Screen name="Detalhe" component={Detail} />
+        <Stack.Screen name="Los Hermanos" component={Login}/>
+        <Stack.Screen name="Cardápio" component={HomeScreen} options={{headerRight:()=>(<TouchableOpacity onPress={() => navigation.navigate('Carrinho')}>
+          <BsFillCartCheckFill style={{ width: 30, height: 30, marginRight: 10 }}/>
+        </TouchableOpacity>)}}/>
+        <Stack.Screen name="Carrinho" component={Carrinho} />
+        <Stack.Screen name="Detalhe" component={Detail}  options={{headerRight:()=>(<TouchableOpacity onPress={() => navigation.navigate('Carrinho')}>
+          <BsFillCartCheckFill style={{ width: 30, height: 30, marginRight: 10 }}/>
+        </TouchableOpacity>)}} />
+       
 
 
       </Stack.Navigator>
