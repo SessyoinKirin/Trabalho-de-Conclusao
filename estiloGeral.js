@@ -1,8 +1,23 @@
+/*
+ * @Author: SessyoinChen
+ * @Date: 2023-03-29 09:43:59
+ * @LastEditors: SessyoinChen
+ * @LastEditTime: 2023-03-29 09:53:55
+ * @FilePath: \6Semestre\TrabalhoDeConclusao\estiloGeral.js
+ * @Description: 
+ * 
+ */
 
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-    formContext: {
+    container: {
+        flex: 1,
+    },
+
+    // login
+
+    loginformContext: {
         width: '100%',
         height: '90%',
         bottom: 0,
@@ -12,18 +27,18 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
         marginTop: 30,
     },
-    form: {
+    loginform: {
         width: '100%',
         height: 'auto',
         marginTop: 30,
         padding: 10,
     },
-    formLabel: {
+    loginformLabel: {
         color: '#000000',
         fontSize: 18,
         paddingLeft: 20,
     },
-    input: {
+    logininput: {
         width: '90%',
         borderRadius: 50,
         backgroundColor: '#f6f6f6',
@@ -31,7 +46,7 @@ const styles = StyleSheet.create({
         margin: 12,
         paddingLeft: 10,
     },
-    btnEntrar: {
+    loginbtnEntrar: {
         borderRadius: 50,
         alignItems: 'center',
         justifyContent: 'center',
@@ -42,19 +57,42 @@ const styles = StyleSheet.create({
         marginLeft: 12,
         marginTop: 30,
     },
-    txtEntrar: {
+    logintxtEntrar: {
         fontSize: 20,
         color: '#3c3c3c',
     },
-    boxTitle: {
+    loginboxTitle: {
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
     },
-    textTitle:{
-        color:'#f23045',
-        fontSize:30,
-        fontWeight:'bold',
+    logintextTitle: {
+        color: '#f23045',
+        fontSize: 30,
+        fontWeight: 'bold',
+    },
+
+    // detalhe
+
+    detalheTexto: {
+        padding: 2,
+        margin: 2,
+        fontSize: 20,
+    },
+    detalhePreco: {
+        fontSize: 25,
+
+    },
+
+    // cardapio
+
+    cardapioColunas: {
+        flex: 1
+    },
+    cardapioTexto: {
+        padding: 2,
+        margin: 2,
+        fontSize: 20,
     }
 });
 

@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-27 14:30:28
+ * @LastEditTime: 2023-03-29 12:48:55
  * @FilePath: \6Semestre\TrabalhoDeConclusao\App.js
  * @Description: 
  * 
@@ -16,8 +16,11 @@ import axios from 'axios'
 import './node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Login from './src/components/login';
 import Detail from './src/components/detalhes';
-import {BsFillCartCheckFill} from 'react-icons/bs'
+
 import Carrinho from './src/components/carrinho';
+import Cardapio from './src/components/cardapio';
+// import {BsFillCartCheckFill} from 'react-icons/bs'
+import {AiOutlinePlusCircle} from 'react-icons/ai'
 
 function App() {
   return (
@@ -26,15 +29,15 @@ function App() {
     // </View>
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Los Hermanos" component={Login}/>
-        <Stack.Screen name="Cardápio" component={HomeScreen} options={{headerRight:()=>(<TouchableOpacity onPress={() => navigation.navigate('Carrinho')}>
-          <BsFillCartCheckFill style={{ width: 30, height: 30, marginRight: 10 }}/>
-        </TouchableOpacity>)}}/>
-        <Stack.Screen name="Carrinho" component={Carrinho} />
-        <Stack.Screen name="Detalhe" component={Detail}  options={{headerRight:()=>(<TouchableOpacity onPress={() => navigation.navigate('Carrinho')}>
-          <BsFillCartCheckFill style={{ width: 30, height: 30, marginRight: 10 }}/>
-        </TouchableOpacity>)}} />
-       
+        <Stack.Screen name="Los Hermanos" component={Login} />
+        
+        <Stack.Screen name="Carrinho" component={Carrinho} options={({navigation})=>({headerRight:()=>(<TouchableOpacity onPress={()=> navigation.navigate('Cardapio')}>
+          <AiOutlinePlusCircle style={{ width: 30, height: 30, marginRight: 10 }}/>
+        </TouchableOpacity>)})} />
+        <Stack.Screen name="Detalhe" component={Detail} />
+        <Stack.Screen name="Mesa" component={Mesa} />
+        <Stack.Screen name="Cardapio" component={Cardapio} />
+
 
 
       </Stack.Navigator>
@@ -42,42 +45,17 @@ function App() {
   );
 }
 // Cardápio
-function HomeScreen({ navigation }) {
-  const [data, setData] = React.useState([])
-  const [dados, setDados] = React.useState([])
-
-
-  React.useEffect(() => {
-    axios.get('https://api.mercadolibre.com/sites/MLB/search?q=celular').then(res => {
-      console.log(res.data.results)
-      setData(res.data.results.slice(0, 25))
-      setDados(res.data.results.slice(-25))
-    })
-  }, [])
+function Mesa({ navigation }) {
+  const [mesa, setMesa] = React.useState([1, 2, 3, 4, 5, 6, 7])
 
   return (
 
-    <View style={styles.container}>
-      <View style={styles.colunas}>
-        {
-          data.map(item => <View key={item.id} >
-            <TouchableOpacity style={styles.elemento} onPress={() => navigation.navigate('Detalhe', { item })}>
-              <img src={item.thumbnail} alt="" className='p-2' />
-              <Text style={styles.texto} numberOfLines={2} >{item.title}</Text>
-            </TouchableOpacity>
-          </View>)
-        }
-      </View>
-      <View style={styles.colunas}>
-        {
-          dados.map(item => <View key={item.id} >
-            <TouchableOpacity style={styles.elemento} onPress={() => navigation.navigate('Detalhe', { item })}>
-              <img src={item.thumbnail} alt="" className='p-2' />
-              <Text style={styles.texto} numberOfLines={2} >{item.title}</Text>
-            </TouchableOpacity>
-          </View>)
-        }
-      </View>
+    <View style={estilo.container}>
+      {
+        mesa.map(index => <TouchableOpacity key={index} style={estilo.item} onPress={()=> navigation.navigate('Carrinho', {index})}>
+          <Text style={estilo.texto}>{index}</Text>
+        </TouchableOpacity>)
+      }
     </View>
   );
 }
@@ -86,7 +64,7 @@ const Stack = createNativeStackNavigator();
 
 export default App;
 
-const styles = StyleSheet.create({
+const estilo = StyleSheet.create({
   container: {
     flexDirection: 'row',
     // flex:1,
@@ -94,12 +72,15 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
   },
-  colunas: {
-    flex: 1
+  item: {
+    width: '30%',
+    height: 100,
+    backgroundColor: 'gray',
+    marginVertical: 10,
+    justifyContent: 'center',
   },
   texto: {
-    padding: 2,
-    margin: 2,
-    fontSize: 20,
+    fontSize: 30,
+    textAlign: 'center',
   }
 });

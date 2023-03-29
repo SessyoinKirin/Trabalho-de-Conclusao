@@ -2,14 +2,14 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 10:30:41
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-17 14:32:01
+ * @LastEditTime: 2023-03-29 10:26:00
  * @FilePath: \6Semestre\TrabalhoDeConclusao\src\components\login\index.js
  * @Description: 
  * 
  */
 import React, { useState } from "react";
 import { View, Text, TextInput, Touchable, TouchableOpacity, StyleSheet } from "react-native";
-import styles from './estilos/loginCss'
+import styles from '../../../estiloGeral'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export default function Login({ navigation }) {
@@ -19,32 +19,32 @@ export default function Login({ navigation }) {
     const [textButton, setTextButton] = useState("Entrar")
 
     return (
-        <View style={estilo.container}>
-            <View style={styles.boxTitle}>
-                <Text style={styles.textTitle}>Los Hermanos</Text>
+        <View style={[styles.container, estilo.container]}>
+            <View style={styles.loginboxTitle}>
+                <Text style={styles.logintextTitle}>Los Hermanos</Text>
             </View>
-            <View style={styles.formContext}>
-                <View style={styles.form}>
-                    <Text style={styles.formLabel}>Login:</Text>
+            <View style={styles.loginformContext}>
+                <View style={styles.loginform}>
+                    <Text style={styles.loginformLabel}>Login:</Text>
                     <TextInput
                         onChangeText={setLogin}
                         value={login}
 
-                        style={styles.input}
+                        style={styles.logininput}
                         keyboardType="email-address" />
-                    <Text style={styles.formLabel}>Senha:</Text>
+                    <Text style={styles.loginformLabel}>Senha:</Text>
                     <TextInput
                         onChangeText={setPassword}
                         value={password}
-                        style={styles.input}
+                        style={styles.logininput}
                         keyboardType="visible-password"></TextInput>
                     <TouchableOpacity
                         style={
-                            styles.btnEntrar
+                            styles.loginbtnEntrar
                         }
-                        onPress={() => navigation.navigate('Cardápio')}
+                        onPress={() => navigation.navigate('Mesa')}
                     >
-                        <Text style={styles.txtEntrar}>{textButton}</Text>
+                        <Text style={styles.logintxtEntrar}>{textButton}</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -54,7 +54,6 @@ export default function Login({ navigation }) {
 
 const estilo = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: "#2c2c2c",
         paddingTop: 80,
     },
