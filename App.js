@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-29 12:48:55
+ * @LastEditTime: 2023-03-31 13:58:45
  * @FilePath: \6Semestre\TrabalhoDeConclusao\App.js
  * @Description: 
  * 
@@ -12,8 +12,6 @@ import * as React from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import axios from 'axios'
-import './node_modules/bootstrap/dist/css/bootstrap.min.css'
 import Login from './src/components/login';
 import Detail from './src/components/detalhes';
 
@@ -31,9 +29,7 @@ function App() {
       <Stack.Navigator>
         <Stack.Screen name="Los Hermanos" component={Login} />
         
-        <Stack.Screen name="Carrinho" component={Carrinho} options={({navigation})=>({headerRight:()=>(<TouchableOpacity onPress={()=> navigation.navigate('Cardapio')}>
-          <AiOutlinePlusCircle style={{ width: 30, height: 30, marginRight: 10 }}/>
-        </TouchableOpacity>)})} />
+        <Stack.Screen name="Carrinho" component={Carrinho}  />
         <Stack.Screen name="Detalhe" component={Detail} />
         <Stack.Screen name="Mesa" component={Mesa} />
         <Stack.Screen name="Cardapio" component={Cardapio} />
@@ -52,7 +48,7 @@ function Mesa({ navigation }) {
 
     <View style={estilo.container}>
       {
-        mesa.map(index => <TouchableOpacity key={index} style={estilo.item} onPress={()=> navigation.navigate('Carrinho', {index})}>
+        mesa.map(index => <TouchableOpacity key={index} style={estilo.item} onPress={()=> navigation.navigate('Carrinho')}>
           <Text style={estilo.texto}>{index}</Text>
         </TouchableOpacity>)
       }
@@ -76,7 +72,8 @@ const estilo = StyleSheet.create({
     width: '30%',
     height: 100,
     backgroundColor: 'gray',
-    marginVertical: 10,
+    marginVertical: 5,
+    margin:5,
     justifyContent: 'center',
   },
   texto: {

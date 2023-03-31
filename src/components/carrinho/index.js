@@ -1,9 +1,17 @@
+/*
+ * @Author: SessyoinChen
+ * @Date: 2023-03-27 14:14:46
+ * @LastEditors: SessyoinChen
+ * @LastEditTime: 2023-03-31 14:00:53
+ * @FilePath: \6Semestre\TrabalhoDeConclusao\src\components\carrinho\index.js
+ * @Description: 
+ * 
+ */
 import React, { useState } from "react";
-import { View, Text, TextInput, Touchable, TouchableOpacity, StyleSheet, Button } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from "../../../estiloGeral";
-import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 export default function Carrinho({ navigation }) {
     return (
@@ -27,11 +35,11 @@ export default function Carrinho({ navigation }) {
                     </View>
                 </View>
                 
-                {/* <Button title="finalizar" style={[estilo.botoes, {width:'50%'}]}></Button> */}
             </View>
         </View>
     )
 }
+
 const estilo = StyleSheet.create({
     main: {
         flex: 5,
