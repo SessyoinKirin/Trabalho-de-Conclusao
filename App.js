@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-31 13:58:45
+ * @LastEditTime: 2023-04-03 15:22:04
  * @FilePath: \6Semestre\TrabalhoDeConclusao\App.js
  * @Description: 
  * 
@@ -18,7 +18,7 @@ import Detail from './src/components/detalhes';
 import Carrinho from './src/components/carrinho';
 import Cardapio from './src/components/cardapio';
 // import {BsFillCartCheckFill} from 'react-icons/bs'
-import {AiOutlinePlusCircle} from 'react-icons/ai'
+import { AiOutlinePlusCircle } from 'react-icons/ai'
 
 function App() {
   return (
@@ -27,12 +27,37 @@ function App() {
     // </View>
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Los Hermanos" component={Login} />
-        
-        <Stack.Screen name="Carrinho" component={Carrinho}  />
-        <Stack.Screen name="Detalhe" component={Detail} />
-        <Stack.Screen name="Mesa" component={Mesa} />
-        <Stack.Screen name="Cardapio" component={Cardapio} />
+        <Stack.Screen name="Los Hermanos" component={Login} options={{
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: 'white',
+        }} />
+
+        <Stack.Screen name="Carrinho" component={Carrinho} options={{
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: 'white',
+        }} />
+        <Stack.Screen name="Detalhe" component={Detail} options={{
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: 'white',
+        }} />
+        <Stack.Screen name="Mesa" component={Mesa} options={{
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: 'white',
+        }} />
+        <Stack.Screen name="Cardapio" component={Cardapio} options={{
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: 'white',
+        }} />
 
 
 
@@ -48,7 +73,7 @@ function Mesa({ navigation }) {
 
     <View style={estilo.container}>
       {
-        mesa.map(index => <TouchableOpacity key={index} style={estilo.item} onPress={()=> navigation.navigate('Carrinho')}>
+        mesa.map(index => <TouchableOpacity key={index} style={estilo.item} onPress={() => navigation.navigate('Carrinho')}>
           <Text style={estilo.texto}>{index}</Text>
         </TouchableOpacity>)
       }
@@ -73,7 +98,7 @@ const estilo = StyleSheet.create({
     height: 100,
     backgroundColor: 'gray',
     marginVertical: 5,
-    margin:5,
+    margin: 5,
     justifyContent: 'center',
   },
   texto: {

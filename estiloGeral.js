@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-29 09:53:55
+ * @LastEditTime: 2023-04-03 15:47:58
  * @FilePath: \6Semestre\TrabalhoDeConclusao\estiloGeral.js
  * @Description: 
  * 
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '90%',
         bottom: 0,
-        backgroundColor: '#C0C0C0',
+        backgroundColor: '#2c2c2c',
         alignItems: 'center',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
         padding: 10,
     },
     loginformLabel: {
-        color: '#000000',
-        fontSize: 18,
+        color: '#fff',
+        fontSize: 20,
         paddingLeft: 20,
     },
     logininput: {
@@ -45,6 +45,7 @@ const styles = StyleSheet.create({
         height: 40,
         margin: 12,
         paddingLeft: 10,
+        fontSize: 25,
     },
     loginbtnEntrar: {
         borderRadius: 50,
@@ -68,8 +69,15 @@ const styles = StyleSheet.create({
     },
     logintextTitle: {
         color: '#f23045',
-        fontSize: 30,
+        fontSize: 40,
         fontWeight: 'bold',
+    },
+    loginError: {
+        color: '#fff',
+        fontSize: 25,
+        marginTop:40,
+        paddingLeft:40,
+        
     },
 
     // detalhe

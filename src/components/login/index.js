@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 10:30:41
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-29 10:26:00
+ * @LastEditTime: 2023-04-03 15:45:10
  * @FilePath: \6Semestre\TrabalhoDeConclusao\src\components\login\index.js
  * @Description: 
  * 
@@ -17,6 +17,18 @@ export default function Login({ navigation }) {
     const [password, setPassword] = useState(null)
     const [messeageLogin, setMesseageLogin] = useState("Preencher o que está pedindo")
     const [textButton, setTextButton] = useState("Entrar")
+    const[msgError, setMsgError] = useState("")
+
+    function logar () {
+        if(login === 'acnologia' && password === 'acnologia'){
+            navigation.navigate('Mesa')
+            setLogin(null)
+            setPassword(null)
+            setMsgError(null)
+        }else{
+            setMsgError('E-mail ou senha inválida!!')
+        }
+    }
 
     return (
         <View style={[styles.container, estilo.container]}>
@@ -42,19 +54,22 @@ export default function Login({ navigation }) {
                         style={
                             styles.loginbtnEntrar
                         }
-                        onPress={() => navigation.navigate('Mesa')}
+                        onPress={() =>{logar()}}
                     >
                         <Text style={styles.logintxtEntrar}>{textButton}</Text>
                     </TouchableOpacity>
+                    <Text style={styles.loginError}>{msgError}</Text>
                 </View>
             </View>
         </View>
     );
 }
 
+
+
 const estilo = StyleSheet.create({
     container: {
-        backgroundColor: "#2c2c2c",
+        backgroundColor: "#1c1c1c",
         paddingTop: 80,
     },
 });
