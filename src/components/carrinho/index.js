@@ -2,8 +2,8 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-03-31 14:00:53
- * @FilePath: \6Semestre\TrabalhoDeConclusao\src\components\carrinho\index.js
+ * @LastEditTime: 2023-04-04 15:10:38
+ * @FilePath: \6Semestre\TCCFinal\Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
  */
@@ -19,9 +19,9 @@ export default function Carrinho({ navigation }) {
             <View style={[estilo.main, estilo.borderBottom]}>
 
             </View>
-            <View >
+            <View style={estilo.carrinhoRotape}>
                 
-                <Text style={styles.detalheTexto}>Valor total:</Text>
+                <Text style={styles.carrinhoTexto}>Valor total:</Text>
                 <View style={estilo.flexend}>
                     <View style={{ width: '50%', height: '100%' }}>
                         <TouchableOpacity style={estilo.botoesInfo}>
@@ -43,7 +43,7 @@ export default function Carrinho({ navigation }) {
 const estilo = StyleSheet.create({
     main: {
         flex: 5,
-        backgroundColor: 'gray'
+        backgroundColor: '#3c3c3c',
     },
     flexend: {
         alignContent:'flex-end',
@@ -51,8 +51,8 @@ const estilo = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-between',
     },
-    secon: {
-        flex: 1,
+    carrinhoRotape: {
+        backgroundColor:'#1c1c1c',
     },
     botoesInfo: {
         backgroundColor: '#5bc0de',
@@ -75,7 +75,7 @@ const estilo = StyleSheet.create({
       },
     borderBottom: {
         borderBottomWidth: 1,
-        borderBottomColor: 'black',
+        borderBottomColor: '#fff',
       },
 
 })

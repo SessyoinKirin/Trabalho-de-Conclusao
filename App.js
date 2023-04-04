@@ -2,8 +2,8 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-03 15:22:04
- * @FilePath: \6Semestre\TrabalhoDeConclusao\App.js
+ * @LastEditTime: 2023-04-04 15:06:14
+ * @FilePath: \6Semestre\TCCFinal\Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
  */
@@ -19,6 +19,7 @@ import Carrinho from './src/components/carrinho';
 import Cardapio from './src/components/cardapio';
 // import {BsFillCartCheckFill} from 'react-icons/bs'
 import { AiOutlinePlusCircle } from 'react-icons/ai'
+import styles from './estiloGeral';
 
 function App() {
   return (
@@ -71,10 +72,10 @@ function Mesa({ navigation }) {
 
   return (
 
-    <View style={estilo.container}>
+    <View style={styles.mesaContainer}>
       {
-        mesa.map(index => <TouchableOpacity key={index} style={estilo.item} onPress={() => navigation.navigate('Carrinho')}>
-          <Text style={estilo.texto}>{index}</Text>
+        mesa.map(index => <TouchableOpacity key={index} style={styles.mesaItem} onPress={() => navigation.navigate('Carrinho')}>
+          <Text style={styles.mesaTexto}>{index}</Text>
         </TouchableOpacity>)
       }
     </View>
@@ -88,15 +89,16 @@ export default App;
 const estilo = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    // flex:1,
+    flex:1,
     // maxWidth: Dimensions.get('window')
     flexWrap: 'wrap',
     justifyContent: 'space-between',
+    backgroundColor:'#3c3c3c',
   },
   item: {
     width: '30%',
     height: 100,
-    backgroundColor: 'gray',
+    backgroundColor: '#1c1c1c',
     marginVertical: 5,
     margin: 5,
     justifyContent: 'center',
@@ -104,5 +106,7 @@ const estilo = StyleSheet.create({
   texto: {
     fontSize: 30,
     textAlign: 'center',
+    fontWeight:'bold',
+    color:'#fff',
   }
 });

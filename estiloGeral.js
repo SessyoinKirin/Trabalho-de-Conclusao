@@ -2,8 +2,8 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-03 15:47:58
- * @FilePath: \6Semestre\TrabalhoDeConclusao\estiloGeral.js
+ * @LastEditTime: 2023-04-04 15:06:43
+ * @FilePath: \6Semestre\TCCFinal\Trabalho-de-Conclusao\estiloGeral.js
  * @Description: 
  * 
  */
@@ -16,7 +16,10 @@ const styles = StyleSheet.create({
     },
 
     // login
-
+    loginContainer: {
+        backgroundColor: "#1c1c1c",
+        paddingTop: 50,
+    },
     loginformContext: {
         width: '100%',
         height: '90%',
@@ -82,12 +85,13 @@ const styles = StyleSheet.create({
 
     // detalhe
 
-    detalheTexto: {
+    carrinhoTexto: {
         padding: 2,
-        margin: 2,
+        margin: 5,
         fontSize: 20,
+        color:'#fff',
     },
-    detalhePreco: {
+    carrinhoPreco: {
         fontSize: 25,
 
     },
@@ -101,7 +105,32 @@ const styles = StyleSheet.create({
         padding: 2,
         margin: 2,
         fontSize: 20,
-    }
+    },
+
+    //Mesa
+    mesaContainer: {
+        flexDirection: 'row',
+        flex:1,
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        // cor de fundo
+        backgroundColor:'#3c3c3c',
+      },
+      mesaItem: {
+        width: '30%',
+        height: 100,
+        // cor de item
+        backgroundColor: '#1c1c1c',
+        marginVertical: 5,
+        margin: 5,
+        justifyContent: 'center',
+      },
+      mesaTexto: {
+        fontSize: 30,
+        textAlign: 'center',
+        fontWeight:'bold',
+        color:'#fff',
+      }
 });
 
 export default styles

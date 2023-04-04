@@ -2,13 +2,13 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 10:30:41
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-03 15:45:10
- * @FilePath: \6Semestre\TrabalhoDeConclusao\src\components\login\index.js
+ * @LastEditTime: 2023-04-04 14:43:57
+ * @FilePath: \6Semestre\TCCFinal\Trabalho-de-Conclusao\src\components\login\index.js
  * @Description: 
  * 
  */
 import React, { useState } from "react";
-import { View, Text, TextInput, Touchable, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, KeyboardAvoidingView } from "react-native";
 import styles from '../../../estiloGeral'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -31,7 +31,7 @@ export default function Login({ navigation }) {
     }
 
     return (
-        <View style={[styles.container, estilo.container]}>
+        <KeyboardAvoidingView style={[styles.container, styles.loginContainer]} behavior="padding" keyboardVerticalOffset={50}>
             <View style={styles.loginboxTitle}>
                 <Text style={styles.logintextTitle}>Los Hermanos</Text>
             </View>
@@ -41,14 +41,16 @@ export default function Login({ navigation }) {
                     <TextInput
                         onChangeText={setLogin}
                         value={login}
-
+        placeholder="Insere seu e-mail"
                         style={styles.logininput}
                         keyboardType="email-address" />
+                        
                     <Text style={styles.loginformLabel}>Senha:</Text>
                     <TextInput
                         onChangeText={setPassword}
                         value={password}
                         style={styles.logininput}
+                        placeholder="Insere sua senha"
                         keyboardType="visible-password"></TextInput>
                     <TouchableOpacity
                         style={
@@ -61,15 +63,8 @@ export default function Login({ navigation }) {
                     <Text style={styles.loginError}>{msgError}</Text>
                 </View>
             </View>
-        </View>
+        </KeyboardAvoidingView>
     );
 }
 
 
-
-const estilo = StyleSheet.create({
-    container: {
-        backgroundColor: "#1c1c1c",
-        paddingTop: 80,
-    },
-});
