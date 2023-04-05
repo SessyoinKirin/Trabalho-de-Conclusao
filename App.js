@@ -2,24 +2,35 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-04 15:06:14
+ * @LastEditTime: 2023-04-05 14:31:31
  * @FilePath: \6Semestre\TCCFinal\Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
  */
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Dimensions } from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator, HeaderRight } from '@react-navigation/native-stack';
 import Login from './src/components/login';
 import Detail from './src/components/detalhes';
 
 import Carrinho from './src/components/carrinho';
 import Cardapio from './src/components/cardapio';
-// import {BsFillCartCheckFill} from 'react-icons/bs'
-import { AiOutlinePlusCircle } from 'react-icons/ai'
+
+
 import styles from './estiloGeral';
+
+function CustomHeaderRight() {
+  return (
+    <HeaderRight>
+      <Image
+        source={require('./assets/img/add.png')}
+        style={{ width: 30, height: 30 }}
+      />
+    </HeaderRight>
+  );
+}
 
 function App() {
   return (
@@ -34,12 +45,24 @@ function App() {
           },
           headerTintColor: 'white',
         }} />
+        <Stack.Screen name="Mesa" component={Mesa} options={{
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: 'white',
+        }} />
 
         <Stack.Screen name="Carrinho" component={Carrinho} options={{
           headerStyle: {
             backgroundColor: 'black',
           },
           headerTintColor: 'white',
+          headerRight: ({ navigation }) => (<TouchableOpacity onPress={() => navigation.navigate('Mesa')}>
+            <Image
+            source={require('./assets/img/addinversa.png')}
+            style={{ width: 30, height: 30}}
+          />
+          </TouchableOpacity>),
         }} />
         <Stack.Screen name="Detalhe" component={Detail} options={{
           headerStyle: {
@@ -47,12 +70,7 @@ function App() {
           },
           headerTintColor: 'white',
         }} />
-        <Stack.Screen name="Mesa" component={Mesa} options={{
-          headerStyle: {
-            backgroundColor: 'black',
-          },
-          headerTintColor: 'white',
-        }} />
+        
         <Stack.Screen name="Cardapio" component={Cardapio} options={{
           headerStyle: {
             backgroundColor: 'black',
