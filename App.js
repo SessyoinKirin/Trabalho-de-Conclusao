@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-05 14:31:31
+ * @LastEditTime: 2023-04-09 13:42:33
  * @FilePath: \6Semestre\TCCFinal\Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -11,7 +11,7 @@ import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
 import { Button, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator, HeaderRight } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './src/components/login';
 import Detail from './src/components/detalhes';
 
@@ -21,18 +21,9 @@ import Cardapio from './src/components/cardapio';
 
 import styles from './estiloGeral';
 
-function CustomHeaderRight() {
-  return (
-    <HeaderRight>
-      <Image
-        source={require('./assets/img/add.png')}
-        style={{ width: 30, height: 30 }}
-      />
-    </HeaderRight>
-  );
-}
 
-function App() {
+
+function App({navigation}) {
   return (
     // <View style={styles.container}>
     //   <Login />
@@ -57,12 +48,18 @@ function App() {
             backgroundColor: 'black',
           },
           headerTintColor: 'white',
-          headerRight: ({ navigation }) => (<TouchableOpacity onPress={() => navigation.navigate('Mesa')}>
-            <Image
-            source={require('./assets/img/addinversa.png')}
-            style={{ width: 30, height: 30}}
-          />
-          </TouchableOpacity>),
+          // headerRight: ({ navigation }) => {
+          //   const redirecionar = () => {
+          //     navigation.navigate('Cardapio')
+          //   }
+          
+          //   return (
+          //     <TouchableOpacity onPress={redirecionar}>
+          //       <Image source={require('./assets/img/addinversa.png')} style={{ width: 30, height: 30 }} />
+          //     </TouchableOpacity>
+          //   )
+          // }
+          
         }} />
         <Stack.Screen name="Detalhe" component={Detail} options={{
           headerStyle: {
@@ -84,7 +81,13 @@ function App() {
     </NavigationContainer>
   );
 }
-// Cardápio
+
+function Redirecionar({navigation}){
+  navigation.navigate('Mesa')
+}
+
+
+// Mesa
 function Mesa({ navigation }) {
   const [mesa, setMesa] = React.useState([1, 2, 3, 4, 5, 6, 7])
 

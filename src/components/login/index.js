@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 10:30:41
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-05 10:56:03
+ * @LastEditTime: 2023-04-09 13:28:58
  * @FilePath: \6Semestre\TCCFinal\Trabalho-de-Conclusao\src\components\login\index.js
  * @Description: 
  * 
@@ -20,7 +20,7 @@ export default function Login({ navigation }) {
     const[msgError, setMsgError] = useState("")
 
     function logar () {
-
+        // console.log(navigation.navigate)
         navigation.navigate('Mesa')
         // if(login === 'acnologia' && password === 'acnologia'){
         //     navigation.navigate('Mesa')
