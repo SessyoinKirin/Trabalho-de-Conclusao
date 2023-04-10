@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-09 13:42:33
+ * @LastEditTime: 2023-04-09 22:20:41
  * @FilePath: \6Semestre\TCCFinal\Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -29,7 +29,10 @@ function App({navigation}) {
     //   <Login />
     // </View>
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator  screenOptions={{
+        headerTitleAlign: 'center',
+        headerTitleStyle: { fontWeight: 'bold' }
+      }}>
         <Stack.Screen name="Los Hermanos" component={Login} options={{
           headerStyle: {
             backgroundColor: 'black',
