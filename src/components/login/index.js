@@ -2,8 +2,8 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 10:30:41
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-09 13:28:58
- * @FilePath: \6Semestre\TCCFinal\Trabalho-de-Conclusao\src\components\login\index.js
+ * @LastEditTime: 2023-04-11 10:28:19
+ * @FilePath: \Trabalho-de-Conclusao\src\components\login\index.js
  * @Description: 
  * 
  */
@@ -17,9 +17,9 @@ export default function Login({ navigation }) {
     const [password, setPassword] = useState(null)
     const [messeageLogin, setMesseageLogin] = useState("Preencher o que está pedindo")
     const [textButton, setTextButton] = useState("Entrar")
-    const[msgError, setMsgError] = useState("")
+    const [msgError, setMsgError] = useState("")
 
-    function logar () {
+    function logar() {
         // console.log(navigation.navigate)
         navigation.navigate('Mesa')
         // if(login === 'acnologia' && password === 'acnologia'){
@@ -43,10 +43,10 @@ export default function Login({ navigation }) {
                     <TextInput
                         onChangeText={setLogin}
                         value={login}
-        placeholder="Insere seu e-mail"
+                        placeholder="Insere seu e-mail"
                         style={styles.logininput}
                         keyboardType="email-address" />
-                        
+
                     <Text style={styles.loginformLabel}>Senha:</Text>
                     <TextInput
                         onChangeText={setPassword}
@@ -58,7 +58,7 @@ export default function Login({ navigation }) {
                         style={
                             styles.loginbtnEntrar
                         }
-                        onPress={() =>{logar()}}
+                        onPress={() => { logar() }}
                     >
                         <Text style={styles.logintxtEntrar}>{textButton}</Text>
                     </TouchableOpacity>

@@ -2,8 +2,8 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-04 15:06:43
- * @FilePath: \6Semestre\TCCFinal\Trabalho-de-Conclusao\estiloGeral.js
+ * @LastEditTime: 2023-04-11 10:55:51
+ * @FilePath: \Trabalho-de-Conclusao\estiloGeral.js
  * @Description: 
  * 
  */
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     loginformLabel: {
         color: '#fff',
         fontSize: 20,
-        paddingLeft: 20,
+        paddingLeft: 30,
     },
     logininput: {
         width: '90%',
@@ -49,9 +49,11 @@ const styles = StyleSheet.create({
         margin: 12,
         paddingLeft: 10,
         fontSize: 25,
+        alignSelf:'center',
     },
     loginbtnEntrar: {
         borderRadius: 50,
+        alignSelf:'center',
         alignItems: 'center',
         justifyContent: 'center',
         width: '90%',
@@ -78,9 +80,9 @@ const styles = StyleSheet.create({
     loginError: {
         color: '#fff',
         fontSize: 25,
-        marginTop:40,
-        paddingLeft:40,
-        
+        marginTop: 40,
+        paddingLeft: 40,
+
     },
 
     // detalhe
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
         padding: 2,
         margin: 5,
         fontSize: 20,
-        color:'#fff',
+        color: '#fff',
     },
     carrinhoPreco: {
         fontSize: 25,
@@ -109,14 +111,17 @@ const styles = StyleSheet.create({
 
     //Mesa
     mesaContainer: {
+        flex: 1,
+    },
+    mesas: {
+        flex:5.5,
         flexDirection: 'row',
-        flex:1,
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         // cor de fundo
-        backgroundColor:'#3c3c3c',
-      },
-      mesaItem: {
+        backgroundColor: '#3c3c3c',
+    },
+    mesaItem: {
         width: '30%',
         height: 100,
         // cor de item
@@ -124,13 +129,90 @@ const styles = StyleSheet.create({
         marginVertical: 5,
         margin: 5,
         justifyContent: 'center',
-      },
-      mesaTexto: {
+    },
+    mesaTexto: {
         fontSize: 30,
         textAlign: 'center',
-        fontWeight:'bold',
-        color:'#fff',
-      }
+        fontWeight: 'bold',
+        color: '#fff',
+    },
+    mesaAdicionar: {
+        flex: 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 5,
+        borderColor: '#1c1c1c',
+        backgroundColor: '#2c2c2c',
+    },
+    mesaLetra: {
+        fontSize: 22,
+        color: '#fff',
+        fontWeight: 'bold',
+        letterSpacing: 2,
+    },
+
+    //Carrinho
+    carMain: {
+        flex: 5,
+        backgroundColor: '#3c3c3c',
+    },
+    carAdicionar: {
+        flex: 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 3,
+        borderColor: '#1c1c1c',
+        backgroundColor: '#2c2c2c',
+
+    },
+    carLetra: {
+        fontSize: 22,
+        color: '#fff',
+        fontWeight: 'bold',
+        letterSpacing: 2,
+    },
+    carFlexend: {
+        alignContent: 'flex-end',
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+    },
+    carrinhoRotape: {
+        backgroundColor: '#1c1c1c',
+    },
+    carBotoesInfo: {
+        backgroundColor: '#5bc0de',
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 10,
+        alignItems: 'center',
+    },
+    carBotoesSuccess: {
+        backgroundColor: '#5cb85c',
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 10,
+        alignItems: 'center',
+    },
+    carTextoBotao: {
+        color: 'white',
+        fontWeight: 'bold',
+        fontSize: 20,
+    },
+    carBorderBottom: {
+        borderBottomWidth: 1,
+        borderBottomColor: '#fff',
+    },
+    carTexto: {
+        padding: 2,
+        margin: 5,
+        fontSize: 20,
+        color: '#fff',
+    },
+    carPreco: {
+        fontSize: 25,
+
+    },
 });
 
 export default styles
