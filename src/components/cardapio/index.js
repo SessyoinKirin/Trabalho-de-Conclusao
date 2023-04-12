@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 10:03:05
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-12 12:08:08
+ * @LastEditTime: 2023-04-12 14:18:24
  * @FilePath: \Trabalho-de-Conclusao\src\components\cardapio\index.js
  * @Description: 
  * 
@@ -39,22 +39,8 @@ export default function Cardapio({ navigation }) {
               <Text style={styles.cardapioTexto}>{item.category_id}</Text>
             </View>
             <View style={[styles.cardapioContador, { flex: 3 }]}>
-              {/* <TouchableOpacity onPress={() => {
-                console.log(count, "antes de adicionar")
-                setCount(count + 1)
-                console.log(count, "depois de adicionar")
-              }} style={[styles.cardapioBotaoCount, { flex: 1 }]}>
-                <Text style={styles.cardapioSinal}>{'<'}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={[styles.cardapioBotaoAdd, { flex: 4 }]}><Text style={styles.cardapioAdd}>Adicionar -- {count}</Text></TouchableOpacity>
-              <TouchableOpacity onPress={() => {
-                console.log(count, "antes de menos")
-                setCount(count - 1)
-                console.log(count, "depois de menos")
-              }} style={[styles.cardapioBotaoCount, { flex: 1 }]}>
-                <Text style={styles.cardapioSinal}>{'>'}</Text>
-              </TouchableOpacity> */}
-              <Contador/>
+              
+              <Contador item={item}/>
             </View>
           </View>
 
