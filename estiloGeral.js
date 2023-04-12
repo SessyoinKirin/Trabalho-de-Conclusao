@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-11 14:13:44
+ * @LastEditTime: 2023-04-12 11:32:06
  * @FilePath: \Trabalho-de-Conclusao\estiloGeral.js
  * @Description: 
  * 
@@ -49,11 +49,11 @@ const styles = StyleSheet.create({
         margin: 12,
         paddingLeft: 10,
         fontSize: 25,
-        alignSelf:'center',
+        alignSelf: 'center',
     },
     loginbtnEntrar: {
         borderRadius: 50,
-        alignSelf:'center',
+        alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
         width: '90%',
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
 
     cardapioColunas: {
         flex: 1,
-        flex:5.5,
+        flex: 5.5,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
@@ -113,16 +113,59 @@ const styles = StyleSheet.create({
         padding: 2,
         margin: 2,
         fontSize: 20,
-        color:'#fff',
+        color: '#fff',
     },
     cardapioItem: {
         width: '100%',
-        height: 150,
+        height: 120,
+        flexDirection: 'row',
         // cor de item
         backgroundColor: '#1c1c1c',
         marginVertical: 5,
         margin: 5,
         justifyContent: 'center',
+    },
+    cardapioImg: {
+        flex: 1,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        margin: 10,
+    },
+    cardapioDescBtn: {
+        flexDirection: 'column',
+        paddingRight: 10,
+        paddingBottom: 10,
+    },
+    cardapioBotaoAdd: {
+        backgroundColor: '#f23005',
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 10,
+        marginLeft:3,
+        marginRight:3,
+        alignItems: 'center',
+    },
+    cardapioTitulo: {
+        justifyContent: 'center',
+    },
+    cardapioAdd: {
+        fontSize: 17,
+        fontWeight: 'bold',
+        // color: '#fff',
+    },
+    cardapioContador: {
+        flexDirection: 'row',
+    },
+    cardapioBotaoCount: {
+        backgroundColor: '#5cb85c',
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 10,
+        alignItems: 'center',
+    },
+    cardapioSinal:{
+        fontSize: 20,
+        fontWeight: 'bold',
     },
 
     //Mesa
@@ -130,7 +173,7 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     mesas: {
-        flex:5.5,
+        flex: 5.5,
         flexDirection: 'row',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
@@ -226,7 +269,8 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
     carPreco: {
-        fontSize: 25,
+        fontSize: 17,
+        fontWeight: 'bold',
 
     },
 });
