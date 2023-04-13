@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 10:03:05
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-12 14:18:24
+ * @LastEditTime: 2023-04-13 10:23:17
  * @FilePath: \Trabalho-de-Conclusao\src\components\cardapio\index.js
  * @Description: 
  * 
@@ -40,7 +40,7 @@ export default function Cardapio({ navigation }) {
             </View>
             <View style={[styles.cardapioContador, { flex: 3 }]}>
               
-              <Contador item={item}/>
+              <Contador item={item} navigation={navigation}/>
             </View>
           </View>
 
