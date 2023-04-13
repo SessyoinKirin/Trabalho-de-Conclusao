@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-13 15:23:17
+ * @LastEditTime: 2023-04-13 15:33:27
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -17,14 +17,16 @@ export default function Carrinho({ route, navigation }) {
 
     // const {index} = route.params
 
-    const { item } = route.params
+    const { item } = route.params.item
+    const {count } = route.params.count
+    
     console.log(route.params, 'parametro')
     // const [lista, setLista] = React.useState([item])
 
     const index = useMemo(()=>{
-        const mesa = route.params.index
+        const [mesaIndex, setMesaIndex] = useState(route.params.index);
         navigation.setOptions({
-            headerTitle: `Mesa ${mesa}`,
+            headerTitle: `Mesa ${mesaIndex}`,
             headerStyle: {
               backgroundColor: 'black',
             },
@@ -32,8 +34,8 @@ export default function Carrinho({ route, navigation }) {
               fontWeight: 'bold',
             },
           });
-          console.log(mesa, 'index')
-    },[index])
+          console.log(mesaIndex, 'index')
+    },[])
     // setLista(...[], item)
     return (
         <View style={styles.container}>
