@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-13 15:33:27
+ * @LastEditTime: 2023-04-14 10:40:04
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -35,6 +35,8 @@ export default function Carrinho({ route, navigation }) {
           });
           console.log(mesaIndex, 'index')
     },[])
+
+    
     // setLista(...[], item)
     return (
         <View style={styles.container}>
@@ -58,10 +60,9 @@ export default function Carrinho({ route, navigation }) {
                         </View>)
                     } */}
                     {
-                        console.log(item)
-                    }{
-                        console.log(route.params, 'parametro')
+                        item ===undefined ? console.log('sapoha ainda ta nulo') : <Text>{item.id}</Text>
                     }
+                    
                     {/* <Text style={styles.cardapioTexto}>{item}</Text> */}
                 </View>
 
