@@ -17,14 +17,13 @@ export default function Carrinho({ route, navigation }) {
 
     // const {index} = route.params
 
-    const { item } = route.params.item
-    const {count } = route.params.count
+    const{mesaIndex, item, count} = route.params
     
     console.log(route.params, 'parametro')
     // const [lista, setLista] = React.useState([item])
 
     const index = useMemo(()=>{
-        const [mesaIndex, setMesaIndex] = useState(route.params.index);
+        
         navigation.setOptions({
             headerTitle: `Mesa ${mesaIndex}`,
             headerStyle: {

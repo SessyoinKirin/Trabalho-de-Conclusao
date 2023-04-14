@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-04-12 11:59:49
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-13 15:28:55
+ * @LastEditTime: 2023-04-14 10:16:40
  * @FilePath: \Trabalho-de-Conclusao\src\components\cardapio\contador.js
  * @Description: 
  * 
@@ -36,7 +36,7 @@ export default function Contador({item ,navigation}) {
     </TouchableOpacity>
     <TouchableOpacity onPress={()=>{
       // console.log(item)
-      navigation.navigate('Carrinho', {item, count})}} style={[styles.cardapioBotaoAdd, {flex:4}]}>
+      navigation.navigate('Carrinho', {item:item, count:count})}} style={[styles.cardapioBotaoAdd, {flex:4}]}>
       <Text style={styles.cardapioAdd}>Adicionar -- {count}</Text>
     </TouchableOpacity>
     <TouchableOpacity
