@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 10:03:05
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-13 10:23:17
+ * @LastEditTime: 2023-04-23 14:58:43
  * @FilePath: \Trabalho-de-Conclusao\src\components\cardapio\index.js
  * @Description: 
  * 
@@ -15,10 +15,13 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import axios from 'axios'
 import styles from '../../../estiloGeral';
 import Contador from './contador';
+import { TextInput } from 'react-native';
+import { useState } from 'react';
 
 export default function Cardapio({ navigation }) {
 
   const [data, setData] = React.useState([])
+  const [filtro, setFiltro]= React.useState("")
   // const [count, setCount] = React.useState(1)
 
   React.useEffect(() => {
@@ -28,15 +31,36 @@ export default function Cardapio({ navigation }) {
     })
   }, [])
 
+  // console.log(data)
+
+  const getItemList = React.useMemo(() => {
+    if (!filtro) {
+      return data;
+    }
+    return data.filter(
+      (item) =>
+      filtro && item.title && item.title.toUpperCase().includes(filtro.toUpperCase() || '')
+
+
+
+    );
+  }, [data, filtro]);
+  
+  
+
   return (
     <View style={styles.cardapioColunas}>
+      <TextInput style={styles.logininput} value={filtro} onChange={(evt)=>{
+        // console.log(filtro, 'filtro')
+        setFiltro(evt.nativeEvent.text)
+      }}/>
       {
-        data.map(item => <View key={item.id} style={styles.cardapioItem}>
+        getItemList.length > 0 ? getItemList.map(item => <View key={item.id} style={styles.cardapioItem}>
           <View style={{ flex: 2 }}><Image src={item.thumbnail} alt="" style={[styles.cardapioImg, { width: 100, height: 100 }]} /></View>
 
           <View style={[styles.cardapioDescBtn, { flex: 5 }]}>
             <View style={[styles.cardapioTitulo, { flex: 3 }]}>
-              <Text style={styles.cardapioTexto}>{item.category_id}</Text>
+              <Text style={styles.cardapioTexto}>{item.title}</Text>
             </View>
             <View style={[styles.cardapioContador, { flex: 3 }]}>
               
@@ -45,7 +69,7 @@ export default function Cardapio({ navigation }) {
           </View>
 
 
-        </View>)
+        </View>):null
       }
     </View>
   )
