@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-25 13:38:12
+ * @LastEditTime: 2023-04-25 17:18:38
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -17,21 +17,21 @@ export default function Carrinho({ route, navigation }) {
 
 
     const { mesaIndex, item, count } = route.params
-
+    const [currentMesaIndex, setCurrentMesaIndex] = useState(mesaIndex)
     // console.log(route.params, 'parametro')
     const [lista, setLista] = useState([]);
 
     useMemo(() => {
       if (item) {
         setLista(prevState => [...prevState, item]);
+        console.log(mesaIndex,'index da mesa', currentMesaIndex, 'curretn')
       }
     }, [item]);
 
 
-    const index = useMemo(() => {
-
+    useMemo(() => {
         navigation.setOptions({
-            headerTitle: `Mesa ${mesaIndex}`,
+            headerTitle: `Mesa ${currentMesaIndex}`,
             headerStyle: {
                 backgroundColor: 'black',
             },
@@ -39,8 +39,8 @@ export default function Carrinho({ route, navigation }) {
                 fontWeight: 'bold',
             },
         });
-        console.log(mesaIndex, 'index')
-    }, [])
+        console.log(currentMesaIndex, 'currente', mesaIndex, 'mesaindex')
+    }, [currentMesaIndex]);
 
 function ListItem({item}){
     return<View style={styles.cardapioItem}>
@@ -96,4 +96,3 @@ function ListItem({item}){
         </View>
     )
 }
-
