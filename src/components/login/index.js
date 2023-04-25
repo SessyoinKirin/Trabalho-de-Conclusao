@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 10:30:41
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-11 10:28:19
+ * @LastEditTime: 2023-04-25 10:22:10
  * @FilePath: \Trabalho-de-Conclusao\src\components\login\index.js
  * @Description: 
  * 
@@ -21,15 +21,20 @@ export default function Login({ navigation }) {
 
     function logar() {
         // console.log(navigation.navigate)
-        navigation.navigate('Mesa')
-        // if(login === 'acnologia' && password === 'acnologia'){
-        //     navigation.navigate('Mesa')
-        //     setLogin(null)
-        //     setPassword(null)
-        //     setMsgError(null)
-        // }else{
-        //     setMsgError('E-mail ou senha inválida!!')
-        // }
+        // navigation.navigate('Mesa')
+        if(login === 'acnologia' && password === 'acnologia'){
+            navigation.navigate('ADM')
+            setLogin(null)
+            setPassword(null)
+            setMsgError(null)
+        }else if(login === 'povao' && password === 'povao'){
+            navigation.navigate('Mesa')
+            setLogin(null)
+            setPassword(null)
+            setMsgError(null)
+        }else{
+            setMsgError('E-mail ou senha inválida!!')
+        }
     }
 
     return (

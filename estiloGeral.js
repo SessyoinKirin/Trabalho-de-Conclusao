@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-12 11:32:06
+ * @LastEditTime: 2023-04-25 10:19:35
  * @FilePath: \Trabalho-de-Conclusao\estiloGeral.js
  * @Description: 
  * 
@@ -272,6 +272,22 @@ const styles = StyleSheet.create({
         fontSize: 17,
         fontWeight: 'bold',
 
+    },
+
+    //ADM
+    admBotao: {
+        flex: 0.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 3,
+        borderColor: '#1c1c1c',
+        backgroundColor: '#2c2c2c',
+    },
+    admTexto: {
+        padding: 2,
+        margin: 5,
+        fontSize: 20,
+        color: '#fff',
     },
 });
 

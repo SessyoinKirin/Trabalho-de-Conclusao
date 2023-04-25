@@ -17,19 +17,20 @@ import Detail from './src/components/detalhes';
 import Mesa from './src/components/Mesa';
 import Carrinho from './src/components/carrinho';
 import Cardapio from './src/components/cardapio';
+import Adm from './src/components/adm';
 
 
 import styles from './estiloGeral';
 
 
 
-function App({navigation}) {
+function App({ navigation }) {
   return (
     // <View style={styles.container}>
     //   <Login />
     // </View>
     <NavigationContainer>
-      <Stack.Navigator  screenOptions={{
+      <Stack.Navigator screenOptions={{
         headerTitleAlign: 'center',
         headerTitleStyle: { fontWeight: 'bold' }
       }}>
@@ -40,16 +41,16 @@ function App({navigation}) {
           headerTintColor: 'white',
         }} />
         <Stack.Screen name="Mesa" component={Mesa} options={{
-          title:'Mesas',
+          title: 'Mesas',
           headerStyle: {
             backgroundColor: 'black',
           },
           headerTintColor: 'white',
-          headerLeft: null, 
-          
+          headerLeft: null,
+
         }} />
 
-        <Stack.Screen name="Carrinho" component={Carrinho} options={({route})=>({
+        <Stack.Screen name="Carrinho" component={Carrinho} options={({ route }) => ({
           title: `Mesa ${route.params.index}`,
           headerStyle: {
             backgroundColor: 'black',
@@ -59,14 +60,14 @@ function App({navigation}) {
           //   const redirecionar = () => {
           //     navigation.navigate('Cardapio')
           //   }
-          
+
           //   return (
           //     <TouchableOpacity onPress={redirecionar}>
           //       <Image source={require('./assets/img/addinversa.png')} style={{ width: 30, height: 30 }} />
           //     </TouchableOpacity>
           //   )
           // }
-          
+
         })} />
         <Stack.Screen name="Detalhe" component={Detail} options={{
           headerStyle: {
@@ -74,8 +75,15 @@ function App({navigation}) {
           },
           headerTintColor: 'white',
         }} />
-        
+
         <Stack.Screen name="Cardapio" component={Cardapio} options={{
+          headerStyle: {
+            backgroundColor: 'black',
+          },
+          headerTintColor: 'white',
+        }} />
+
+        <Stack.Screen name="ADM" component={Adm} options={{
           headerStyle: {
             backgroundColor: 'black',
           },
@@ -89,7 +97,7 @@ function App({navigation}) {
   );
 }
 
-function Redirecionar({navigation}){
+function Redirecionar({ navigation }) {
   navigation.navigate('Mesa')
 }
 
