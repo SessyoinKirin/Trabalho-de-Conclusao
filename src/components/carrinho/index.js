@@ -2,41 +2,63 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-14 10:40:04
+ * @LastEditTime: 2023-04-25 13:38:12
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
  */
 import React, { useMemo, useState } from "react";
-import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet, Image, FlatList } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from "../../../estiloGeral";
 
 export default function Carrinho({ route, navigation }) {
 
-    // const {index} = route.params
 
-    const{mesaIndex, item, count} = route.params
-    
-    console.log(route.params, 'parametro')
-    // const [lista, setLista] = React.useState([item])
+    const { mesaIndex, item, count } = route.params
 
-    const index = useMemo(()=>{
-        
+    // console.log(route.params, 'parametro')
+    const [lista, setLista] = useState([]);
+
+    useMemo(() => {
+      if (item) {
+        setLista(prevState => [...prevState, item]);
+      }
+    }, [item]);
+
+
+    const index = useMemo(() => {
+
         navigation.setOptions({
             headerTitle: `Mesa ${mesaIndex}`,
             headerStyle: {
-              backgroundColor: 'black',
+                backgroundColor: 'black',
             },
             headerTitleStyle: {
-              fontWeight: 'bold',
+                fontWeight: 'bold',
             },
-          });
-          console.log(mesaIndex, 'index')
-    },[])
+        });
+        console.log(mesaIndex, 'index')
+    }, [])
 
-    
+function ListItem({item}){
+    return<View style={styles.cardapioItem}>
+    <View style={{ flex: 2 }}><Image src={item.thumbnail} alt="" style={[styles.cardapioImg, { width: 100, height: 100 }]} /></View>
+
+    <View style={[styles.cardapioDescBtn, { flex: 5 }]}>
+      <View style={[styles.cardapioTitulo, { flex: 3 }]}>
+        <Text style={styles.cardapioTexto}>{item.title}</Text>
+      </View>
+      <View style={[styles.cardapioContador, { flex: 3 }]}>
+        
+        
+      </View>
+    </View>
+
+
+  </View>
+}
     // setLista(...[], item)
     return (
         <View style={styles.container}>
@@ -45,25 +67,12 @@ export default function Carrinho({ route, navigation }) {
                     <Text style={styles.carLetra}>Adicionar</Text>
                 </TouchableOpacity>
                 <View style={{ flex: 5.5 }}>
-                    {/* {
-                        lista.map(lista => <View key={lista.id} style={styles.cardapioItem}>
-                            <View style={{ flex: 2 }}><Image src={lista.thumbnail} alt="" style={[styles.cardapioImg, { width: 100, height: 100 }]} /></View>
-
-                            <View style={[styles.cardapioDescBtn, { flex: 5 }]}>
-                                <View style={[styles.cardapioTitulo, { flex: 3 }]}>
-                                    <Text style={styles.cardapioTexto}>{lista.category_id}</Text>
-                                </View>
-
-                            </View>
-
-
-                        </View>)
-                    } */}
-                    {
-                        item ===undefined ? console.log('sapoha ainda ta nulo') : <Text>{item.id}</Text>
-                    }
                     
-                    {/* <Text style={styles.cardapioTexto}>{item}</Text> */}
+                    <FlatList
+                        data={lista}
+                        renderItem={({ item }) => <ListItem item={item} />}
+                        keyExtractor={(item) => item.id}
+                    />
                 </View>
 
             </View>
