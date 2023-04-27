@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-27 12:03:38
+ * @LastEditTime: 2023-04-27 14:32:03
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -20,7 +20,7 @@ export default function Carrinho({ route, navigation }) {
     const [currentMesaIndex, setCurrentMesaIndex] = useState(mesaIndex)
     // console.log(route.params, 'parametro')
     const [lista, setLista] = useState([]);
-    console.log(mesaIndex, 'index')
+
     useMemo(() => {
         if (item) {
             setLista(prevState => [...prevState, item]);
@@ -52,9 +52,14 @@ export default function Carrinho({ route, navigation }) {
         }
     }, [currentMesaIndex, mesaIndex, navigation]);
 
+    function removerItem(id) {
+        setLista(prevState => prevState.filter(item => item.id !== id));
+
+    }
+
     const valorTotal = useMemo(() => {
         return lista.reduce((acc, cur) => acc + cur.price, 0);
-      }, [lista]);
+    }, [lista]);
 
     function ListItem({ item }) {
         return <View style={styles.cardapioItem}>
@@ -65,8 +70,11 @@ export default function Carrinho({ route, navigation }) {
                     <Text style={styles.cardapioTexto}>{item.title}</Text>
                 </View>
                 <View style={[styles.cardapioContador, { flex: 3 }]}>
-                <Text  style={styles.cardapioTexto}>{item.price}</Text>
-
+                    <Text style={styles.cardapioTexto}>{count} x </Text>
+                    <Text style={styles.cardapioTexto}>{item.price}</Text>
+                    <TouchableOpacity onPress={() => removerItem(item.id)} style={[styles.cardapioBotaoAdd, { flex: 4 }]}>
+                        <Text style={styles.cardapioAdd}>Remover</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
 
@@ -91,7 +99,7 @@ export default function Carrinho({ route, navigation }) {
 
             </View>
             <View style={styles.carrinhoRotape}>
-                {item ? (
+                {lista.length > 0 ? (
                     <>
                         <Text style={styles.carTexto}>Valor total: {valorTotal}</Text>
                         <View style={styles.carFlexend}>
@@ -108,9 +116,10 @@ export default function Carrinho({ route, navigation }) {
                         </View>
                     </>
                 ) : (
-                    <Text  style={[styles.cardapioTexto, {alignSelf:'center', padding:10}]}>Nenhum item encontrado.</Text>
+                    <Text style={[styles.cardapioTexto, { alignSelf: 'center', padding: 10 }]}>Nenhum item encontrado.</Text>
                 )}
             </View>
+
 
         </View>
     )
