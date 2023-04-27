@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-27 14:32:03
+ * @LastEditTime: 2023-04-27 14:47:11
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -58,8 +58,10 @@ export default function Carrinho({ route, navigation }) {
     }
 
     const valorTotal = useMemo(() => {
-        return lista.reduce((acc, cur) => acc + cur.price, 0);
-    }, [lista]);
+        const total = lista.reduce((acc, cur) => acc + cur.price, 0);
+        return total.toFixed(2);
+      }, [lista]);
+      
 
     function ListItem({ item }) {
         return <View style={styles.cardapioItem}>
