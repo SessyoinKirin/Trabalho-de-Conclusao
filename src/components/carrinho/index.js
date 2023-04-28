@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-27 14:47:11
+ * @LastEditTime: 2023-04-28 10:56:32
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -20,10 +20,13 @@ export default function Carrinho({ route, navigation }) {
     const [currentMesaIndex, setCurrentMesaIndex] = useState(mesaIndex)
     // console.log(route.params, 'parametro')
     const [lista, setLista] = useState([]);
+    const [enviarDesativado, setEnviarDesativado] = useState(false);
+
+
 
     useMemo(() => {
         if (item) {
-            setLista(prevState => [...prevState, item]);
+            setLista(prevState => [...prevState, { ...item, count }]);
             console.log(mesaIndex, 'index da mesa', currentMesaIndex, 'curretn')
         }
     }, [item]);
@@ -58,10 +61,19 @@ export default function Carrinho({ route, navigation }) {
     }
 
     const valorTotal = useMemo(() => {
-        const total = lista.reduce((acc, cur) => acc + cur.price, 0);
+        const total = lista.reduce((acc, cur) => {
+            const itemPrice = Number(cur.price);
+            const itemCount = Number(cur.count);
+            console.log(`itemPrice: ${itemPrice}, itemCount: ${itemCount}`);
+
+            return acc + (itemPrice * itemCount);
+        }, 0);
+
         return total.toFixed(2);
-      }, [lista]);
-      
+    }, [lista]);
+
+
+
 
     function ListItem({ item }) {
         return <View style={styles.cardapioItem}>
@@ -77,11 +89,12 @@ export default function Carrinho({ route, navigation }) {
                     <TouchableOpacity onPress={() => removerItem(item.id)} style={[styles.cardapioBotaoAdd, { flex: 4 }]}>
                         <Text style={styles.cardapioAdd}>Remover</Text>
                     </TouchableOpacity>
+
                 </View>
             </View>
 
 
-        </View>
+        </View >
     }
     // setLista(...[], item)
     return (
@@ -106,7 +119,10 @@ export default function Carrinho({ route, navigation }) {
                         <Text style={styles.carTexto}>Valor total: {valorTotal}</Text>
                         <View style={styles.carFlexend}>
                             <View style={{ width: '50%', height: '100%' }}>
-                                <TouchableOpacity style={styles.carBotoesInfo}>
+                                <TouchableOpacity
+                                    style={styles.carBotoesInfo}
+                                    onPress={() => setRemoverBloqueado(true)}
+                                >
                                     <Text style={styles.carTextoBotao}>Enviar</Text>
                                 </TouchableOpacity>
                             </View>
