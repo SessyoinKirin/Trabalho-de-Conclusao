@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-25 13:15:47
+ * @LastEditTime: 2023-04-28 13:15:29
  * @FilePath: \Trabalho-de-Conclusao\estiloGeral.js
  * @Description: 
  * 
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
         // flexWrap: 'wrap',
         // justifyContent: 'space-between',
         // cor de fundo
-        
+
         backgroundColor: '#3c3c3c',
     },
     cardapioTexto: {
@@ -142,8 +142,8 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 5,
         marginTop: 10,
-        marginLeft:3,
-        marginRight:3,
+        marginLeft: 3,
+        marginRight: 3,
         alignItems: 'center',
     },
     cardapioTitulo: {
@@ -164,7 +164,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         alignItems: 'center',
     },
-    cardapioSinal:{
+    cardapioSinal: {
         fontSize: 20,
         fontWeight: 'bold',
     },
@@ -177,6 +177,12 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         fontSize: 25,
         alignSelf: 'center',
+    },
+    cardapioItemDesativado: {
+        opacity: 0.5,
+    },
+    cardapioBotaoAddDesativado: {
+        backgroundColor: 'gray',
     },
 
     //Mesa
