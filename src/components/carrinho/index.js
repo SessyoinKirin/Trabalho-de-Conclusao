@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-03 10:59:45
+ * @LastEditTime: 2023-05-03 11:08:06
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -183,7 +183,7 @@ export default function Carrinho({ route, navigation }) {
                                 </Modal>
                             </View>
                             <View style={{ width: '50%', height: '100%' }}>
-                                <TouchableOpacity style={styles.carBotoesSuccess}>
+                                <TouchableOpacity style={styles.carBotoesSuccess} onPress={()=>{setLista([])}}>
                                     <Text style={styles.carTextoBotao}>Finalizar</Text>
                                 </TouchableOpacity>
                             </View>
