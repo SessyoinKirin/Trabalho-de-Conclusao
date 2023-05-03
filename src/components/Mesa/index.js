@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-04-11 09:40:11
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-25 10:31:05
+ * @LastEditTime: 2023-05-01 23:51:05
  * @FilePath: \Trabalho-de-Conclusao\src\components\Mesa\index.js
  * @Description: 
  * 
@@ -24,11 +24,6 @@ function Mesa({ navigation }) {
                 <Text style={styles.mesaLetra}>Logout</Text>
             </TouchableOpacity>
             <View style={styles.mesas}>
-                {/* {
-                    mesa.map(index => <TouchableOpacity key={index} style={styles.mesaItem} onPress={() => navigation.navigate('Carrinho', { mesaIndex: index })}>
-                        <Text style={styles.mesaTexto}>{index}</Text>
-                    </TouchableOpacity>)
-                } */}
                 {
                     mesa.map(index => <MesaUnidade key={index} index={index} navigation={navigation} />)
                 }

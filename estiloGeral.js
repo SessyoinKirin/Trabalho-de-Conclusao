@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-28 13:15:29
+ * @LastEditTime: 2023-05-03 10:49:41
  * @FilePath: \Trabalho-de-Conclusao\estiloGeral.js
  * @Description: 
  * 
@@ -306,6 +306,61 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#fff',
     },
+
+    //Modal
+    modalCenteredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 10
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: '#BFBFBF',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+        height: 400,
+        width: 300,
+    },
+    modalText: {
+        marginBottom: 15,
+        fontSize: 20,
+        textAlign: "center",
+        fontWeight:'bold',
+    },
+    modalInput: {
+        height: 200,
+        borderColor: "gray",
+        borderWidth: 1,
+        marginBottom: 20,
+        paddingHorizontal: 10,
+        width: '100%',
+        paddingTop:20,
+        fontSize:20,
+    },
+    modalButton: {
+        backgroundColor: "#5bc0de",
+        borderRadius: 10,
+        padding: 10,
+        elevation: 2,
+        marginTop: 10,
+        width:'60%',
+    },
+    modalButtonText: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+    }
+
 });
 
 export default styles
