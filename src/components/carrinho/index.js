@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-03 14:13:25
+ * @LastEditTime: 2023-05-03 14:23:12
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -99,17 +99,20 @@ export default function Carrinho({ route, navigation }) {
     function ListItem({ item }) {
         return (
             <View style={styles.cardapioItem}>
+                {/* imagem */}
                 <View style={{ flex: 2 }}>
                     <Image src={item.thumbnail} alt="" style={[styles.cardapioImg, { width: 100, height: 100 }]} />
                 </View>
+                {/* imagem */}
                 <View style={[styles.cardapioDescBtn, { flex: 5 }]}>
                     <View style={[styles.cardapioTitulo, { flex: 3 }]}>
-                        <Text style={styles.cardapioTexto}>{item.title}</Text>
+                        <Text style={styles.cardapioTexto} numberOfLines={1}>{item.title}</Text>
                     </View>
-                    <View style={[styles.cardapioContador, { flex: 3 }]}>
-                        <Text style={styles.cardapioTexto}>{item.count} x </Text>
-                        <Text style={styles.cardapioTexto}>{item.price}</Text>
-                        <TouchableOpacity onPress={() => removerItem(item.id)} style={[styles.cardapioBotaoAdd, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 4 }]}>
+                    <View style={[styles.cardapioContador, { flex: 3, alignItems:'center' }]}>
+                        <View style={{flex:3}}>
+                            <Text style={styles.cardapioTexto}>{item.count} x {item.price}</Text>
+                        </View>
+                        <TouchableOpacity onPress={() => removerItem(item.id)} style={[styles.cardapioBotaoAdd, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]}>
                             <Text style={[styles.cardapioAdd, item.removerDesativado && styles.cardapioItemDesativado]}>Remover</Text>
                         </TouchableOpacity>
 
@@ -122,7 +125,7 @@ export default function Carrinho({ route, navigation }) {
     function handleEnviar() {
         console.log("Itens do carrinho:");
         lista.forEach((item) => {
-            console.log(item.title, ', quantidade: ',item.count);
+            console.log(item.title, ', quantidade: ', item.count);
         });
         console.log("Observação:", observacao);
         toggleModal()
@@ -164,7 +167,7 @@ export default function Carrinho({ route, navigation }) {
                                 <Modal animationType="slide" transparent={true}
                                     visible={modalVisible}
                                     onRequestClose={() => {
-                                        
+
                                         setModalVisible(!modalVisible)
                                     }}
                                 >
@@ -174,7 +177,7 @@ export default function Carrinho({ route, navigation }) {
                                             <TextInput value={observacao} onChange={(evt) => {
                                                 // console.log(evt.nativeEvent.text, 'observacao')
                                                 setObservacao(evt.nativeEvent.text)
-                                            }} style={styles.modalInput} multiline={true} numberOfLines={6}/>
+                                            }} style={styles.modalInput} multiline={true} numberOfLines={6} />
                                             <TouchableOpacity onPress={handleEnviar} style={styles.modalButton}>
                                                 <Text style={styles.modalButtonText}>Enviar</Text>
                                             </TouchableOpacity>
@@ -183,7 +186,7 @@ export default function Carrinho({ route, navigation }) {
                                 </Modal>
                             </View>
                             <View style={{ width: '50%', height: '100%' }}>
-                                <TouchableOpacity style={styles.carBotoesSuccess} onPress={()=>{setLista([])}}>
+                                <TouchableOpacity style={styles.carBotoesSuccess} onPress={() => { setLista([]) }}>
                                     <Text style={styles.carTextoBotao}>Finalizar</Text>
                                 </TouchableOpacity>
                             </View>

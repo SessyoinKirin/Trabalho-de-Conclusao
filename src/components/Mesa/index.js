@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-04-11 09:40:11
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-01 23:51:05
+ * @LastEditTime: 2023-05-03 14:30:29
  * @FilePath: \Trabalho-de-Conclusao\src\components\Mesa\index.js
  * @Description: 
  * 
@@ -15,7 +15,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from '../../../estiloGeral';
 
 function Mesa({ navigation }) {
-    const [mesa, setMesa] = React.useState([1, 2, 3, 4, 5, 6, 7])
+    const [mesa, setMesa] = React.useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 
     return (
 

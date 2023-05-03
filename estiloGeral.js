@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-03 10:49:41
+ * @LastEditTime: 2023-05-03 14:32:53
  * @FilePath: \Trabalho-de-Conclusao\estiloGeral.js
  * @Description: 
  * 
@@ -115,6 +115,7 @@ const styles = StyleSheet.create({
         margin: 2,
         fontSize: 20,
         color: '#fff',
+        textAlign:'center',
     },
     cardapioItem: {
         width: '100%',
@@ -217,7 +218,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 5,
-        borderColor: '#1c1c1c',
+        borderLeftColor:'#1c1c1c',
+        borderTopColor:'#1c1c1c',
+        borderRightColor:'#0c0c0c',
+        borderBottomColor:'#0c0c0c',
         backgroundColor: '#2c2c2c',
     },
     mesaLetra: {
@@ -236,8 +240,11 @@ const styles = StyleSheet.create({
         flex: 0.5,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 3,
-        borderColor: '#1c1c1c',
+        borderWidth: 5,
+        borderLeftColor:'#1c1c1c',
+        borderTopColor:'#1c1c1c',
+        borderRightColor:'#0c0c0c',
+        borderBottomColor:'#0c0c0c',
         backgroundColor: '#2c2c2c',
 
     },
