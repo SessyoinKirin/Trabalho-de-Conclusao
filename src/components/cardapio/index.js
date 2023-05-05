@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 10:03:05
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-25 13:17:15
+ * @LastEditTime: 2023-05-05 11:21:46
  * @FilePath: \Trabalho-de-Conclusao\src\components\cardapio\index.js
  * @Description: 
  * 
@@ -50,7 +50,7 @@ export default function Cardapio({ navigation }) {
 
           <View style={[styles.cardapioDescBtn, { flex: 5 }]}>
             <View style={[styles.cardapioTitulo, { flex: 3 }]}>
-              <Text style={styles.cardapioTexto}>{item.title}</Text>
+              <Text style={styles.cardapioTexto} numberOfLines={1}>{item.title}</Text>
             </View>
             <View style={[styles.cardapioContador, { flex: 3 }]}>
               

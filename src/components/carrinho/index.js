@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-03 14:23:12
+ * @LastEditTime: 2023-05-05 11:23:27
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -123,11 +123,14 @@ export default function Carrinho({ route, navigation }) {
     }
 
     function handleEnviar() {
-        console.log("Itens do carrinho:");
+        console.log('Mesa: ', currentMesaIndex)
+        console.log("Itens do carrinho:")
         lista.forEach((item) => {
-            console.log(item.title, ', quantidade: ', item.count);
+            if(!item.removerDesativado){
+                console.log(item.title, ', quantidade: ', item.count)
+            }
         });
-        console.log("Observação:", observacao);
+        console.log("Observação:", observacao)
         toggleModal()
         Alert.alert('Observação e pedido enviado com sucesso!')
         setObservacao('')
@@ -158,7 +161,7 @@ export default function Carrinho({ route, navigation }) {
                                 <TouchableOpacity
                                     style={styles.carBotoesInfo}
                                     onPress={() => {
-                                        toggleRemoverDesativado()
+                                        
                                         toggleModal()
                                     }}
                                 >
@@ -178,7 +181,10 @@ export default function Carrinho({ route, navigation }) {
                                                 // console.log(evt.nativeEvent.text, 'observacao')
                                                 setObservacao(evt.nativeEvent.text)
                                             }} style={styles.modalInput} multiline={true} numberOfLines={6} />
-                                            <TouchableOpacity onPress={handleEnviar} style={styles.modalButton}>
+                                            <TouchableOpacity onPress={()=>{
+                                                handleEnviar()
+                                                toggleRemoverDesativado()
+                                            }} style={styles.modalButton}>
                                                 <Text style={styles.modalButtonText}>Enviar</Text>
                                             </TouchableOpacity>
                                         </View>
