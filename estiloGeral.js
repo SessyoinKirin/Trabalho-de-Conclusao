@@ -16,17 +16,23 @@ const styles = StyleSheet.create({
     },
 
     // login
+    imgFundo1:{
+        flex: 1,
+        resizeMode: 'center',
+    },
+
     loginContainer: {
         backgroundColor: "#1c1c1c",
-        paddingTop: 50,
+        paddingTop: 0,
     },
     loginformContext: {
         //width: '100%',
         //height: '90%',
         //bottom: 0,
-        backgroundColor: 'rgba(0, 0, 0, 0.4)',
+        backgroundColor: 'black',
         alignItems: 'center',
         borderRadius: 10,
+        //opacity: 0.5,
         //borderTopLeftRadius: 20,
         //borderTopRightRadius: 20,
         margin: 30,
@@ -36,6 +42,7 @@ const styles = StyleSheet.create({
         height: 'auto',
         marginTop: 10,
         padding: 10,
+        zIndex: 1,
     },
     loginformLabel: {
         color: '#fff',
@@ -81,6 +88,7 @@ const styles = StyleSheet.create({
     logintextTitle: {
         color: '#f23045',
         fontSize: 40,
+        paddingTop: 50,
         fontWeight: 'bold',
         fontStyle: 'italic',
         textAlign: 'center',
