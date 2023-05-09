@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-04-12 11:59:49
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-14 10:16:40
+ * @LastEditTime: 2023-05-09 10:25:04
  * @FilePath: \Trabalho-de-Conclusao\src\components\cardapio\contador.js
  * @Description: 
  * 
@@ -29,10 +29,10 @@ export default function Contador({item ,navigation}) {
   return (
     <>
         <TouchableOpacity
-      onPress={handleIncrease}
+      onPress={handleDecrease}
       style={[styles.cardapioBotaoCount, {flex:1}]}
     >
-      <Text style={styles.cardapioSinal}>{'<'}</Text>
+      <Text style={styles.cardapioSinal}>-</Text>
     </TouchableOpacity>
     <TouchableOpacity onPress={()=>{
       // console.log(item)
@@ -40,10 +40,10 @@ export default function Contador({item ,navigation}) {
       <Text style={styles.cardapioAdd}>Adicionar -- {count}</Text>
     </TouchableOpacity>
     <TouchableOpacity
-      onPress={handleDecrease}
+      onPress={handleIncrease}
       style={[styles.cardapioBotaoCount, {flex:1}]}
     >
-      <Text style={styles.cardapioSinal}>{'>'}</Text>
+      <Text style={styles.cardapioSinal}>+</Text>
     </TouchableOpacity>
     </>
   );
