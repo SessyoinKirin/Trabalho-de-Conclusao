@@ -1,10 +1,10 @@
-   /*
+/*
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
  * @LastEditTime: 2023-05-03 14:32:53
  * @FilePath: \Trabalho-de-Conclusao\estiloGeral.js
- * @Description: 
+ * @Description:s 
  * 
  */
 
