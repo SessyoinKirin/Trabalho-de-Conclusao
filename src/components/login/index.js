@@ -33,22 +33,23 @@ export default function Login({ navigation }) {
             setPassword(null)
             setMsgError(null)
         }else{
-            setMsgError('E-mail ou senha inválida!!')
+            setMsgError('E-Mail ou Senha inválida!')
         }
     }
 
     return (
         <KeyboardAvoidingView style={[styles.container, styles.loginContainer]} behavior="padding" keyboardVerticalOffset={50}>
             <View style={styles.loginboxTitle}>
-                <Text style={styles.logintextTitle}>Los Hermanos</Text>
+                <Text style={styles.logintextTitle}>Los Hermanos Comanda Mobile</Text>
             </View>
+
             <View style={styles.loginformContext}>
                 <View style={styles.loginform}>
-                    <Text style={styles.loginformLabel}>Login:</Text>
+
+                    <Text style={styles.loginformLabel}>E-Mail:</Text>
                     <TextInput
                         onChangeText={setLogin}
                         value={login}
-                        placeholder="Insere seu e-mail"
                         style={styles.logininput}
                         keyboardType="email-address" />
 
@@ -57,7 +58,6 @@ export default function Login({ navigation }) {
                         onChangeText={setPassword}
                         value={password}
                         style={styles.logininput}
-                        placeholder="Insere sua senha"
                         keyboardType="visible-password"></TextInput>
                     <TouchableOpacity
                         style={

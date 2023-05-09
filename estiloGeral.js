@@ -4,7 +4,7 @@
  * @LastEditors: SessyoinChen
  * @LastEditTime: 2023-05-03 14:32:53
  * @FilePath: \Trabalho-de-Conclusao\estiloGeral.js
- * @Description:s 
+ * @Description: 
  * 
  */
 
@@ -21,68 +21,75 @@ const styles = StyleSheet.create({
         paddingTop: 50,
     },
     loginformContext: {
-        width: '100%',
-        height: '90%',
-        bottom: 0,
-        backgroundColor: '#2c2c2c',
+        //width: '100%',
+        //height: '90%',
+        //bottom: 0,
+        backgroundColor: 'rgba(0, 0, 0, 0.4)',
         alignItems: 'center',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-        marginTop: 30,
+        borderRadius: 10,
+        //borderTopLeftRadius: 20,
+        //borderTopRightRadius: 20,
+        margin: 30,
     },
     loginform: {
         width: '100%',
         height: 'auto',
-        marginTop: 30,
+        marginTop: 10,
         padding: 10,
     },
     loginformLabel: {
         color: '#fff',
         fontSize: 20,
-        paddingLeft: 30,
+        paddingLeft: 22,
+        fontWeight: '600',
+        marginTop: 20,
+        marginBottom: 5,
     },
     logininput: {
         width: '90%',
-        borderRadius: 50,
-        backgroundColor: '#f6f6f6',
-        height: 40,
+        borderRadius: 5,
+        backgroundColor: '#e4e4e4',
+        height: 45,
         margin: 12,
         paddingLeft: 10,
         fontSize: 25,
         alignSelf: 'center',
     },
     loginbtnEntrar: {
-        borderRadius: 50,
+        borderRadius: 10,
         alignSelf: 'center',
         alignItems: 'center',
         justifyContent: 'center',
         width: '90%',
         backgroundColor: '#f23005',
-        paddingTop: 14,
-        paddingBottom: 14,
+        paddingTop: 15,
+        paddingBottom: 17,
         marginLeft: 12,
-        marginTop: 30,
+        marginTop: 40,
     },
     logintxtEntrar: {
-        fontSize: 20,
-        color: '#3c3c3c',
+        fontSize: 25,
+        color: 'white',
+        fontWeight: '600',
     },
     loginboxTitle: {
         alignItems: 'center',
         justifyContent: 'center',
         padding: 10,
+        textAlign: 'center',
     },
     logintextTitle: {
         color: '#f23045',
         fontSize: 40,
         fontWeight: 'bold',
+        fontStyle: 'italic',
+        textAlign: 'center',
     },
     loginError: {
         color: '#fff',
         fontSize: 25,
         marginTop: 40,
-        paddingLeft: 40,
-
+        alignSelf: 'center',
     },
 
     // detalhe
@@ -115,7 +122,7 @@ const styles = StyleSheet.create({
         margin: 2,
         fontSize: 20,
         color: '#fff',
-        textAlign:'center',
+        textAlign: 'center',
     },
     cardapioItem: {
         width: '100%',
@@ -218,10 +225,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 5,
-        borderLeftColor:'#1c1c1c',
-        borderTopColor:'#1c1c1c',
-        borderRightColor:'#0c0c0c',
-        borderBottomColor:'#0c0c0c',
+        borderLeftColor: '#1c1c1c',
+        borderTopColor: '#1c1c1c',
+        borderRightColor: '#0c0c0c',
+        borderBottomColor: '#0c0c0c',
         backgroundColor: '#2c2c2c',
     },
     mesaLetra: {
@@ -241,10 +248,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 5,
-        borderLeftColor:'#1c1c1c',
-        borderTopColor:'#1c1c1c',
-        borderRightColor:'#0c0c0c',
-        borderBottomColor:'#0c0c0c',
+        borderLeftColor: '#1c1c1c',
+        borderTopColor: '#1c1c1c',
+        borderRightColor: '#0c0c0c',
+        borderBottomColor: '#0c0c0c',
         backgroundColor: '#2c2c2c',
 
     },
@@ -342,7 +349,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         fontSize: 20,
         textAlign: "center",
-        fontWeight:'bold',
+        fontWeight: 'bold',
     },
     modalInput: {
         height: 200,
@@ -351,8 +358,8 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         paddingHorizontal: 10,
         width: '100%',
-        paddingTop:20,
-        fontSize:20,
+        paddingTop: 20,
+        fontSize: 20,
     },
     modalButton: {
         backgroundColor: "#5bc0de",
@@ -360,7 +367,7 @@ const styles = StyleSheet.create({
         padding: 10,
         elevation: 2,
         marginTop: 10,
-        width:'60%',
+        width: '60%',
     },
     modalButtonText: {
         color: "white",
