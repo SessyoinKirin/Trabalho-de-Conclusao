@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-03 14:32:53
+ * @LastEditTime: 2023-05-11 11:15:04
  * @FilePath: \Trabalho-de-Conclusao\estiloGeral.js
  * @Description: 
  * 
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     },
 
     // login
-    imgFundo1:{
+    imgFundo1: {
         flex: 1,
         resizeMode: 'center',
     },
@@ -136,17 +136,29 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 120,
         flexDirection: 'row',
+
         // cor de item
         backgroundColor: '#1c1c1c',
         marginVertical: 5,
-        margin: 5,
+        marginBottom: 10,
+        marginRight: 20,
         justifyContent: 'center',
+        borderRadius: 10, // Adicionar um raio de borda para suavizar as bordas
+        shadowColor: '#000', // Adicionar uma sombra
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     cardapioImg: {
         flex: 1,
         alignSelf: 'center',
         justifyContent: 'center',
         margin: 10,
+        borderRadius:10,
     },
     cardapioDescBtn: {
         flexDirection: 'column',
@@ -204,6 +216,7 @@ const styles = StyleSheet.create({
     //Mesa
     mesaContainer: {
         flex: 1,
+        backgroundColor: '#3c3c3c',
     },
     mesas: {
         flex: 5.5,
@@ -211,13 +224,16 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         // cor de fundo
-        backgroundColor: '#3c3c3c',
+        padding: 10,
     },
     mesaItem: {
         width: '30%',
         height: 100,
         // cor de item
+        // aspectRatio: 1,
         backgroundColor: '#1c1c1c',
+        borderRadius: 10,
+        elevation: 10,
         marginVertical: 5,
         margin: 5,
         justifyContent: 'center',
@@ -232,12 +248,15 @@ const styles = StyleSheet.create({
         flex: 0.5,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 5,
-        borderLeftColor: '#1c1c1c',
-        borderTopColor: '#1c1c1c',
-        borderRightColor: '#0c0c0c',
-        borderBottomColor: '#0c0c0c',
+        margin: 10,
         backgroundColor: '#2c2c2c',
+        borderRadius: 50,
+        borderWidth: 2,
+        borderColor: ['#1c1c1c', '#0c0c0c'],
+        shadowColor: '#000',
+        shadowOffset: { width: 2, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
     },
     mesaLetra: {
         fontSize: 22,
@@ -255,13 +274,15 @@ const styles = StyleSheet.create({
         flex: 0.5,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 5,
-        borderLeftColor: '#1c1c1c',
-        borderTopColor: '#1c1c1c',
-        borderRightColor: '#0c0c0c',
-        borderBottomColor: '#0c0c0c',
+        margin: 10,
         backgroundColor: '#2c2c2c',
-
+        borderRadius: 50,
+        borderWidth: 2,
+        borderColor: ['#1c1c1c', '#0c0c0c'],
+        shadowColor: '#000',
+        shadowOffset: { width: 2, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 5,
     },
     carLetra: {
         fontSize: 22,
