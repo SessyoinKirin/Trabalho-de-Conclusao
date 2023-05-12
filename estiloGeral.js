@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-11 11:15:04
+ * @LastEditTime: 2023-05-12 09:59:32
  * @FilePath: \Trabalho-de-Conclusao\estiloGeral.js
  * @Description: 
  * 
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
         margin: 10,
-        borderRadius:10,
+        borderRadius: 10,
     },
     cardapioDescBtn: {
         flexDirection: 'column',
@@ -336,18 +336,29 @@ const styles = StyleSheet.create({
 
     //ADM
     admBotao: {
-        flex: 0.5,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 3,
         borderColor: '#1c1c1c',
         backgroundColor: '#2c2c2c',
+        padding: 10,
+        borderRadius: 5,
+        marginHorizontal: 5,
+        marginVertical: 10,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 3,
+        },
+        shadowOpacity: 0.29,
+        shadowRadius: 4.65,
+        elevation: 7,
     },
     admTexto: {
-        padding: 2,
-        margin: 5,
+        color: '#ffffff',
         fontSize: 20,
-        color: '#fff',
+        fontWeight: 'bold'
     },
 
     //Modal
