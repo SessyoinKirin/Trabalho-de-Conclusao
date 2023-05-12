@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 10:03:05
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-05 11:21:46
+ * @LastEditTime: 2023-05-12 13:57:42
  * @FilePath: \Trabalho-de-Conclusao\src\components\cardapio\index.js
  * @Description: 
  * 
@@ -17,6 +17,7 @@ import styles from '../../../estiloGeral';
 import Contador from './contador';
 import { TextInput } from 'react-native';
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 export default function Cardapio({ navigation }) {
 
@@ -24,13 +25,26 @@ export default function Cardapio({ navigation }) {
   const [filtro, setFiltro]= React.useState("")
   // const [count, setCount] = React.useState(1)
 
-  React.useEffect(() => {
-    axios.get('https://api.mercadolibre.com/sites/MLB/search?q=celular').then(res => {
-      // console.log(res.data.results)
-      setData(res.data.results)
-    })
-  }, [])
+  // React.useEffect(() => {
+  //   axios.get('https://api.mercadolibre.com/sites/MLB/search?q=celular').then(res => {
+  //     console.log(res)
+  //     setData(res.data.results)
+  //   })
+  // }, [])
 
+useEffect(()=>{
+  axios({
+    url:"https://testapi--carlos-alber317.repl.co/cardapio",
+    method:"get",
+    headers:{
+        'Access-Control-Allow-Origin':'*'
+    }
+}).then(res=>{
+  // console.log(res.data, 'dados')
+  setData(res.data)
+})
+},[])
+  
   // console.log(data)
 
   const getItemList = React.useMemo(() => {
@@ -39,18 +53,18 @@ export default function Cardapio({ navigation }) {
     }
     return data.filter(
       (item) =>
-      filtro && item.title && item.title.toUpperCase().includes(filtro.toUpperCase() || '')
+      filtro && item.nome && item.nome.toUpperCase().includes(filtro.toUpperCase() || '')
     );
   }, [data, filtro]);
   
   function ListItem({ item, navigation }) {
     return (
       <View key={item.id} style={styles.cardapioItem}>
-          <View style={{ flex: 2 }}><Image src={item.thumbnail} alt="" style={[styles.cardapioImg, { width: 100, height: 100 }]} /></View>
+          <View style={{ flex: 2 }}><Image src={item.img} alt="" style={[styles.cardapioImg, { width: 100, height: 100 }]} /></View>
 
           <View style={[styles.cardapioDescBtn, { flex: 5 }]}>
             <View style={[styles.cardapioTitulo, { flex: 3 }]}>
-              <Text style={styles.cardapioTexto} numberOfLines={1}>{item.title}</Text>
+              <Text style={styles.cardapioTexto} numberOfLines={1}>{item.nome}</Text>
             </View>
             <View style={[styles.cardapioContador, { flex: 3 }]}>
               

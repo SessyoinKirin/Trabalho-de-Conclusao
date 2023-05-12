@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-05 11:23:27
+ * @LastEditTime: 2023-05-12 14:01:33
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -82,7 +82,7 @@ export default function Carrinho({ route, navigation }) {
 
     const valorTotal = useMemo(() => {
         const total = lista.reduce((acc, cur) => {
-            const itemPrice = Number(cur.price);
+            const itemPrice = Number(cur.preco);
             const itemCount = Number(cur.count);
 
             // console.log(`itemPrice: ${itemPrice}, itemCount: ${itemCount}`);
@@ -101,16 +101,16 @@ export default function Carrinho({ route, navigation }) {
             <View style={styles.cardapioItem}>
                 {/* imagem */}
                 <View style={{ flex: 2 }}>
-                    <Image src={item.thumbnail} alt="" style={[styles.cardapioImg, { width: 100, height: 100 }]} />
+                    <Image src={item.img} alt="" style={[styles.cardapioImg, { width: 100, height: 100 }]} />
                 </View>
                 {/* imagem */}
                 <View style={[styles.cardapioDescBtn, { flex: 5 }]}>
                     <View style={[styles.cardapioTitulo, { flex: 3 }]}>
-                        <Text style={styles.cardapioTexto} numberOfLines={1}>{item.title}</Text>
+                        <Text style={styles.cardapioTexto} numberOfLines={1}>{item.nome}</Text>
                     </View>
                     <View style={[styles.cardapioContador, { flex: 3, alignItems:'center' }]}>
                         <View style={{flex:3}}>
-                            <Text style={styles.cardapioTexto}>{item.count} x {item.price}</Text>
+                            <Text style={styles.cardapioTexto}>{item.count} x {item.preco}</Text>
                         </View>
                         <TouchableOpacity onPress={() => removerItem(item.id)} style={[styles.cardapioBotaoAdd, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]}>
                             <Text style={[styles.cardapioAdd, item.removerDesativado && styles.cardapioItemDesativado]}>Remover</Text>
@@ -127,7 +127,7 @@ export default function Carrinho({ route, navigation }) {
         console.log("Itens do carrinho:")
         lista.forEach((item) => {
             if(!item.removerDesativado){
-                console.log(item.title, ', quantidade: ', item.count)
+                console.log(item.nome, ', quantidade: ', item.count)
             }
         });
         console.log("Observação:", observacao)
