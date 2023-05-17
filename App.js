@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-17 09:48:42
+ * @LastEditTime: 2023-05-17 16:22:23
  * @FilePath: \Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -23,17 +23,17 @@ import GlobalContext from './src/components/contexto';
 import styles from './estiloGeral';
 
 const initialState = [
-  { id: 0, enabled: true },
-  { id: 1, enabled: true },
-  { id: 2, enabled: true },
-  { id: 3, enabled: true },
-  { id: 4, enabled: true },
-  { id: 5, enabled: true },
-  { id: 6, enabled: true },
-  { id: 7, enabled: true },
-  { id: 8, enabled: true },
-  { id: 9, enabled: true },
-  { id: 10, enabled: true },
+  { id: 0, enabled: true, lista: [] },
+  { id: 1, enabled: true, lista: [] },
+  { id: 2, enabled: true, lista: [] },
+  { id: 3, enabled: true, lista: [] },
+  { id: 4, enabled: true, lista: [] },
+  { id: 5, enabled: true, lista: [] },
+  { id: 6, enabled: true, lista: [] },
+  { id: 7, enabled: true, lista: [] },
+  { id: 8, enabled: true, lista: [] },
+  { id: 9, enabled: true, lista: [] },
+  { id: 10, enabled: true, lista: [] },
 ];
 const reducer = (prevState, action) => {
   switch (action.type) {
@@ -45,11 +45,57 @@ const reducer = (prevState, action) => {
         return item;
       });
       return updatedState;
+
+    case 'addLista':
+      const { itemId, newItem } = action.payload;
+      return prevState.map(item => {
+        if (item.id === itemId) {
+          return { ...item, lista: [...item.lista, newItem] };
+
+        }
+        return item;
+      });
+
+    case 'desativaRemocao':
+      const { index } = action.payload;
+      return prevState.map(item => {
+        if (item.id === index) {
+          const updatedLista = item.lista.map(listaItem => {
+            if (listaItem.removerDesativado) {
+              return listaItem;
+            } else {
+              console.log(listaItem, 'listaitem')
+              return { ...listaItem, removerDesativado: true };
+            }
+          });
+          return { ...item, lista: updatedLista };
+        }
+        return item;
+      });
+
+      case 'removeItem':
+        const { id } = action.payload;
+        return prevState.map(item => {
+          if (item.id === id && !item.removerDesativado) {
+            return {
+              ...item,
+              lista: item.lista.filter(item => item.id !== id),
+            };
+          }
+          return item;
+        });
+      
+
+
+
+    case 'esvazea':
+      const newState = [...initialState];
+      return newState.map(item => ({ ...item, lista: [] }));
+
+
     default:
       return prevState;
-
   }
-
 };
 
 

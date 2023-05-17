@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-12 14:01:33
+ * @LastEditTime: 2023-05-17 16:11:44
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -12,12 +12,13 @@ import { View, Text, TouchableOpacity, Modal, Image, FlatList, Alert, TextInput 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from "../../../estiloGeral";
+import GlobalContext from "../contexto";
 
 
 
 export default function Carrinho({ route, navigation }) {
 
-
+    const { state, dispatch } = React.useContext(GlobalContext)
     const { mesaIndex, item, count } = route.params
     const [currentMesaIndex, setCurrentMesaIndex] = useState(mesaIndex)
     // console.log(route.params, 'parametro')
@@ -26,23 +27,24 @@ export default function Carrinho({ route, navigation }) {
     const [modalVisible, setModalVisible] = React.useState(false);
     const [observacao, setObservacao] = React.useState('');
 
-    useMemo(() => {
+    useEffect(() => {
         if (item) {
-            setLista(prevState => [...prevState, { ...item, count, removerDesativado: false }]);
+            // setLista(prevState => [...prevState, { ...item, count, removerDesativado: false }]);
+            console.log('item adicionado', item)
+            dispatch({
+                type:'addLista',
+                payload: { itemId: currentMesaIndex, newItem: { ...item, count, removerDesativado: false } }
+            })
+            
         }
     }, [item]);
 
     function toggleRemoverDesativado() {
-        setLista(prevState => {
-            return prevState.map(item => {
-                // return { ...item, removerDesativado: !item.removerDesativado };
-                if (item.removerDesativado) {
-                    return { ...item }
-                } else {
-                    return { ...item, removerDesativado: true }
-                }
-            });
-        });
+        dispatch({
+            type:'desativaRemocao',
+            payload: {index: currentMesaIndex}
+        })
+        
     }
 
     function toggleModal() {
@@ -73,15 +75,16 @@ export default function Carrinho({ route, navigation }) {
     }, [currentMesaIndex, mesaIndex, navigation]);
 
     function removerItem(id) {
-        const item = lista.find(item => item.id === id);
-        if (!item.removerDesativado) {
-            setLista(prevState => prevState.filter(item => item.id !== id));
-        }
+        console.log('remove')
+        dispatch({
+            type:'removeItem',
+            payload:{id}
+        })
     }
 
 
     const valorTotal = useMemo(() => {
-        const total = lista.reduce((acc, cur) => {
+        const total = state[currentMesaIndex].lista.reduce((acc, cur) => {
             const itemPrice = Number(cur.preco);
             const itemCount = Number(cur.count);
 
@@ -91,12 +94,13 @@ export default function Carrinho({ route, navigation }) {
         }, 0);
 
         return total.toFixed(2);
-    }, [lista]);
+    }, [state[currentMesaIndex].lista]);
 
 
 
 
     function ListItem({ item }) {
+
         return (
             <View style={styles.cardapioItem}>
                 {/* imagem */}
@@ -108,8 +112,8 @@ export default function Carrinho({ route, navigation }) {
                     <View style={[styles.cardapioTitulo, { flex: 3 }]}>
                         <Text style={styles.cardapioTexto} numberOfLines={1}>{item.nome}</Text>
                     </View>
-                    <View style={[styles.cardapioContador, { flex: 3, alignItems:'center' }]}>
-                        <View style={{flex:3}}>
+                    <View style={[styles.cardapioContador, { flex: 3, alignItems: 'center' }]}>
+                        <View style={{ flex: 3 }}>
                             <Text style={styles.cardapioTexto}>{item.count} x {item.preco}</Text>
                         </View>
                         <TouchableOpacity onPress={() => removerItem(item.id)} style={[styles.cardapioBotaoAdd, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]}>
@@ -125,8 +129,8 @@ export default function Carrinho({ route, navigation }) {
     function handleEnviar() {
         console.log('Mesa: ', currentMesaIndex)
         console.log("Itens do carrinho:")
-        lista.forEach((item) => {
-            if(!item.removerDesativado){
+        state[currentMesaIndex].lista.forEach((item) => {
+            if (!item.removerDesativado) {
                 console.log(item.nome, ', quantidade: ', item.count)
             }
         });
@@ -143,9 +147,8 @@ export default function Carrinho({ route, navigation }) {
                     <Text style={styles.carLetra}>Adicionar</Text>
                 </TouchableOpacity>
                 <View style={{ flex: 5.5 }}>
-
                     <FlatList
-                        data={lista}
+                        data={state[currentMesaIndex].lista}
                         renderItem={({ item }) => <ListItem item={item} />}
                         keyExtractor={(item) => item.id}
                     />
@@ -153,7 +156,7 @@ export default function Carrinho({ route, navigation }) {
 
             </View>
             <View style={styles.carrinhoRotape}>
-                {lista.length > 0 ? (
+                {state[currentMesaIndex].lista.length > 0 ? (
                     <>
                         <Text style={styles.carTexto}>Valor total: {valorTotal}</Text>
                         <View style={styles.carFlexend}>
@@ -161,7 +164,7 @@ export default function Carrinho({ route, navigation }) {
                                 <TouchableOpacity
                                     style={styles.carBotoesInfo}
                                     onPress={() => {
-                                        
+
                                         toggleModal()
                                     }}
                                 >
@@ -181,7 +184,7 @@ export default function Carrinho({ route, navigation }) {
                                                 // console.log(evt.nativeEvent.text, 'observacao')
                                                 setObservacao(evt.nativeEvent.text)
                                             }} style={styles.modalInput} multiline={true} numberOfLines={6} />
-                                            <TouchableOpacity onPress={()=>{
+                                            <TouchableOpacity onPress={() => {
                                                 handleEnviar()
                                                 toggleRemoverDesativado()
                                             }} style={styles.modalButton}>
@@ -192,7 +195,11 @@ export default function Carrinho({ route, navigation }) {
                                 </Modal>
                             </View>
                             <View style={{ width: '50%', height: '100%' }}>
-                                <TouchableOpacity style={styles.carBotoesSuccess} onPress={() => { setLista([]) }}>
+                                <TouchableOpacity style={styles.carBotoesSuccess} onPress={() => { 
+                                    dispatch({
+                                        type:'esvazea'
+                                    })
+                                    }}>
                                     <Text style={styles.carTextoBotao}>Finalizar</Text>
                                 </TouchableOpacity>
                             </View>
