@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 09:43:59
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-12 09:59:32
+ * @LastEditTime: 2023-05-17 09:43:38
  * @FilePath: \Trabalho-de-Conclusao\estiloGeral.js
  * @Description: 
  * 
@@ -244,6 +244,12 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#fff',
     },
+    mesaTextoDisabled: {
+        fontSize: 30,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        color: '#000000',
+    },
     mesaAdicionar: {
         flex: 0.5,
         justifyContent: 'center',
@@ -359,6 +365,18 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         fontSize: 20,
         fontWeight: 'bold'
+    },
+    mesaItemDisabled:{
+        width: '30%',
+        height: 100,
+        // cor de item
+        // aspectRatio: 1,
+        backgroundColor: 'gray',
+        borderRadius: 10,
+        elevation: 10,
+        marginVertical: 5,
+        margin: 5,
+        justifyContent: 'center',
     },
 
     //Modal

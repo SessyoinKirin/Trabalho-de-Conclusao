@@ -13,9 +13,11 @@ import { Button, StyleSheet, Text, View, TouchableOpacity, ImageBackground } fro
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from '../../../estiloGeral';
-import Cardapio from '../cardapio';
+import GlobalContext from '../contexto';
 
 export default function Adm({ navigation }) {
+
+    const { state, dispatch } = React.useContext(GlobalContext)
     return <View style={styles.container}>
         <ImageBackground source={require('../../../assets/fundo1-escuro.jpg')} style={styles.imgFundo1}>
 
@@ -32,7 +34,7 @@ export default function Adm({ navigation }) {
                 </TouchableOpacity>
             </View>
             <View style={{ flex: 1, padding: 30 }}>
-                <TouchableOpacity style={styles.admBotao}>
+                <TouchableOpacity style={styles.admBotao} onPress={() => navigation.navigate('Desabilitar/Habilitar')}>
                     <Text style={styles.admTexto}>Desabilitar Mesa</Text>
                 </TouchableOpacity>
             </View>
