@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-18 09:30:05
+ * @LastEditTime: 2023-05-18 10:37:50
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -13,7 +13,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from "../../../estiloGeral";
 import GlobalContext from "../contexto";
-
+import moment from "moment/moment";
 
 
 export default function Carrinho({ route, navigation }) {
@@ -22,8 +22,6 @@ export default function Carrinho({ route, navigation }) {
     const { mesaIndex, item, count } = route.params
     const [currentMesaIndex, setCurrentMesaIndex] = useState(mesaIndex)
     // console.log(route.params, 'parametro')
-    const [lista, setLista] = useState([]);
-    const [enviarDesativado, setEnviarDesativado] = useState(false);
     const [modalVisible, setModalVisible] = React.useState(false);
     const [observacao, setObservacao] = React.useState('');
 
@@ -32,19 +30,21 @@ export default function Carrinho({ route, navigation }) {
             // setLista(prevState => [...prevState, { ...item, count, removerDesativado: false }]);
             console.log('item adicionado', item)
             dispatch({
-                type:'addLista',
-                payload: { itemId: currentMesaIndex, newItem: { ...item, count, removerDesativado: false } }
+                type: 'addLista',
+                payload: { itemId: currentMesaIndex, newItem: { ...item, count, removerDesativado: false, data: new Date() } }
             })
-            
+
         }
     }, [item]);
 
+    
+
     function toggleRemoverDesativado() {
         dispatch({
-            type:'desativaRemocao',
-            payload: {index: currentMesaIndex}
+            type: 'desativaRemocao',
+            payload: { index: currentMesaIndex }
         })
-        
+
     }
 
     function toggleModal() {
@@ -75,10 +75,10 @@ export default function Carrinho({ route, navigation }) {
     }, [currentMesaIndex, mesaIndex, navigation]);
 
     function removerItem(id) {
-        console.log('remove')
+        console.log('remove', id)
         dispatch({
-            type:'removeItem',
-            payload:{id: id, mesa:currentMesaIndex}
+            type: 'removeItem',
+            payload: { id: id, mesa: currentMesaIndex }
         })
     }
 
@@ -100,7 +100,6 @@ export default function Carrinho({ route, navigation }) {
 
 
     function ListItem({ item }) {
-
         return (
             <View style={styles.cardapioItem}>
                 {/* imagem */}
@@ -116,7 +115,7 @@ export default function Carrinho({ route, navigation }) {
                         <View style={{ flex: 3 }}>
                             <Text style={styles.cardapioTexto}>{item.count} x {item.preco}</Text>
                         </View>
-                        <TouchableOpacity onPress={() => removerItem(item.id)} style={[styles.cardapioBotaoAdd, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]} disabled={item.removerDesativado}>
+                        <TouchableOpacity onPress={() => removerItem(item.data)} style={[styles.cardapioBotaoAdd, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]} disabled={item.removerDesativado}>
                             <Text style={[styles.cardapioAdd, item.removerDesativado && styles.cardapioItemDesativado]}>Remover</Text>
                         </TouchableOpacity>
 
@@ -149,8 +148,8 @@ export default function Carrinho({ route, navigation }) {
                 <View style={{ flex: 5.5 }}>
                     <FlatList
                         data={state[currentMesaIndex].lista}
-                        renderItem={({ item }) => <ListItem item={item} />}
-                        keyExtractor={(item) => item.id}
+                        renderItem={({ item }) => <ListItem item={item}/>}
+                        keyExtractor={(item) => item.data }
                     />
                 </View>
 
@@ -195,11 +194,11 @@ export default function Carrinho({ route, navigation }) {
                                 </Modal>
                             </View>
                             <View style={{ width: '50%', height: '100%' }}>
-                                <TouchableOpacity style={styles.carBotoesSuccess} onPress={() => { 
+                                <TouchableOpacity style={styles.carBotoesSuccess} onPress={() => {
                                     dispatch({
-                                        type:'esvazea'
+                                        type: 'esvazea'
                                     })
-                                    }}>
+                                }}>
                                     <Text style={styles.carTextoBotao}>Finalizar</Text>
                                 </TouchableOpacity>
                             </View>

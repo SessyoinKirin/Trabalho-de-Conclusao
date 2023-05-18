@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-18 09:23:45
+ * @LastEditTime: 2023-05-18 10:33:37
  * @FilePath: \Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -79,7 +79,7 @@ const reducer = (prevState, action) => {
           if (item.id === mesa && !item.removerDesativado) {
             return {
               ...item,
-              lista: item.lista.filter(item => item.id !== id),
+              lista: item.lista.filter(item => item.data !== id),
             };
           }
           return item;
