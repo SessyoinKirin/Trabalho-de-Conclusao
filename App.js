@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-17 16:22:23
+ * @LastEditTime: 2023-05-18 09:23:45
  * @FilePath: \Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -74,9 +74,9 @@ const reducer = (prevState, action) => {
       });
 
       case 'removeItem':
-        const { id } = action.payload;
+        const { id, mesa } = action.payload;
         return prevState.map(item => {
-          if (item.id === id && !item.removerDesativado) {
+          if (item.id === mesa && !item.removerDesativado) {
             return {
               ...item,
               lista: item.lista.filter(item => item.id !== id),

@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-17 16:11:44
+ * @LastEditTime: 2023-05-18 09:30:05
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -78,7 +78,7 @@ export default function Carrinho({ route, navigation }) {
         console.log('remove')
         dispatch({
             type:'removeItem',
-            payload:{id}
+            payload:{id: id, mesa:currentMesaIndex}
         })
     }
 
@@ -116,7 +116,7 @@ export default function Carrinho({ route, navigation }) {
                         <View style={{ flex: 3 }}>
                             <Text style={styles.cardapioTexto}>{item.count} x {item.preco}</Text>
                         </View>
-                        <TouchableOpacity onPress={() => removerItem(item.id)} style={[styles.cardapioBotaoAdd, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]}>
+                        <TouchableOpacity onPress={() => removerItem(item.id)} style={[styles.cardapioBotaoAdd, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]} disabled={item.removerDesativado}>
                             <Text style={[styles.cardapioAdd, item.removerDesativado && styles.cardapioItemDesativado]}>Remover</Text>
                         </TouchableOpacity>
 
