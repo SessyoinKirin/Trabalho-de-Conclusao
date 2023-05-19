@@ -16,7 +16,7 @@ import styles from '../../../estiloGeral';
 import GlobalContext from '../contexto';
 
 function Mesa({ navigation }) {
-    const { state } = React.useContext(GlobalContext)
+    const { state } = React.useContext(GlobalContext)//mostra mesa
 
     return (
 

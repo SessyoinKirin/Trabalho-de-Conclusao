@@ -35,7 +35,7 @@ const initialState = [
   { id: 9, enabled: true, lista: [] },
   { id: 10, enabled: true, lista: [] },
   { id: 11, enabled: true, lista: [] },
-];
+];//mesa
 const reducer = (prevState, action) => {
   switch (action.type) {
     case 'mudeEstado':
