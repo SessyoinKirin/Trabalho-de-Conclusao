@@ -238,6 +238,35 @@ const styles = StyleSheet.create({
         margin: 5,
         justifyContent: 'center',
     },
+
+    // editado por marcel 18-05-23
+
+    mesaOcupada: {
+        width: '30%',
+        height: 100,
+        // cor de item
+        // aspectRatio: 1,
+        backgroundColor: 'orange',
+        borderRadius: 10,
+        elevation: 10,
+        marginVertical: 5,
+        margin: 5,
+        justifyContent: 'center',
+    },
+
+    mesaDesocupada: {
+        width: '30%',
+        height: 100,
+        // cor de item
+        // aspectRatio: 1,
+        backgroundColor: 'green',
+        borderRadius: 10,
+        elevation: 10,
+        marginVertical: 5,
+        margin: 5,
+        justifyContent: 'center',
+    },
+
     mesaTexto: {
         fontSize: 30,
         textAlign: 'center',

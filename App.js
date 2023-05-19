@@ -73,24 +73,34 @@ const reducer = (prevState, action) => {
         return item;
       });
 
-      case 'removeItem':
-        const { id, mesa } = action.payload;
-        return prevState.map(item => {
-          if (item.id === mesa && !item.removerDesativado) {
-            return {
-              ...item,
-              lista: item.lista.filter(item => item.data !== id),
-            };
-          }
-          return item;
-        });
-      
+    case 'removeItem':
+      const { id, mesa } = action.payload;
+      return prevState.map(item => {
+        if (item.id === mesa && !item.removerDesativado) {
+          return {
+            ...item,
+            lista: item.lista.filter(item => item.data !== id),
+          };
+        }
+        return item;
+      });
+
 
 
 
     case 'esvazea':
-      const newState = [...initialState];
-      return newState.map(item => ({ ...item, lista: [] }));
+      const { mesaID } = action.payload;
+      console.log(mesaID, 'currente')
+      return prevState.map(item => {
+        if (item.id === mesaID) {
+          return {
+            ...item,
+            lista: [],
+          };
+        }
+        return item;
+      })
+
 
 
     default:

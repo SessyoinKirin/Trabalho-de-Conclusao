@@ -196,7 +196,8 @@ export default function Carrinho({ route, navigation }) {
                             <View style={{ width: '50%', height: '100%' }}>
                                 <TouchableOpacity style={styles.carBotoesSuccess} onPress={() => {
                                     dispatch({
-                                        type: 'esvazea'
+                                        type: 'esvazea',
+                                        payload: {mesaID: currentMesaIndex}
                                     })
                                 }}>
                                     <Text style={styles.carTextoBotao}>Finalizar</Text>

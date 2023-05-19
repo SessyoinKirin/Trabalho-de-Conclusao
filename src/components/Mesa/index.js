@@ -26,7 +26,7 @@ function Mesa({ navigation }) {
             </TouchableOpacity>
             <View style={styles.mesas}>
                 {
-                    state.map(item => <MesaUnidade key={item.id} index={item.id} navigation={navigation} />)
+                    state.map(item => <MesaUnidade key={item.id} index={item.id} lista={item.lista} navigation={navigation} />)
                 }
 
             </View>
@@ -34,10 +34,14 @@ function Mesa({ navigation }) {
     );
 }
 
-function MesaUnidade({ index, navigation }) {
+function MesaUnidade({ index, lista, navigation }) {
     const { state, dispatch } = React.useContext(GlobalContext)
 
-    const mesaStyle = state[index]?.enabled ? styles.mesaItem : [styles.mesaItem, styles.mesaItemDisabled];
+    console.log(lista.length, 'lista de item');
+
+    const mesaStyle = state[index]?.enabled ? !lista.length > 0 ? styles.mesaDesocupada : styles.mesaOcupada : [styles.mesaItem, styles.mesaItemDisabled];
+
+
     const mesaTexto = state[index]?.enabled ? styles.mesaTexto : [styles.mesaTexto, styles.mesaTextoDisabled];
     return (
         <TouchableOpacity style={mesaStyle} onPress={() => navigation.navigate('Carrinho', { mesaIndex: index })} disabled={!state[index].enabled}>
