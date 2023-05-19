@@ -34,6 +34,7 @@ const initialState = [
   { id: 8, enabled: true, lista: [] },
   { id: 9, enabled: true, lista: [] },
   { id: 10, enabled: true, lista: [] },
+  { id: 11, enabled: true, lista: [] },
 ];
 const reducer = (prevState, action) => {
   switch (action.type) {

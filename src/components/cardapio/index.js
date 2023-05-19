@@ -67,7 +67,6 @@ useEffect(()=>{
               <Text style={styles.cardapioTexto} numberOfLines={1}>{item.nome}</Text>
             </View>
             <View style={[styles.cardapioContador, { flex: 3 }]}>
-              
               <Contador item={item} navigation={navigation}/>
             </View>
           </View>

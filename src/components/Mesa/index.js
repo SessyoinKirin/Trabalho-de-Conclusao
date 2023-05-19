@@ -9,7 +9,7 @@
  */
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
+import { Button, StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from '../../../estiloGeral';
@@ -21,15 +21,17 @@ function Mesa({ navigation }) {
     return (
 
         <View style={styles.mesaContainer}>
-            <TouchableOpacity onPress={() => navigation.navigate('Los Hermanos')} style={styles.mesaAdicionar}>
-                <Text style={styles.mesaLetra}>Logout</Text>
-            </TouchableOpacity>
-            <View style={styles.mesas}>
-                {
-                    state.map(item => <MesaUnidade key={item.id} index={item.id} lista={item.lista} navigation={navigation} />)
-                }
+            <ImageBackground source={require('../../../assets/fundo1-escuro.jpg')} style={styles.imgFundo1}>
+                <View style={styles.mesas}>
+                    {
+                        state.map(item => <MesaUnidade key={item.id} index={item.id} lista={item.lista} navigation={navigation} />)
+                    }
 
-            </View>
+                </View>
+                <TouchableOpacity onPress={() => navigation.navigate('Los Hermanos')} style={styles.mesaAdicionar}>
+                    <Text style={styles.mesaLetra}>Logout</Text>
+                </TouchableOpacity>
+            </ImageBackground>
         </View>
     );
 }
@@ -45,7 +47,7 @@ function MesaUnidade({ index, lista, navigation }) {
     const mesaTexto = state[index]?.enabled ? styles.mesaTexto : [styles.mesaTexto, styles.mesaTextoDisabled];
     return (
         <TouchableOpacity style={mesaStyle} onPress={() => navigation.navigate('Carrinho', { mesaIndex: index })} disabled={!state[index].enabled}>
-            <Text style={mesaTexto}>{index}</Text>
+            <Text style={mesaTexto}>{index+1}</Text>
         </TouchableOpacity>
     );
 }

@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     cardapioTexto: {
         padding: 2,
         margin: 2,
-        fontSize: 20,
+        fontSize: 22,
         color: '#fff',
         textAlign: 'center',
     },
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
         paddingBottom: 10,
     },
     cardapioBotaoAdd: {
-        backgroundColor: '#f23005',
+        backgroundColor: '#5cb85c',
         padding: 10,
         borderRadius: 5,
         marginTop: 10,
@@ -178,7 +178,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     cardapioAdd: {
-        fontSize: 17,
+        fontSize: 19,
         fontWeight: 'bold',
         // color: '#fff',
     },
@@ -186,15 +186,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     cardapioBotaoCount: {
-        backgroundColor: '#5cb85c',
+        backgroundColor: '#00B1BC',
         padding: 10,
         borderRadius: 5,
         marginTop: 10,
         alignItems: 'center',
+        alignSelf: 'center',
     },
     cardapioSinal: {
-        fontSize: 20,
+        fontSize: 21,
         fontWeight: 'bold',
+        alignItems: 'center',
+        alignSelf: 'center',
     },
     cardapioInput: {
         width: '90%',
@@ -285,7 +288,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         margin: 10,
         backgroundColor: '#2c2c2c',
-        borderRadius: 50,
+        borderRadius: 15,
         borderWidth: 2,
         borderColor: ['#1c1c1c', '#0c0c0c'],
         shadowColor: '#000',
