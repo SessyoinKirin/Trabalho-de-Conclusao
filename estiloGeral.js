@@ -174,6 +174,16 @@ const styles = StyleSheet.create({
         marginRight: 3,
         alignItems: 'center',
     },
+    carrinhoBotaoRemover: {
+        //backgroundColor: '#F23005',
+        backgroundColor: '#FC0000',
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 10,
+        marginLeft: 3,
+        marginRight: 3,
+        alignItems: 'center',
+    },
     cardapioTitulo: {
         justifyContent: 'center',
     },
@@ -351,6 +361,13 @@ const styles = StyleSheet.create({
         marginTop: 10,
         alignItems: 'center',
     },
+    carBotoesLaranja: {
+        backgroundColor: '#F25A05',
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 10,
+        alignItems: 'center',
+    },
     carTextoBotao: {
         color: 'white',
         fontWeight: 'bold',
@@ -365,7 +382,8 @@ const styles = StyleSheet.create({
         margin: 5,
         fontSize: 20,
         color: '#fff',
-    },
+        alignSelf: 'flex-end',
+        },
     carPreco: {
         fontSize: 17,
         fontWeight: 'bold',

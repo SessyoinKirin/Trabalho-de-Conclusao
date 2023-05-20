@@ -115,7 +115,7 @@ export default function Carrinho({ route, navigation }) {
                         <View style={{ flex: 3 }}>
                             <Text style={styles.cardapioTexto}>{item.count} x {item.preco}</Text>
                         </View>
-                        <TouchableOpacity onPress={() => removerItem(item.data)} style={[styles.cardapioBotaoAdd, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]} disabled={item.removerDesativado}>
+                        <TouchableOpacity onPress={() => removerItem(item.data)} style={[styles.carrinhoBotaoRemover, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]} disabled={item.removerDesativado}>
                             <Text style={[styles.cardapioAdd, item.removerDesativado && styles.cardapioItemDesativado]}>Remover</Text>
                         </TouchableOpacity>
 
@@ -157,11 +157,11 @@ export default function Carrinho({ route, navigation }) {
             <View style={styles.carrinhoRotape}>
                 {state[currentMesaIndex].lista.length > 0 ? (
                     <>
-                        <Text style={styles.carTexto}>Valor total: {valorTotal}</Text>
+                        <Text style={styles.carTexto}>Valor total: R$ {valorTotal}</Text>
                         <View style={styles.carFlexend}>
                             <View style={{ width: '50%', height: '100%' }}>
                                 <TouchableOpacity
-                                    style={styles.carBotoesInfo}
+                                    style={styles.carBotoesSuccess}
                                     onPress={() => {
 
                                         toggleModal()
@@ -194,13 +194,13 @@ export default function Carrinho({ route, navigation }) {
                                 </Modal>
                             </View>
                             <View style={{ width: '50%', height: '100%' }}>
-                                <TouchableOpacity style={styles.carBotoesSuccess} onPress={() => {
+                                <TouchableOpacity style={styles.carBotoesLaranja} onPress={() => {
                                     dispatch({
                                         type: 'esvazea',
                                         payload: {mesaID: currentMesaIndex}
                                     })
                                 }}>
-                                    <Text style={styles.carTextoBotao}>Finalizar</Text>
+                                    <Text style={styles.carTextoBotao}>Fechar Conta</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
