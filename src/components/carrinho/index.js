@@ -2,13 +2,13 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-21 15:02:09
+ * @LastEditTime: 2023-05-21 15:53:38
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
  */
 import React, { useMemo, useState, useEffect } from "react";
-import { View, Text, TouchableOpacity, Modal, Image, FlatList, Alert, TextInput } from "react-native";
+import { View, Text, TouchableOpacity, Modal, Image, FlatList, Alert, TextInput, Button } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from "../../../estiloGeral";
@@ -104,12 +104,38 @@ export default function Carrinho({ route, navigation }) {
             const itemPrice = Number(item.preco);
             const itemCount = Number(item.count);
             const parcial = itemPrice * itemCount;
-        
+
             return parcial.toFixed(2);
-          }, [item.preco, item.count]);
+        }, [item.preco, item.count]);
+
+
+        const [showModal, setShowModal] = React.useState(false)
 
         return (
             <View style={styles.cardapioItem}>
+                {
+                    showModal && (
+                        <Modal animationType="slide" transparent={true}>
+                            
+                            <View style={styles.modalCenteredView}>
+                                <View style={styles.modalView}>
+                                <Text style={styles.modalText}>Deseja mesmo retirar o item?</Text>
+                                <TouchableOpacity onPress={()=>{
+                                    dispatch({
+                                        type: 'Decrease',
+                                        payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
+                                    })
+                                }} style={styles.carBotoesSuccess}>
+                                    <Text>Sim</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={()=> setShowModal(false)} style={styles.carrinhoBotaoRemover}>
+                                    <Text>Não</Text>
+                                </TouchableOpacity>
+                                </View>
+                            </View>
+                        </Modal>
+                    )
+                }
                 {/* imagem */}
                 <View style={{ flex: 2 }}>
                     <Image src={item.img} alt="" style={[styles.cardapioImg, { width: 100, height: 100 }]} />
@@ -125,10 +151,14 @@ export default function Carrinho({ route, navigation }) {
                         </View> */}
                         <TouchableOpacity
                             onPress={() => {
-                                dispatch({
-                                    type: 'Decrease',
-                                    payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
-                                })
+                                if (item.count === 1) {
+                                    setShowModal(true)
+                                } else {
+                                    dispatch({
+                                        type: 'Decrease',
+                                        payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
+                                    })
+                                }
                             }}
                             style={[styles.cardapioBotaoCount, { flex: 1 }]}
                         >
@@ -150,11 +180,11 @@ export default function Carrinho({ route, navigation }) {
                         </TouchableOpacity>
                     </View>
                     <View>
-                <Text style={styles.cardapioTexto}>{item.count} x R${item.preco}</Text>
-                <Text style={styles.cardapioTexto}>valorParcial: R${valorParcial}</Text>
+                        <Text style={styles.cardapioTexto}>{item.count} x R${item.preco}</Text>
+                        <Text style={styles.cardapioTexto}>valorParcial: R${valorParcial}</Text>
+                    </View>
                 </View>
-                </View>
-                
+
             </View>
         );
     }
