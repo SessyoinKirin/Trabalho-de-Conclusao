@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-21 14:34:44
+ * @LastEditTime: 2023-05-21 15:01:20
  * @FilePath: \Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -86,7 +86,41 @@ const reducer = (prevState, action) => {
         return item;
       });
 
-// testes
+case 'Increase':
+  const {mesaIdforIncrea, itemIdforIncrea} = action.payload;
+  return prevState.map((mesa)=>{
+    if(mesa.id === mesaIdforIncrea){
+      const listaAtualizada = mesa.lista.map((item)=>{
+        if(item.id === itemIdforIncrea){
+          return {...item, count: item.count + 1}
+        }
+        return item
+      })
+      return {...mesa, lista: listaAtualizada}
+    }
+    return mesa
+  })
+
+    case 'Decrease':
+      const { mesaIdforDecrea, itemIdforDecrea } = action.payload;
+      return prevState.map((mesa) => {
+        if (mesa.id === mesaIdforDecrea) {
+          const listaAtualizada = mesa.lista.map((item) => {
+            if (item.id === itemIdforDecrea) {
+              if (item.count === 1) {
+                // Remova o item da lista
+                return false;
+              } else {
+                // Decrementa o count do item
+                return { ...item, count: item.count - 1 };
+              }
+            }
+            return item;
+          }).filter(Boolean); // Remova os itens falsos da lista
+          return { ...mesa, lista: listaAtualizada };
+        }
+        return mesa;
+      });
 
 
     case 'esvazea':

@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-18 10:37:50
+ * @LastEditTime: 2023-05-21 15:02:09
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -37,7 +37,7 @@ export default function Carrinho({ route, navigation }) {
         }
     }, [item]);
 
-    
+
 
     function toggleRemoverDesativado() {
         dispatch({
@@ -100,6 +100,14 @@ export default function Carrinho({ route, navigation }) {
 
 
     function ListItem({ item }) {
+        const valorParcial = useMemo(() => {
+            const itemPrice = Number(item.preco);
+            const itemCount = Number(item.count);
+            const parcial = itemPrice * itemCount;
+        
+            return parcial.toFixed(2);
+          }, [item.preco, item.count]);
+
         return (
             <View style={styles.cardapioItem}>
                 {/* imagem */}
@@ -112,15 +120,41 @@ export default function Carrinho({ route, navigation }) {
                         <Text style={styles.cardapioTexto} numberOfLines={1}>{item.nome}</Text>
                     </View>
                     <View style={[styles.cardapioContador, { flex: 3, alignItems: 'center' }]}>
-                        <View style={{ flex: 3 }}>
-                            <Text style={styles.cardapioTexto}>{item.count} x {item.preco}</Text>
-                        </View>
+                        {/* <View style={{ flex: 3 }}>
+                            
+                        </View> */}
+                        <TouchableOpacity
+                            onPress={() => {
+                                dispatch({
+                                    type: 'Decrease',
+                                    payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
+                                })
+                            }}
+                            style={[styles.cardapioBotaoCount, { flex: 1 }]}
+                        >
+                            <Text style={styles.cardapioSinal}>-</Text>
+                        </TouchableOpacity>
                         <TouchableOpacity onPress={() => removerItem(item.data)} style={[styles.carrinhoBotaoRemover, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]} disabled={item.removerDesativado}>
                             <Text style={[styles.cardapioAdd, item.removerDesativado && styles.cardapioItemDesativado]}>Remover</Text>
                         </TouchableOpacity>
-
+                        <TouchableOpacity
+                            onPress={() => {
+                                dispatch({
+                                    type: 'Increase',
+                                    payload: { mesaIdforIncrea: currentMesaIndex, itemIdforIncrea: item.id }
+                                })
+                            }}
+                            style={[styles.cardapioBotaoCount, { flex: 1 }]}
+                        >
+                            <Text style={styles.cardapioSinal}>+</Text>
+                        </TouchableOpacity>
                     </View>
+                    <View>
+                <Text style={styles.cardapioTexto}>{item.count} x R${item.preco}</Text>
+                <Text style={styles.cardapioTexto}>valorParcial: R${valorParcial}</Text>
                 </View>
+                </View>
+                
             </View>
         );
     }
@@ -148,8 +182,8 @@ export default function Carrinho({ route, navigation }) {
                 <View style={{ flex: 5.5 }}>
                     <FlatList
                         data={state[currentMesaIndex].lista}
-                        renderItem={({ item }) => <ListItem item={item}/>}
-                        keyExtractor={(item) => item.data }
+                        renderItem={({ item }) => <ListItem item={item} />}
+                        keyExtractor={(item) => item.data}
                     />
                 </View>
 
@@ -197,7 +231,7 @@ export default function Carrinho({ route, navigation }) {
                                 <TouchableOpacity style={styles.carBotoesLaranja} onPress={() => {
                                     dispatch({
                                         type: 'esvazea',
-                                        payload: {mesaID: currentMesaIndex}
+                                        payload: { mesaID: currentMesaIndex }
                                     })
                                 }}>
                                     <Text style={styles.carTextoBotao}>Fechar Conta</Text>
