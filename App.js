@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-18 10:33:37
+ * @LastEditTime: 2023-05-21 14:34:44
  * @FilePath: \Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -86,7 +86,7 @@ const reducer = (prevState, action) => {
         return item;
       });
 
-
+// testes
 
 
     case 'esvazea':
