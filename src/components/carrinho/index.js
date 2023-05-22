@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-21 15:53:38
+ * @LastEditTime: 2023-05-22 11:27:52
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -158,6 +158,7 @@ export default function Carrinho({ route, navigation }) {
                     {/* Contador e preço parcial */}
                     <View style={[styles.cardapioContador]}>
                             <TouchableOpacity
+                            disabled={item.removerDesativado}
                                 onPress={() => {
                                     if (item.count === 1) {
                                         setShowModal(true)
@@ -180,6 +181,7 @@ export default function Carrinho({ route, navigation }) {
                             <Text style={styles.cardapioQuantidade}>{item.count}</Text>
 
                             <TouchableOpacity
+                            disabled={item.removerDesativado}
                                 onPress={() => {
                                     dispatch({
                                         type: 'Increase',
