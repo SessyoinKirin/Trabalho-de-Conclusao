@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-04-11 09:40:11
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-21 14:51:28
+ * @LastEditTime: 2023-05-22 11:18:14
  * @FilePath: \Trabalho-de-Conclusao\src\components\Mesa\index.js
  * @Description: 
  * 
@@ -46,7 +46,7 @@ function MesaUnidade({ index, lista, navigation }) {
 
     const mesaTexto = state[index]?.enabled ? styles.mesaTexto : [styles.mesaTexto, styles.mesaTextoDisabled];
     return (
-        <TouchableOpacity style={mesaStyle} onPress={() => navigation.navigate('Carrinho', { mesaIndex: index })} disabled={!state[index].enabled}>
+        <TouchableOpacity style={mesaStyle} onPress={() => navigation.navigate('Carrinho', { mesaIndex: index+1 })} disabled={!state[index].enabled}>
             <Text style={mesaTexto}>{index+1}</Text>
         </TouchableOpacity>
     );
