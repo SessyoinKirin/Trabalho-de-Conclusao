@@ -125,13 +125,6 @@ const styles = StyleSheet.create({
 
         backgroundColor: '#3c3c3c',
     },
-    cardapioTexto: {
-        padding: 2,
-        margin: 2,
-        fontSize: 22,
-        color: '#fff',
-        textAlign: 'center',
-    },
     cardapioItem: {
         width: '100%',
         height: 120,
@@ -184,25 +177,62 @@ const styles = StyleSheet.create({
         marginRight: 3,
         alignItems: 'center',
     },
+
+    // Editado por Marcel 21-05-23
+
     cardapioTitulo: {
-        justifyContent: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+    },
+    cardapioTexto: {
+        padding: 2,
+        margin: 2,
+        fontSize: 25,
+        color: '#fff',
+        textAlign: 'center',
+    },
+    cardapioTituloPrecoUnitario: {
+        padding: 2,
+        margin: 2,
+        fontSize: 25,
+        color: 'grey',
+        fontStyle: 'italic',
+        textAlign: 'center',
     },
     cardapioAdd: {
         fontSize: 19,
         fontWeight: 'bold',
         // color: '#fff',
     },
+
+    //
+
     cardapioContador: {
         flexDirection: 'row',
+        flex: 3, 
+        alignItems: 'center',
+        justifyContent: 'center',
     },
+
+    cardapioQuantidade: {
+        margin: 30,
+        fontSize: 25,
+        color: '#fff',
+        textAlign: 'center',
+        margin: 0,
+    },
+
     cardapioBotaoCount: {
         backgroundColor: '#00B1BC',
-        padding: 10,
+        // padding: 5,
         borderRadius: 5,
-        marginTop: 10,
+        // marginTop: 10,
         alignItems: 'center',
         alignSelf: 'center',
+        marginLeft: 20,
+        marginRight: 20,
     },
+    
     cardapioSinal: {
         fontSize: 21,
         fontWeight: 'bold',
@@ -380,7 +410,7 @@ const styles = StyleSheet.create({
     carTexto: {
         padding: 2,
         margin: 5,
-        fontSize: 20,
+        fontSize: 25,
         color: '#fff',
         alignSelf: 'flex-end',
         },

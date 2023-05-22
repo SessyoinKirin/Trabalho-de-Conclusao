@@ -65,7 +65,14 @@ useEffect(()=>{
           <View style={[styles.cardapioDescBtn, { flex: 5 }]}>
             <View style={[styles.cardapioTitulo, { flex: 3 }]}>
               <Text style={styles.cardapioTexto} numberOfLines={1}>{item.nome}</Text>
-            </View>
+              <Text style={styles.cardapioTituloPrecoUnitario} numberOfLines={1}>{item.preco.toLocaleString('pt-BR',
+                            {
+                                style: 'currency',
+                                currency: 'BRL',
+                            })
+                        }
+                        </Text>            
+                        </View>
             <View style={[styles.cardapioContador, { flex: 3 }]}>
               <Contador item={item} navigation={navigation}/>
             </View>
