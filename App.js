@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-23 09:34:44
+ * @LastEditTime: 2023-05-23 09:40:52
  * @FilePath: \Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -52,7 +52,6 @@ const reducer = (prevState, action) => {
         return prevState.map(item => {
           if (item.id === itemId) {
             const itemExistente = item.lista.find(listItem => listItem.nome === newItem.nome);
-      console.log(itemExistente, 'item existe')
             if (itemExistente && !itemExistente.removerDesativado) {
               // O item já existe na lista, apenas incrementar o count
               const listaAtualizada = item.lista.map(listItem => {
