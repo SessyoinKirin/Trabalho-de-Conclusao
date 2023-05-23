@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-18 10:33:37
+ * @LastEditTime: 2023-05-23 15:59:46
  * @FilePath: \Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -19,25 +19,17 @@ import Cardapio from './src/components/cardapio';
 import Adm from './src/components/adm';
 import DesabilitarMesa from './src/components/desabilitaMesa';
 import GlobalContext from './src/components/contexto';
-
+import axios from 'axios';
 import styles from './estiloGeral';
 
-const initialState = [
-  { id: 0, enabled: true, lista: [] },
-  { id: 1, enabled: true, lista: [] },
-  { id: 2, enabled: true, lista: [] },
-  { id: 3, enabled: true, lista: [] },
-  { id: 4, enabled: true, lista: [] },
-  { id: 5, enabled: true, lista: [] },
-  { id: 6, enabled: true, lista: [] },
-  { id: 7, enabled: true, lista: [] },
-  { id: 8, enabled: true, lista: [] },
-  { id: 9, enabled: true, lista: [] },
-  { id: 10, enabled: true, lista: [] },
-  { id: 11, enabled: true, lista: [] },
-];//mesa
 const reducer = (prevState, action) => {
   switch (action.type) {
+    case 'inicializar':
+      const mesas = [...action.payload]
+      console.log(prevState, 'prevstate')
+      console.log(action.payload, 'payload')
+      return mesas;
+
     case 'mudeEstado':
       const updatedState = prevState.map(item => {
         if (item.id === action.payload) {
@@ -102,8 +94,10 @@ const reducer = (prevState, action) => {
         return item;
       })
 
-
-
+    case 'postMesa':
+      const novaLista = [...prevState, action.payload];
+      return [...prevState, ...novaLista];
+      
     default:
       return prevState;
   }
@@ -111,7 +105,30 @@ const reducer = (prevState, action) => {
 
 
 function App({ navigation }) {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+  const [state, dispatch] = React.useReducer(reducer, [])
+  const [data, setData] = React.useState([]); // Inicializa o estado para armazenar os dados das mesas
+  console.log(state, 'state fora de axios', state.length, 'tamanho de state')
+  const [validacao, setValidacao] = React.useState(false)
+
+  React.useEffect(() => {
+    axios
+      .get('https://testapi--carlos-alber317.repl.co/mesas')
+      .then((res) => {
+        setData(res.data);
+        console.log(state, 'estado dentro de axiosget')
+        const initialState = [...res.data]
+        console.log(initialState, 'initialstate')
+        dispatch({
+          type: 'inicializar',
+          payload: initialState
+        })
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar mesas:', error);
+      });
+  }, [state.length]);
+  const initialState = [...data];
+
   return (
     <GlobalContext.Provider value={{
       state,
