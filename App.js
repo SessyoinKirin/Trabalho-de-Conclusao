@@ -19,23 +19,11 @@ import Cardapio from './src/components/cardapio';
 import Adm from './src/components/adm';
 import DesabilitarMesa from './src/components/desabilitaMesa';
 import GlobalContext from './src/components/contexto';
-
+import axios from 'axios';
 import styles from './estiloGeral';
+const initialState = []; // Defina o estado inicial das mesas
 
-const initialState = [
-  { id: 0, enabled: true, lista: [] },
-  { id: 1, enabled: true, lista: [] },
-  { id: 2, enabled: true, lista: [] },
-  { id: 3, enabled: true, lista: [] },
-  { id: 4, enabled: true, lista: [] },
-  { id: 5, enabled: true, lista: [] },
-  { id: 6, enabled: true, lista: [] },
-  { id: 7, enabled: true, lista: [] },
-  { id: 8, enabled: true, lista: [] },
-  { id: 9, enabled: true, lista: [] },
-  { id: 10, enabled: true, lista: [] },
-  { id: 11, enabled: true, lista: [] },
-];//mesa
+
 const reducer = (prevState, action) => {
   switch (action.type) {
     case 'mudeEstado':
@@ -112,6 +100,19 @@ const reducer = (prevState, action) => {
 
 function App({ navigation }) {
   const [state, dispatch] = React.useReducer(reducer, initialState)
+  
+  const [data, setData] = React.useState([]); // Inicializa o estado para armazenar os dados das mesas
+  React.useEffect(() => {
+    axios
+      .get('https://testapi--carlos-alber317.repl.co/mesas')
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar mesas:', error);
+      });
+  }, []);
+  
   return (
     <GlobalContext.Provider value={{
       state,

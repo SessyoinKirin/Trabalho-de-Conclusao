@@ -1073,6 +1073,8 @@
   "resolved" "https://registry.npmjs.org/@expo/bunyan/-/bunyan-4.0.0.tgz"
   "version" "4.0.0"
   dependencies:
+    "mv" "~2"
+    "safe-json-stringify" "~1"
     "uuid" "^8.0.0"
   optionalDependencies:
     "mv" "~2"
@@ -4633,6 +4635,8 @@
   "integrity" "sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg=="
   "resolved" "https://registry.npmjs.org/jsonfile/-/jsonfile-4.0.0.tgz"
   "version" "4.0.0"
+  dependencies:
+    "graceful-fs" "^4.1.6"
   optionalDependencies:
     "graceful-fs" "^4.1.6"
 
@@ -4641,6 +4645,7 @@
   "resolved" "https://registry.npmjs.org/jsonfile/-/jsonfile-6.1.0.tgz"
   "version" "6.1.0"
   dependencies:
+    "graceful-fs" "^4.1.6"
     "universalify" "^2.0.0"
   optionalDependencies:
     "graceful-fs" "^4.1.6"
@@ -4975,6 +4980,7 @@
     "anymatch" "^3.0.3"
     "debug" "^2.2.0"
     "fb-watchman" "^2.0.0"
+    "fsevents" "^2.3.2"
     "graceful-fs" "^4.2.4"
     "invariant" "^2.2.4"
     "jest-regex-util" "^27.0.6"
@@ -5374,6 +5380,7 @@
   "resolved" "https://registry.npmjs.org/minipass-fetch/-/minipass-fetch-1.4.1.tgz"
   "version" "1.4.1"
   dependencies:
+    "encoding" "^0.1.12"
     "minipass" "^3.1.0"
     "minipass-sized" "^1.0.3"
     "minizlib" "^2.0.0"
@@ -6936,6 +6943,7 @@
   dependencies:
     "@mapbox/node-pre-gyp" "^1.0.0"
     "node-addon-api" "^4.2.0"
+    "node-gyp" "8.x"
     "tar" "^6.1.11"
   optionalDependencies:
     "node-gyp" "8.x"
@@ -7580,6 +7588,7 @@
     "argsarray" "^0.0.1"
     "immediate" "^3.2.2"
     "noop-fn" "^1.0.0"
+    "sqlite3" "^5.0.2"
     "tiny-queue" "^0.2.1"
   optionalDependencies:
     "sqlite3" "^5.0.2"
