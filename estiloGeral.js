@@ -112,65 +112,6 @@ const styles = StyleSheet.create({
         fontSize: 25,
 
     },
-
-    // cardapio
-
-    cardapioColunas: {
-        flex: 1,
-        // flex: 5.5,
-        flexDirection: 'column',
-        // flexWrap: 'wrap',
-        // justifyContent: 'space-between',
-        // cor de fundo
-
-        backgroundColor: '#3c3c3c',
-    },
-    cardapioItem: {
-        width: '100%',
-        height: 160,
-        // flexDirection: 'row',
-        flex: 5,
-
-        // cor de item
-        backgroundColor: '#1c1c1c',
-        marginVertical: 5,
-        marginBottom: 10,
-        marginRight: 20,
-        justifyContent: 'center',
-        borderRadius: 10, // Adicionar um raio de borda para suavizar as bordas
-        shadowColor: '#000', // Adicionar uma sombra
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
-    cardapioImg: {
-        flex: 1,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        margin: 10,
-        marginBottom: 0,
-        borderRadius: 10,
-        //marginBottom: 30,
-    },
-    cardapioDescBtn: {
-        // paddingRight: 10,
-        // paddingBottom: 10,
-        // marginBottom: 30,
-
-    },
-    cardapioBotaoAdd: {
-        backgroundColor: '#5cb85c',
-        padding: 10,
-        borderRadius: 5,
-        marginTop: 10,
-        marginLeft: 3,
-        marginRight: 3,
-        alignItems: 'center',
-    },
     carrinhoBotaoRemover: {
         //backgroundColor: '#F23005',
         backgroundColor: '#FC0000',
@@ -214,7 +155,7 @@ const styles = StyleSheet.create({
     cardapioAdd: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#fff',
+        color: 'black',
     },
 
     //
@@ -267,6 +208,17 @@ const styles = StyleSheet.create({
         // left: 10,
         // width: 30,
         // height: 30,
+    },
+
+    cardapioBotaoCount: {
+        backgroundColor: '#00B1BC',
+        //  padding: 5,
+        borderRadius: 5,
+        // marginTop: 10,
+        marginHorizontal: 10,
+        // width: '10%',
+        alignItems: 'center',
+        alignSelf: 'center',
     },
 
     cardapioSinal: {
@@ -508,7 +460,7 @@ const styles = StyleSheet.create({
         marginTop: 10
     },
 
-    modalView: {
+    modalViewConfirmacao: {
         margin: 20,
         backgroundColor: '#BFBFBF',
         borderRadius: 20,
@@ -523,6 +475,24 @@ const styles = StyleSheet.create({
         shadowRadius: 4,
         elevation: 5,
         height: 230,
+        width: 300,
+    },
+
+    modalViewEnviar: {
+        margin: 20,
+        backgroundColor: '#BFBFBF',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+        height: 400,
         width: 300,
     },
 
@@ -558,6 +528,7 @@ const styles = StyleSheet.create({
         marginBottom: 15,
         fontSize: 20,
         textAlign: "center",
+        justifyContent: 'center',
         fontWeight: 'bold',
     },
     modalInput: {
@@ -570,19 +541,120 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         fontSize: 20,
     },
-    modalButton: {
+
+    modalButtonEnviar: {
         backgroundColor: "#5bc0de",
         borderRadius: 10,
         padding: 10,
         elevation: 2,
-        marginTop: 10,
-        width: '60%',
+        marginTop: 5,
+        // margin: 1,
+        width: '50%',
     },
+
+    modalButtonSemComplemento: {
+        backgroundColor: "red",
+        borderRadius: 10,
+        padding: 10,
+        elevation: 2,
+        marginTop: 10,
+        margin: 14,
+        width: '60%',
+        flex: 2,
+    },
+
+
+    carrinhoModalBtnNaoText: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+
     modalButtonText: {
         color: "white",
         fontWeight: "bold",
         textAlign: "center"
-    }
+    },
+
+    // cardápio + carrinho
+
+    cardapioColunas: {
+        flex: 1,
+        // flex: 5.5,
+        flexDirection: 'column',
+        // flexWrap: 'wrap',
+        // justifyContent: 'space-between',
+        // cor de fundo
+        backgroundColor: '#3c3c3c',
+    },
+
+    cardapioItem: {
+        width: '100%',
+        height: 160,
+        // flexDirection: 'row',
+        flex: 5,
+
+        // cor de item
+        backgroundColor: '#1c1c1c',
+        marginVertical: 5,
+        marginBottom: 10,
+        marginRight: 20,
+        justifyContent: 'center',
+        borderRadius: 10, // Adicionar um raio de borda para suavizar as bordas
+        shadowColor: '#000', // Adicionar uma sombra
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+
+    cardapioItemLista: {
+        width: '100%',
+        height: 110,
+        flexDirection: 'row',
+        flex: 5,
+        backgroundColor: '#1c1c1c',
+        marginVertical: 5,
+        marginBottom: 10,
+        marginRight: 20,
+        justifyContent: 'center',
+        borderRadius: 10, // Adicionar um raio de borda para suavizar as bordas
+        shadowColor: '#000', // Adicionar uma sombra
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+
+    cardapioImg: {
+        flex: 1,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        margin: 10,
+        marginBottom: 0,
+        borderRadius: 10,
+        //marginBottom: 30,
+    },
+
+    cardapioDescBtn: {
+        // paddingRight: 10,
+        // paddingBottom: 10,
+        // marginBottom: 30,
+
+    },
+    cardapioBotaoAdd: {
+        backgroundColor: '#00959F',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+
 
 });
 

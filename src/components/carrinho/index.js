@@ -120,7 +120,7 @@ export default function Carrinho({ route, navigation }) {
                             <Modal animationType="slide" transparent={true}>
 
                                 <View style={styles.modalCenteredView}>
-                                    <View style={styles.modalView}>
+                                    <View style={styles.modalViewConfirmacao}>
                                         <Text style={styles.modalText}>Deseja mesmo remover o item da mesa?</Text>
 
                                         <View style={[styles.carrinhoModalBotoes, { flexDirection: 'row', }]}>
@@ -175,13 +175,13 @@ export default function Carrinho({ route, navigation }) {
                                             })
                                         }
                                     }}
-                                    style={[styles.cardapioBotaoCountMenos, { flex: 1 }]}
+                                    style={[styles.cardapioBotaoCountMenos, item.removerDesativado && styles.cardapioItemDesativado, { flex: 1 }]}
                                 >
-                                    <Text style={styles.cardapioSinal}>-</Text>
+                                    <Text style={[styles.cardapioSinal, item.removerDesativado && styles.cardapioItemDesativado]}>-</Text>
                                 </TouchableOpacity>
 
 
-                                <Text style={styles.cardapioQuantidade}>{item.count}</Text>
+                                <Text style={[styles.cardapioQuantidade, item.removerDesativado && styles.cardapioItemDesativado]}>{item.count}</Text>
 
                                 <TouchableOpacity
                                     disabled={item.removerDesativado}
@@ -191,9 +191,9 @@ export default function Carrinho({ route, navigation }) {
                                             payload: { mesaIdforIncrea: currentMesaIndex, itemIdforIncrea: item.id }
                                         })
                                     }}
-                                    style={[styles.cardapioBotaoCountMais, { flex: 1 }]}
+                                    style={[styles.cardapioBotaoCountMais, item.removerDesativado && styles.cardapioItemDesativado, { flex: 1 }]}
                                 >
-                                    <Text style={styles.cardapioSinal}>+</Text>
+                                    <Text style={[styles.cardapioSinal, item.removerDesativado && styles.cardapioItemDesativado]}>+</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -278,18 +278,23 @@ export default function Carrinho({ route, navigation }) {
                                     }}
                                 >
                                     <View style={styles.modalCenteredView}>
-                                        <View style={styles.modalView}>
-                                            <Text style={styles.modalText}>Alguma observação?</Text>
+                                        <View style={styles.modalViewEnviar}>
+                                            <Text style={styles.modalText}>Alguma observação?(opicional)</Text>
                                             <TextInput value={observacao} onChange={(evt) => {
                                                 // console.log(evt.nativeEvent.text, 'observacao')
                                                 setObservacao(evt.nativeEvent.text)
                                             }} style={styles.modalInput} multiline={true} numberOfLines={6} />
-                                            <TouchableOpacity onPress={() => {
-                                                handleEnviar()
-                                                toggleRemoverDesativado()
-                                            }} style={styles.modalButton}>
-                                                <Text style={styles.modalButtonText}>Enviar</Text>
-                                            </TouchableOpacity>
+                                            <View style={{ justifyContent: 'space-between', flexDirection: 'row', flex: 1, }}>
+                                                {/* <TouchableOpacity onPress={() => setShowModal(false)} style={styles.modalButtonSemComplemento}>
+                                                    <Text style={styles.carrinhoModalBtnNaoText}>Sem observação</Text>
+                                                </TouchableOpacity> */}
+                                                <TouchableOpacity onPress={() => {
+                                                    handleEnviar()
+                                                    toggleRemoverDesativado()
+                                                }} style={styles.modalButtonEnviar}>
+                                                    <Text style={styles.modalButtonText}>Enviar</Text>
+                                                </TouchableOpacity>
+                                            </View>
                                         </View>
                                     </View>
                                 </Modal>

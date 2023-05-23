@@ -30,19 +30,21 @@ export default function Contador({ item, navigation }) {
     <>
       <TouchableOpacity
         onPress={handleDecrease}
-        style={[styles.cardapioBotaoCount, { flex: 1 }]}
+        style={[styles.cardapioBotaoCount, { flex: 0.8 }]}
       >
         <Text style={styles.cardapioSinal}>-</Text>
       </TouchableOpacity>
+
       <TouchableOpacity onPress={() => {
         // console.log(item)
         navigation.navigate('Carrinho', { item: item, count: count })
       }} style={[styles.cardapioBotaoAdd, { flex: 4 }]}>
         <Text style={styles.cardapioAdd}>Adicionar {count}</Text>
       </TouchableOpacity>
+      
       <TouchableOpacity
         onPress={handleIncrease}
-        style={[styles.cardapioBotaoCount, { flex: 1 }]}
+        style={[styles.cardapioBotaoCount, { flex: 0.8 }]}
       >
         <Text style={styles.cardapioSinal}>+</Text>
       </TouchableOpacity>
