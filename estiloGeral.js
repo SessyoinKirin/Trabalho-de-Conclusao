@@ -211,7 +211,6 @@ const styles = StyleSheet.create({
     },
 
     cardapioBotaoCount: {
-        backgroundColor: '#00B1BC',
         //  padding: 5,
         borderRadius: 5,
         // marginTop: 10,
@@ -226,6 +225,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         alignItems: 'center',
         alignSelf: 'center',
+        // color: 'white',
     },
     cardapioInput: {
         width: '90%',

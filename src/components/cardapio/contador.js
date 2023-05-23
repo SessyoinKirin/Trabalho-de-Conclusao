@@ -30,7 +30,7 @@ export default function Contador({ item, navigation }) {
     <>
       <TouchableOpacity
         onPress={handleDecrease}
-        style={[styles.cardapioBotaoCount, { flex: 0.8 }]}
+        style={[styles.cardapioBotaoCount, { flex: 0.8, backgroundColor: '#DA3446', }]}
       >
         <Text style={styles.cardapioSinal}>-</Text>
       </TouchableOpacity>
@@ -44,7 +44,7 @@ export default function Contador({ item, navigation }) {
       
       <TouchableOpacity
         onPress={handleIncrease}
-        style={[styles.cardapioBotaoCount, { flex: 0.8 }]}
+        style={[styles.cardapioBotaoCount, { flex: 0.8, backgroundColor: '#4ECD53', }]}
       >
         <Text style={styles.cardapioSinal}>+</Text>
       </TouchableOpacity>
