@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-23 15:59:46
+ * @LastEditTime: 2023-05-18 10:33:37
  * @FilePath: \Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -39,16 +39,29 @@ const reducer = (prevState, action) => {
       });
       return updatedState;
 
-    case 'addLista':
-      const { itemId, newItem } = action.payload;
-      return prevState.map(item => {
-        if (item.id === itemId) {
-          return { ...item, lista: [...item.lista, newItem] };
-
-        }
-        return item;
-      });
-
+      case 'addLista':
+        const { itemId, newItem } = action.payload;
+        return prevState.map(item => {
+          if (item.id === itemId) {
+            const itemExistente = item.lista.find(listItem => listItem.nome === newItem.nome);
+            if (itemExistente && !itemExistente.removerDesativado) {
+              // O item já existe na lista, apenas incrementar o count
+              const listaAtualizada = item.lista.map(listItem => {
+                if (listItem.nome === newItem.nome) {
+                  return { ...listItem, count: listItem.count + newItem.count };
+                }
+                return listItem;
+              });
+      
+              return { ...item, lista: listaAtualizada };
+            } else {
+              // O item não existe na lista, adicionar como um novo item
+              return { ...item, lista: [...item.lista, newItem] };
+            }
+          }
+          return item;
+        });
+      
     case 'desativaRemocao':
       const { index } = action.payload;
       return prevState.map(item => {
@@ -78,7 +91,41 @@ const reducer = (prevState, action) => {
         return item;
       });
 
+    case 'Increase':
+      const { mesaIdforIncrea, itemIdforIncrea } = action.payload;
+      return prevState.map((mesa) => {
+        if (mesa.id === mesaIdforIncrea) {
+          const listaAtualizada = mesa.lista.map((item) => {
+            if (item.id === itemIdforIncrea) {
+              return { ...item, count: item.count + 1 }
+            }
+            return item
+          })
+          return { ...mesa, lista: listaAtualizada }
+        }
+        return mesa
+      })
 
+    case 'Decrease':
+      const { mesaIdforDecrea, itemIdforDecrea } = action.payload;
+      return prevState.map((mesa) => {
+        if (mesa.id === mesaIdforDecrea) {
+          const listaAtualizada = mesa.lista.map((item) => {
+            if (item.id === itemIdforDecrea) {
+              if (item.count === 1) {
+                // Remova o item da lista
+                return false;
+              } else {
+                // Decrementa o count do item
+                return { ...item, count: item.count - 1 };
+              }
+            }
+            return item;
+          }).filter(Boolean); // Remova os itens falsos da lista
+          return { ...mesa, lista: listaAtualizada };
+        }
+        return mesa;
+      });
 
 
     case 'esvazea':

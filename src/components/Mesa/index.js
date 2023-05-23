@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-04-11 09:40:11
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-23 16:08:05
+ * @LastEditTime: 2023-05-17 09:42:24
  * @FilePath: \Trabalho-de-Conclusao\src\components\Mesa\index.js
  * @Description: 
  * 
@@ -44,15 +44,12 @@ function Mesa({ navigation }) {
 function MesaUnidade({ index, lista, navigation }) {
     const { state, dispatch } = React.useContext(GlobalContext)
 
-    console.log(lista.length, 'lista de item');
-
-    const mesaStyle = state[index]?.enabled ? !lista.length > 0 ? styles.mesaDesocupada : styles.mesaOcupada : [styles.mesaItem, styles.mesaItemDisabled];
-
-
+    console.log(index+1, 'lista de item = ' + lista.length);
+    const mesaStyle = state[index]?.enabled ? lista.length == 0 ? styles.mesaDesocupada : styles.mesaOcupada : [styles.mesaItem, styles.mesaItemDisabled];
     const mesaTexto = state[index]?.enabled ? styles.mesaTexto : [styles.mesaTexto, styles.mesaTextoDisabled];
     return (
         <TouchableOpacity style={mesaStyle} onPress={() => navigation.navigate('Carrinho', { mesaIndex: index })} disabled={!state[index].enabled}>
-            <Text style={mesaTexto}>{index + 1}</Text>
+            <Text style={mesaTexto}>{index+1}</Text>
         </TouchableOpacity>
     );
 }
