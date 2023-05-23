@@ -221,44 +221,52 @@ const styles = StyleSheet.create({
 
     cardapioContador: {
         flexDirection: 'row',
-        flex: 3, 
+        flex: 3,
         alignItems: 'center',
         justifyContent: 'center',
+        marginRight: 5,
     },
 
     cardapioQuantidade: {
-        margin: 30,
         fontSize: 25,
         color: '#fff',
         textAlign: 'center',
         margin: 0,
+        flex: 1,
     },
 
     cardapioBotaoCountMais: {
         backgroundColor: '#00B1BC',
-        // padding: 5,
+        //  padding: 5,
         borderRadius: 5,
-        // marginTop: 10,
+        //  marginTop: 10,
         alignItems: 'center',
         alignSelf: 'center',
-        // marginLeft: 10,
-        // marginRight: 10,
-        // // position: 'absolute',
-        // // width: 20,
-        // // height: 20,
-        // // top: 0,
-        // // right: 0,
+        marginRight: 20,
+        //   marginLeft: 10,
+        //   marginRight: 10,
+        // position: 'absolute',
+        // top: 17,
+        // left: 10,
+        // width: 30,
+        // height: 30,
     },
-    
+
     cardapioBotaoCountMenos: {
         backgroundColor: '#00B1BC',
-        // padding: 5,
+        //  padding: 5,
         borderRadius: 5,
-        // marginTop: 10,
+        //  marginTop: 10,
         alignItems: 'center',
         alignSelf: 'center',
-        // marginLeft: 10,
-        // marginRight: 10,
+        marginLeft: 10,
+        //   marginLeft: 10,
+        //   marginRight: 10,
+        // position: 'absolute',
+        // top: 17,
+        // left: 10,
+        // width: 30,
+        // height: 30,
     },
 
     cardapioSinal: {
@@ -442,7 +450,7 @@ const styles = StyleSheet.create({
         fontSize: 25,
         color: '#fff',
         alignSelf: 'flex-end',
-        },
+    },
     carPreco: {
         fontSize: 17,
         fontWeight: 'bold',
@@ -475,7 +483,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold'
     },
-    mesaItemDisabled:{
+    mesaItemDisabled: {
         width: '30%',
         height: 100,
         // cor de item
@@ -488,13 +496,18 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    //Modal
+    // Modal
+
+    // Alterado por Marcel 23-05-23
+
+
     modalCenteredView: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
         marginTop: 10
     },
+
     modalView: {
         margin: 20,
         backgroundColor: '#BFBFBF',
@@ -509,9 +522,38 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
-        height: 400,
+        height: 230,
         width: 300,
     },
+
+    carrinhoModalBotoes: {
+        flexDirection: 'row',
+    },
+
+    carrinhoModalBtnSim: {
+        backgroundColor: 'green',
+        padding: 10,
+        borderRadius: 5,
+        margin: 20,
+        alignItems: 'center',
+        flex: 2,
+    },
+
+    carrinhoModalBtnNao: {
+        backgroundColor: 'red',
+        padding: 10,
+        borderRadius: 5,
+        margin: 20,
+        alignItems: 'center',
+        flex: 2,
+    },
+
+    carrinhoBotaoTexto: {
+        fontSize: 22,
+        color: 'white',
+        padding: 5,
+    },
+
     modalText: {
         marginBottom: 15,
         fontSize: 20,

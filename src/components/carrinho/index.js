@@ -121,18 +121,23 @@ export default function Carrinho({ route, navigation }) {
 
                                 <View style={styles.modalCenteredView}>
                                     <View style={styles.modalView}>
-                                        <Text style={styles.modalText}>Deseja mesmo retirar o item?</Text>
-                                        <TouchableOpacity onPress={() => {
-                                            dispatch({
-                                                type: 'Decrease',
-                                                payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
-                                            })
-                                        }} style={styles.carBotoesSuccess}>
-                                            <Text>Sim</Text>
-                                        </TouchableOpacity>
-                                        <TouchableOpacity onPress={() => setShowModal(false)} style={styles.carrinhoBotaoRemover}>
-                                            <Text>Não</Text>
-                                        </TouchableOpacity>
+                                        <Text style={styles.modalText}>Deseja mesmo remover o item da mesa?</Text>
+
+                                        <View style={[styles.carrinhoModalBotoes, { flexDirection: 'row', }]}>
+                                            <TouchableOpacity onPress={() => {
+                                                dispatch({
+                                                    type: 'Decrease',
+                                                    payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
+                                                })
+                                            }} style={styles.carrinhoModalBtnSim}>
+                                                <Text style={styles.carrinhoBotaoTexto}>Sim</Text>
+                                            </TouchableOpacity>
+
+                                            <TouchableOpacity onPress={() => setShowModal(false)} style={styles.carrinhoModalBtnNao}>
+                                                <Text style={styles.carrinhoBotaoTexto}>Não</Text>
+                                            </TouchableOpacity>
+                                        </View>
+
                                     </View>
                                 </View>
                             </Modal>
@@ -157,37 +162,40 @@ export default function Carrinho({ route, navigation }) {
 
                         {/* Contador e preço unitário */}
                         <View style={[styles.cardapioContador]}>
-                            <TouchableOpacity
-                                disabled={item.removerDesativado}
-                                onPress={() => {
-                                    if (item.count === 1) {
-                                        setShowModal(true)
-                                    } else {
+                            <View style={{ flexDirection: 'row', flex: 1, }}>
+                                <TouchableOpacity
+                                    disabled={item.removerDesativado}
+                                    onPress={() => {
+                                        if (item.count === 1) {
+                                            setShowModal(true)
+                                        } else {
+                                            dispatch({
+                                                type: 'Decrease',
+                                                payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
+                                            })
+                                        }
+                                    }}
+                                    style={[styles.cardapioBotaoCountMenos, { flex: 1 }]}
+                                >
+                                    <Text style={styles.cardapioSinal}>-</Text>
+                                </TouchableOpacity>
+
+
+                                <Text style={styles.cardapioQuantidade}>{item.count}</Text>
+
+                                <TouchableOpacity
+                                    disabled={item.removerDesativado}
+                                    onPress={() => {
                                         dispatch({
-                                            type: 'Decrease',
-                                            payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
+                                            type: 'Increase',
+                                            payload: { mesaIdforIncrea: currentMesaIndex, itemIdforIncrea: item.id }
                                         })
-                                    }
-                                }}
-                                style={[styles.cardapioBotaoCountMenos, { flex: 1, position: 'absolute', top: 0, right: 0}]}
-                            >
-                                <Text style={styles.cardapioSinal}>-</Text>
-                            </TouchableOpacity>
-
-                            <Text style={styles.cardapioQuantidade}>{item.count}</Text>
-
-                            <TouchableOpacity
-                                disabled={item.removerDesativado}
-                                onPress={() => {
-                                    dispatch({
-                                        type: 'Increase',
-                                        payload: { mesaIdforIncrea: currentMesaIndex, itemIdforIncrea: item.id }
-                                    })
-                                }}
-                                style={[styles.cardapioBotaoCountMais, { flex: 1 }]}
-                            >
-                                <Text style={styles.cardapioSinal}>+</Text>
-                            </TouchableOpacity>
+                                    }}
+                                    style={[styles.cardapioBotaoCountMais, { flex: 1 }]}
+                                >
+                                    <Text style={styles.cardapioSinal}>+</Text>
+                                </TouchableOpacity>
+                            </View>
 
                             <Text style={styles.cardapioTituloPrecoUnitario} numberOfLines={1}>{item.preco.toLocaleString('pt-BR',
                                 {
