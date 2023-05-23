@@ -127,8 +127,9 @@ const styles = StyleSheet.create({
     },
     cardapioItem: {
         width: '100%',
-        height: 120,
-        flexDirection: 'row',
+        height: 160,
+        // flexDirection: 'row',
+        flex: 5,
 
         // cor de item
         backgroundColor: '#1c1c1c',
@@ -151,12 +152,15 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         justifyContent: 'center',
         margin: 10,
+        marginBottom: 0,
         borderRadius: 10,
+        //marginBottom: 30,
     },
     cardapioDescBtn: {
-        flexDirection: 'column',
-        paddingRight: 10,
-        paddingBottom: 10,
+        // paddingRight: 10,
+        // paddingBottom: 10,
+        // marginBottom: 30,
+
     },
     cardapioBotaoAdd: {
         backgroundColor: '#5cb85c',
@@ -170,12 +174,18 @@ const styles = StyleSheet.create({
     carrinhoBotaoRemover: {
         //backgroundColor: '#F23005',
         backgroundColor: '#FC0000',
-        padding: 10,
+        position: 'absolute',
+        width: 40,
+        height: 35,
+        top: 0,
+        right: 10,
+        paddingVertical: 2,
+        paddingHorizontal: 15,
         borderRadius: 5,
-        marginTop: 10,
-        marginLeft: 3,
-        marginRight: 3,
-        alignItems: 'center',
+        // marginTop: 5,
+        // marginLeft: 120,
+        // marginRight: 3,
+        alignItems: 'flex-end',
     },
 
     // Editado por Marcel 21-05-23
@@ -184,25 +194,27 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'row',
     },
+    cardapioValorParcial: {
+        justifyContent: 'space-between',
+    },
     cardapioTexto: {
-        padding: 2,
-        margin: 2,
         fontSize: 25,
         color: '#fff',
         textAlign: 'center',
+        marginHorizontal: 5,
     },
     cardapioTituloPrecoUnitario: {
         padding: 2,
         margin: 2,
         fontSize: 25,
-        color: 'grey',
+        color: 'gray',
         fontStyle: 'italic',
         textAlign: 'center',
     },
     cardapioAdd: {
-        fontSize: 19,
+        fontSize: 20,
         fontWeight: 'bold',
-        // color: '#fff',
+        color: '#fff',
     },
 
     //
@@ -222,17 +234,33 @@ const styles = StyleSheet.create({
         margin: 0,
     },
 
-    cardapioBotaoCount: {
+    cardapioBotaoCountMais: {
         backgroundColor: '#00B1BC',
         // padding: 5,
         borderRadius: 5,
         // marginTop: 10,
         alignItems: 'center',
         alignSelf: 'center',
-        marginLeft: 20,
-        marginRight: 20,
+        // marginLeft: 10,
+        // marginRight: 10,
+        // // position: 'absolute',
+        // // width: 20,
+        // // height: 20,
+        // // top: 0,
+        // // right: 0,
     },
     
+    cardapioBotaoCountMenos: {
+        backgroundColor: '#00B1BC',
+        // padding: 5,
+        borderRadius: 5,
+        // marginTop: 10,
+        alignItems: 'center',
+        alignSelf: 'center',
+        // marginLeft: 10,
+        // marginRight: 10,
+    },
+
     cardapioSinal: {
         fontSize: 21,
         fontWeight: 'bold',
@@ -251,6 +279,7 @@ const styles = StyleSheet.create({
     },
     cardapioItemDesativado: {
         opacity: 0.5,
+        flexDirection: 'column',
     },
     cardapioBotaoAddDesativado: {
         backgroundColor: 'gray',

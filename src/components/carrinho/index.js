@@ -112,53 +112,53 @@ export default function Carrinho({ route, navigation }) {
         const [showModal, setShowModal] = React.useState(false)
 
         return (
-            <View style={styles.cardapioItem}>
-                {
-                    showModal && (
-                        <Modal animationType="slide" transparent={true}>
+            <View style={[styles.cardapioItem]}>
 
-                            <View style={styles.modalCenteredView}>
-                                <View style={styles.modalView}>
-                                    <Text style={styles.modalText}>Deseja mesmo retirar o item?</Text>
-                                    <TouchableOpacity onPress={() => {
-                                        dispatch({
-                                            type: 'Decrease',
-                                            payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
-                                        })
-                                    }} style={styles.carBotoesSuccess}>
-                                        <Text>Sim</Text>
-                                    </TouchableOpacity>
-                                    <TouchableOpacity onPress={() => setShowModal(false)} style={styles.carrinhoBotaoRemover}>
-                                        <Text>Não</Text>
-                                    </TouchableOpacity>
+                <View style={{ flexDirection: 'row', flex: 4.5 }}>
+                    {
+                        showModal && (
+                            <Modal animationType="slide" transparent={true}>
+
+                                <View style={styles.modalCenteredView}>
+                                    <View style={styles.modalView}>
+                                        <Text style={styles.modalText}>Deseja mesmo retirar o item?</Text>
+                                        <TouchableOpacity onPress={() => {
+                                            dispatch({
+                                                type: 'Decrease',
+                                                payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
+                                            })
+                                        }} style={styles.carBotoesSuccess}>
+                                            <Text>Sim</Text>
+                                        </TouchableOpacity>
+                                        <TouchableOpacity onPress={() => setShowModal(false)} style={styles.carrinhoBotaoRemover}>
+                                            <Text>Não</Text>
+                                        </TouchableOpacity>
+                                    </View>
                                 </View>
-                            </View>
-                        </Modal>
-                    )
-                }
-                {/* imagem */}
-                <View style={{ flex: 2 }}>
-                    <Image src={item.img} alt="" style={[styles.cardapioImg, { width: 100, height: 100 }]} />
-                </View>
+                            </Modal>
+                        )
+                    }
 
-                {/* Descrição e preço unitário */}
-                <View style={[styles.cardapioDescBtn, { flex: 5 }]}>
 
-                    <View style={[styles.cardapioTitulo, { flex: 2, marginTop: 10, marginLeft: 5 }]}>
-                        <Text style={styles.cardapioTexto} numberOfLines={1}>{item.nome}</Text>
-                        <Text style={styles.cardapioTituloPrecoUnitario} numberOfLines={1}>{item.preco.toLocaleString('pt-BR',
-                            {
-                                style: 'currency',
-                                currency: 'BRL',
-                            })
-                        }
-                        </Text>
+                    {/* imagem */}
+                    <View style={{ flex: 2 }}>
+                        <Image src={item.img} alt="Foto do produto" style={[styles.cardapioImg, { width: 100, height: 100 }]} />
                     </View>
 
-                    {/* Contador e preço parcial */}
-                    <View style={[styles.cardapioContador]}>
+                    <View style={[styles.cardapioDescBtn, { flex: 5, backgroundColor: '', flexDirection: 'column' }]}>
+                        {/* Nome e botão de remover */}
+                        <View style={[styles.cardapioTitulo, { flex: 2, marginTop: 12, marginLeft: 3 }]}>
+                            <Text style={styles.cardapioTexto} numberOfLines={1}>{item.nome}</Text>
+                            <TouchableOpacity onPress={() => removerItem(item.data)} style={[styles.carrinhoBotaoRemover, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]} disabled={item.removerDesativado}>
+                                <Text style={[styles.cardapioAdd, item.removerDesativado && styles.cardapioItemDesativado]}>x</Text>
+                            </TouchableOpacity>
+                        </View>
+
+
+                        {/* Contador e preço unitário */}
+                        <View style={[styles.cardapioContador]}>
                             <TouchableOpacity
-                            disabled={item.removerDesativado}
+                                disabled={item.removerDesativado}
                                 onPress={() => {
                                     if (item.count === 1) {
                                         setShowModal(true)
@@ -169,36 +169,47 @@ export default function Carrinho({ route, navigation }) {
                                         })
                                     }
                                 }}
-                                style={[styles.cardapioBotaoCount, { flex: 1 }]}
+                                style={[styles.cardapioBotaoCountMenos, { flex: 1, position: 'absolute', top: 0, right: 0}]}
                             >
                                 <Text style={styles.cardapioSinal}>-</Text>
                             </TouchableOpacity>
 
-                            {/* <TouchableOpacity onPress={() => removerItem(item.data)} style={[styles.carrinhoBotaoRemover, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]} disabled={item.removerDesativado}>
-                            <Text style={[styles.cardapioAdd, item.removerDesativado && styles.cardapioItemDesativado]}>Remover</Text>
-                        </TouchableOpacity> */}
-
                             <Text style={styles.cardapioQuantidade}>{item.count}</Text>
 
                             <TouchableOpacity
-                            disabled={item.removerDesativado}
+                                disabled={item.removerDesativado}
                                 onPress={() => {
                                     dispatch({
                                         type: 'Increase',
                                         payload: { mesaIdforIncrea: currentMesaIndex, itemIdforIncrea: item.id }
                                     })
                                 }}
-                                style={[styles.cardapioBotaoCount, { flex: 1 }]}
+                                style={[styles.cardapioBotaoCountMais, { flex: 1 }]}
                             >
                                 <Text style={styles.cardapioSinal}>+</Text>
                             </TouchableOpacity>
 
-                        <View>
-                            <Text style={styles.cardapioTexto}>R$ {valorParcial}</Text>
+                            <Text style={styles.cardapioTituloPrecoUnitario} numberOfLines={1}>{item.preco.toLocaleString('pt-BR',
+                                {
+                                    style: 'currency',
+                                    currency: 'BRL',
+                                })
+                            }
+                            </Text>
                         </View>
                     </View>
                 </View>
 
+                <View style={{ flexDirection: 'row', flex: 1.5, justifyContent: 'space-between', margin: 5 }}>
+                    <Text style={styles.cardapioTexto} numberOfLines={1}>Valor Parcial:</Text>
+                    <Text style={[styles.cardapioTexto, { fontStyle: 'italic' }]} numberOfLines={1}>R$ {valorParcial.toLocaleString('pt-BR',
+                        {
+                            style: 'currency',
+                            currency: 'BRL',
+                        })
+                    }
+                    </Text>
+                </View>
             </View>
         );
     }
@@ -235,7 +246,7 @@ export default function Carrinho({ route, navigation }) {
             <View style={styles.carrinhoRotape}>
                 {state[currentMesaIndex].lista.length > 0 ? (
                     <>
-                        <Text style={styles.carTexto}>Valor total: R$ {valorTotal.toLocaleString('pt-BR',
+                        <Text style={styles.carTexto}>Total: R$ {valorTotal.toLocaleString('pt-BR',
                             {
                                 style: 'currency',
                                 currency: 'BRL',

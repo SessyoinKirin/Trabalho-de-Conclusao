@@ -39,15 +39,12 @@ function Mesa({ navigation }) {
 function MesaUnidade({ index, lista, navigation }) {
     const { state, dispatch } = React.useContext(GlobalContext)
 
-    // console.log(lista.length, 'lista de item');
-
-    const mesaStyle = state[index]?.enabled ? !lista.length > 0 ? styles.mesaDesocupada : styles.mesaOcupada : [styles.mesaItem, styles.mesaItemDisabled];
-
-
+    console.log(index+1, 'lista de item = ' + lista.length);
+    const mesaStyle = state[index]?.enabled ? lista.length == 0 ? styles.mesaDesocupada : styles.mesaOcupada : [styles.mesaItem, styles.mesaItemDisabled];
     const mesaTexto = state[index]?.enabled ? styles.mesaTexto : [styles.mesaTexto, styles.mesaTextoDisabled];
     return (
-        <TouchableOpacity style={mesaStyle} onPress={() => navigation.navigate('Carrinho', { mesaIndex: index+1 })} disabled={!state[index].enabled}>
-            <Text style={mesaTexto}>{index+1}</Text>
+        <TouchableOpacity style={mesaStyle} onPress={() => navigation.navigate('Carrinho', { mesaIndex: index + 1 })} disabled={!state[index].enabled}>
+            <Text style={mesaTexto}>{index + 1}</Text>
         </TouchableOpacity>
     );
 }
