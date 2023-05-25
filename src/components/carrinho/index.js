@@ -53,7 +53,7 @@ export default function Carrinho({ route, navigation }) {
 
     useEffect(() => {
         navigation.setOptions({
-            headerTitle: `Mesa ${currentMesaIndex}`,
+            headerTitle: `Mesa ${currentMesaIndex + 1} `,
             headerStyle: {
                 backgroundColor: 'black',
             },
@@ -63,7 +63,7 @@ export default function Carrinho({ route, navigation }) {
         });
         if (currentMesaIndex !== mesaIndex) {
             navigation.setOptions({
-                headerTitle: `Mesa ${currentMesaIndex}`,
+                headerTitle: `Mesa ${currentMesaIndex +1}`,
                 headerStyle: {
                     backgroundColor: 'black',
                 },
