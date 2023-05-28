@@ -191,6 +191,8 @@ const styles = StyleSheet.create({
         // left: 10,
         // width: 30,
         // height: 30,
+        width: 200, 
+        height: 30, 
     },
 
     cardapioBotaoCountMenos: {
@@ -208,6 +210,8 @@ const styles = StyleSheet.create({
         // left: 10,
         // width: 30,
         // height: 30,
+        width: 200, 
+        height: 30, 
     },
 
     cardapioBotaoCount: {

@@ -14,10 +14,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 export default function Login({ navigation }) {
     const [login, setLogin] = useState(null)
-    const [password, setPassword] = useState(null)
+    // const [password, setPassword] = useState(null)
     const [messeageLogin, setMesseageLogin] = useState("Preencher o que está pedindo")
     const [textButton, setTextButton] = useState("Entrar")
     const [msgError, setMsgError] = useState("")
+    const [password, setPassword] = useState('');
+
 
     function logar() {
         // console.log(navigation.navigate)
@@ -37,6 +39,7 @@ export default function Login({ navigation }) {
         }
     }
 
+
     return (
         <View style={[styles.container, styles.loginContainer]} behavior="padding" keyboardVerticalOffset={50}>
             <ImageBackground source={require('../../../assets/fundo1-escuro.jpg')} style={styles.imgFundo1}>
@@ -55,11 +58,14 @@ export default function Login({ navigation }) {
                             keyboardType="email-address" />
 
                         <Text style={styles.loginformLabel}>Senha:</Text>
+
                         <TextInput
+                            style={styles.logininput}
                             onChangeText={setPassword}
                             value={password}
-                            style={styles.logininput}
-                            keyboardType="visible-password"></TextInput>
+                            secureTextEntry={true}
+                        />
+
                         <TouchableOpacity
                             style={
                                 styles.loginbtnEntrar
@@ -71,8 +77,8 @@ export default function Login({ navigation }) {
                         <Text style={styles.loginError}>{msgError}</Text>
                     </View>
                 </View>
-            </ImageBackground>
-        </View>
+            </ImageBackground >
+        </View >
     );
 }
 
