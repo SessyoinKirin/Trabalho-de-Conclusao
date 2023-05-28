@@ -19,24 +19,17 @@ import Cardapio from './src/components/cardapio';
 import Adm from './src/components/adm';
 import DesabilitarMesa from './src/components/desabilitaMesa';
 import GlobalContext from './src/components/contexto';
-
+import axios from 'axios';
 import styles from './estiloGeral';
 
-const initialState = [
-  { id: 0, enabled: true, lista: [] },
-  { id: 1, enabled: true, lista: [] },
-  { id: 2, enabled: true, lista: [] },
-  { id: 3, enabled: true, lista: [] },
-  { id: 4, enabled: true, lista: [] },
-  { id: 5, enabled: true, lista: [] },
-  { id: 6, enabled: true, lista: [] },
-  { id: 7, enabled: true, lista: [] },
-  { id: 8, enabled: true, lista: [] },
-  { id: 9, enabled: true, lista: [] },
-  { id: 10, enabled: true, lista: [] },
-];
 const reducer = (prevState, action) => {
   switch (action.type) {
+    case 'inicializar':
+      const mesas = [...action.payload]
+      console.log(prevState, 'prevstate')
+      console.log(action.payload, 'payload')
+      return mesas;
+
     case 'mudeEstado':
       const updatedState = prevState.map(item => {
         if (item.id === action.payload) {
@@ -46,16 +39,29 @@ const reducer = (prevState, action) => {
       });
       return updatedState;
 
-    case 'addLista':
-      const { itemId, newItem } = action.payload;
-      return prevState.map(item => {
-        if (item.id === itemId) {
-          return { ...item, lista: [...item.lista, newItem] };
-
-        }
-        return item;
-      });
-
+      case 'addLista':
+        const { itemId, newItem } = action.payload;
+        return prevState.map(item => {
+          if (item.id === itemId) {
+            const itemExistente = item.lista.find(listItem => listItem.nome === newItem.nome);
+            if (itemExistente && !itemExistente.removerDesativado) {
+              // O item já existe na lista, apenas incrementar o count
+              const listaAtualizada = item.lista.map(listItem => {
+                if (listItem.nome === newItem.nome) {
+                  return { ...listItem, count: listItem.count + newItem.count };
+                }
+                return listItem;
+              });
+      
+              return { ...item, lista: listaAtualizada };
+            } else {
+              // O item não existe na lista, adicionar como um novo item
+              return { ...item, lista: [...item.lista, newItem] };
+            }
+          }
+          return item;
+        });
+      
     case 'desativaRemocao':
       const { index } = action.payload;
       return prevState.map(item => {
@@ -73,26 +79,72 @@ const reducer = (prevState, action) => {
         return item;
       });
 
-      case 'removeItem':
-        const { id, mesa } = action.payload;
-        return prevState.map(item => {
-          if (item.id === mesa && !item.removerDesativado) {
-            return {
-              ...item,
-              lista: item.lista.filter(item => item.data !== id),
-            };
-          }
-          return item;
-        });
-      
+    case 'removeItem':
+      const { id, mesa } = action.payload;
+      return prevState.map(item => {
+        if (item.id === mesa && !item.removerDesativado) {
+          return {
+            ...item,
+            lista: item.lista.filter(item => item.data !== id),
+          };
+        }
+        return item;
+      });
 
+    case 'Increase':
+      const { mesaIdforIncrea, itemIdforIncrea } = action.payload;
+      return prevState.map((mesa) => {
+        if (mesa.id === mesaIdforIncrea) {
+          const listaAtualizada = mesa.lista.map((item) => {
+            if (item.id === itemIdforIncrea) {
+              return { ...item, count: item.count + 1 }
+            }
+            return item
+          })
+          return { ...mesa, lista: listaAtualizada }
+        }
+        return mesa
+      })
+
+    case 'Decrease':
+      const { mesaIdforDecrea, itemIdforDecrea } = action.payload;
+      return prevState.map((mesa) => {
+        if (mesa.id === mesaIdforDecrea) {
+          const listaAtualizada = mesa.lista.map((item) => {
+            if (item.id === itemIdforDecrea) {
+              if (item.count === 1) {
+                // Remova o item da lista
+                return false;
+              } else {
+                // Decrementa o count do item
+                return { ...item, count: item.count - 1 };
+              }
+            }
+            return item;
+          }).filter(Boolean); // Remova os itens falsos da lista
+          return { ...mesa, lista: listaAtualizada };
+        }
+        return mesa;
+      });
 
 
     case 'esvazea':
-      const newState = [...initialState];
-      return newState.map(item => ({ ...item, lista: [] }));
+      const { mesaID } = action.payload;
+      console.log(mesaID, 'currente')
+      return prevState.map(item => {
+        if (item.id === mesaID) {
+          return {
+            ...item,
+            lista: [],
+          };
+        }
+        return item;
+      })
 
-
+    case 'postMesa':
+      const novaLista = [...prevState, action.payload];
+      return [...prevState, ...novaLista];
+      
     default:
       return prevState;
   }
@@ -100,7 +152,30 @@ const reducer = (prevState, action) => {
 
 
 function App({ navigation }) {
-  const [state, dispatch] = React.useReducer(reducer, initialState)
+  const [state, dispatch] = React.useReducer(reducer, [])
+  const [data, setData] = React.useState([]); // Inicializa o estado para armazenar os dados das mesas
+  console.log(state, 'state fora de axios', state.length, 'tamanho de state')
+  const [validacao, setValidacao] = React.useState(false)
+
+  React.useEffect(() => {
+    axios
+      .get('https://testapi--carlos-alber317.repl.co/mesas')
+      .then((res) => {
+        setData(res.data);
+        console.log(state, 'estado dentro de axiosget')
+        const initialState = [...res.data]
+        console.log(initialState, 'initialstate')
+        dispatch({
+          type: 'inicializar',
+          payload: initialState
+        })
+      })
+      .catch((error) => {
+        console.error('Erro ao buscar mesas:', error);
+      });
+  }, [state.length]);
+  const initialState = [...data];
+
   return (
     <GlobalContext.Provider value={{
       state,

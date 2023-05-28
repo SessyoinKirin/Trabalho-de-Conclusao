@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-05-17 09:38:56
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-17 09:39:19
+ * @LastEditTime: 2023-05-23 15:35:36
  * @FilePath: \Trabalho-de-Conclusao\src\components\desabilitaMesa\index.js
  * @Description: 
  * 
@@ -24,7 +24,7 @@ export default function DesabilitarMesa({ navigation }) {
             </TouchableOpacity>
             <View style={styles.mesas}>
                 {
-                    state.map(item => <MesaUnidade key={item.id} index={item.id}/>)
+                    state.map(item => <MesaUnidade key={item.id} index={item.id} lista={item.lista} />)
                 }
 
             </View>
@@ -32,21 +32,22 @@ export default function DesabilitarMesa({ navigation }) {
     )
 }
 
-function MesaUnidade({ index}) {
-    const {state, dispatch} = React.useContext(GlobalContext)
+function MesaUnidade({ index, lista }) {
+    const { state, dispatch } = React.useContext(GlobalContext)
     // console.log(state, 'estado')
-    const mesaStyle = state[index]?.enabled ? styles.mesaItem : [styles.mesaItem, styles.mesaItemDisabled];
+
+    const mesaStyle = state[index]?.enabled ? !lista.length > 0 ? styles.mesaItem : styles.mesaOcupada : [styles.mesaItem, styles.mesaItemDisabled];
     const mesaTexto = state[index]?.enabled ? styles.mesaTexto : [styles.mesaTexto, styles.mesaTextoDisabled];
     return (
-        <TouchableOpacity style={mesaStyle} onPress={() => {
-            
+        <TouchableOpacity style={mesaStyle} disabled={lista.length > 0} onPress={() => {
             dispatch({
+
                 type: "mudeEstado",
                 payload: index,
             }),
             Alert.alert('Mesa foi alterado com sucesso!')
         }}>
-            <Text style={mesaTexto}>{index}</Text>
+            <Text style={mesaTexto}>{index + 1}</Text>
         </TouchableOpacity>
     );
 }

@@ -112,89 +112,120 @@ const styles = StyleSheet.create({
         fontSize: 25,
 
     },
+    carrinhoBotaoRemover: {
+        //backgroundColor: '#F23005',
+        backgroundColor: '#FC0000',
+        position: 'absolute',
+        width: 40,
+        height: 35,
+        top: 0,
+        right: 10,
+        paddingVertical: 2,
+        paddingHorizontal: 15,
+        borderRadius: 5,
+        // marginTop: 5,
+        // marginLeft: 120,
+        // marginRight: 3,
+        alignItems: 'flex-end',
+    },
 
-    // cardapio
+    // Editado por Marcel 21-05-23
 
-    cardapioColunas: {
-        flex: 1,
-        // flex: 5.5,
-        flexDirection: 'column',
-        // flexWrap: 'wrap',
-        // justifyContent: 'space-between',
-        // cor de fundo
-
-        backgroundColor: '#3c3c3c',
+    cardapioTitulo: {
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+    },
+    cardapioValorParcial: {
+        justifyContent: 'space-between',
     },
     cardapioTexto: {
-        padding: 2,
-        margin: 2,
-        fontSize: 20,
+        fontSize: 25,
         color: '#fff',
         textAlign: 'center',
+        marginHorizontal: 5,
     },
-    cardapioItem: {
-        width: '100%',
-        height: 120,
-        flexDirection: 'row',
-
-        // cor de item
-        backgroundColor: '#1c1c1c',
-        marginVertical: 5,
-        marginBottom: 10,
-        marginRight: 20,
-        justifyContent: 'center',
-        borderRadius: 10, // Adicionar um raio de borda para suavizar as bordas
-        shadowColor: '#000', // Adicionar uma sombra
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-    },
-    cardapioImg: {
-        flex: 1,
-        alignSelf: 'center',
-        justifyContent: 'center',
-        margin: 10,
-        borderRadius: 10,
-    },
-    cardapioDescBtn: {
-        flexDirection: 'column',
-        paddingRight: 10,
-        paddingBottom: 10,
-    },
-    cardapioBotaoAdd: {
-        backgroundColor: '#f23005',
-        padding: 10,
-        borderRadius: 5,
-        marginTop: 10,
-        marginLeft: 3,
-        marginRight: 3,
-        alignItems: 'center',
-    },
-    cardapioTitulo: {
-        justifyContent: 'center',
+    cardapioTituloPrecoUnitario: {
+        padding: 2,
+        margin: 2,
+        fontSize: 25,
+        color: 'gray',
+        fontStyle: 'italic',
+        textAlign: 'center',
     },
     cardapioAdd: {
-        fontSize: 17,
-        fontWeight: 'bold',
-        // color: '#fff',
-    },
-    cardapioContador: {
-        flexDirection: 'row',
-    },
-    cardapioBotaoCount: {
-        backgroundColor: '#5cb85c',
-        padding: 10,
-        borderRadius: 5,
-        marginTop: 10,
-        alignItems: 'center',
-    },
-    cardapioSinal: {
         fontSize: 20,
         fontWeight: 'bold',
+        color: 'black',
+    },
+
+    //
+
+    cardapioContador: {
+        flexDirection: 'row',
+        flex: 3,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginRight: 5,
+    },
+
+    cardapioQuantidade: {
+        fontSize: 25,
+        color: '#fff',
+        textAlign: 'center',
+        margin: 0,
+        flex: 1,
+    },
+
+    cardapioBotaoCountMais: {
+        backgroundColor: '#00B1BC',
+        //  padding: 5,
+        borderRadius: 5,
+        //  marginTop: 10,
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginRight: 20,
+        //   marginLeft: 10,
+        //   marginRight: 10,
+        // position: 'absolute',
+        // top: 17,
+        // left: 10,
+        // width: 30,
+        // height: 30,
+    },
+
+    cardapioBotaoCountMenos: {
+        backgroundColor: '#00B1BC',
+        //  padding: 5,
+        borderRadius: 5,
+        //  marginTop: 10,
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginLeft: 10,
+        //   marginLeft: 10,
+        //   marginRight: 10,
+        // position: 'absolute',
+        // top: 17,
+        // left: 10,
+        // width: 30,
+        // height: 30,
+    },
+
+    cardapioBotaoCount: {
+        //  padding: 5,
+        borderRadius: 5,
+        // marginTop: 10,
+        marginHorizontal: 10,
+        // width: '10%',
+        alignItems: 'center',
+        alignSelf: 'center',
+    },
+
+    cardapioSinal: {
+        fontSize: 21,
+        fontWeight: 'bold',
+        alignItems: 'center',
+        alignSelf: 'center',
+        // color: 'white',
     },
     cardapioInput: {
         width: '90%',
@@ -208,6 +239,7 @@ const styles = StyleSheet.create({
     },
     cardapioItemDesativado: {
         opacity: 0.5,
+        flexDirection: 'column',
     },
     cardapioBotaoAddDesativado: {
         backgroundColor: 'gray',
@@ -238,6 +270,35 @@ const styles = StyleSheet.create({
         margin: 5,
         justifyContent: 'center',
     },
+
+    // editado por marcel 18-05-23
+
+    mesaOcupada: {
+        width: '30%',
+        height: 100,
+        // cor de item
+        // aspectRatio: 1,
+        backgroundColor: 'orange',
+        borderRadius: 10,
+        elevation: 10,
+        marginVertical: 5,
+        margin: 5,
+        justifyContent: 'center',
+    },
+
+    mesaDesocupada: {
+        width: '30%',
+        height: 100,
+        // cor de item
+        // aspectRatio: 1,
+        backgroundColor: 'green',
+        borderRadius: 10,
+        elevation: 10,
+        marginVertical: 5,
+        margin: 5,
+        justifyContent: 'center',
+    },
+
     mesaTexto: {
         fontSize: 30,
         textAlign: 'center',
@@ -256,7 +317,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         margin: 10,
         backgroundColor: '#2c2c2c',
-        borderRadius: 50,
+        borderRadius: 15,
         borderWidth: 2,
         borderColor: ['#1c1c1c', '#0c0c0c'],
         shadowColor: '#000',
@@ -319,6 +380,13 @@ const styles = StyleSheet.create({
         marginTop: 10,
         alignItems: 'center',
     },
+    carBotoesLaranja: {
+        backgroundColor: '#F25A05',
+        padding: 10,
+        borderRadius: 5,
+        marginTop: 10,
+        alignItems: 'center',
+    },
     carTextoBotao: {
         color: 'white',
         fontWeight: 'bold',
@@ -331,8 +399,9 @@ const styles = StyleSheet.create({
     carTexto: {
         padding: 2,
         margin: 5,
-        fontSize: 20,
+        fontSize: 25,
         color: '#fff',
+        alignSelf: 'flex-end',
     },
     carPreco: {
         fontSize: 17,
@@ -366,7 +435,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold'
     },
-    mesaItemDisabled:{
+    mesaItemDisabled: {
         width: '30%',
         height: 100,
         // cor de item
@@ -379,14 +448,37 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    //Modal
+    // Modal
+
+    // Alterado por Marcel 23-05-23
+
+
     modalCenteredView: {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
         marginTop: 10
     },
-    modalView: {
+
+    modalViewConfirmacao: {
+        margin: 20,
+        backgroundColor: '#BFBFBF',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+        height: 230,
+        width: 300,
+    },
+
+    modalViewEnviar: {
         margin: 20,
         backgroundColor: '#BFBFBF',
         borderRadius: 20,
@@ -403,10 +495,40 @@ const styles = StyleSheet.create({
         height: 400,
         width: 300,
     },
+
+    carrinhoModalBotoes: {
+        flexDirection: 'row',
+    },
+
+    carrinhoModalBtnSim: {
+        backgroundColor: 'green',
+        padding: 10,
+        borderRadius: 5,
+        margin: 20,
+        alignItems: 'center',
+        flex: 2,
+    },
+
+    carrinhoModalBtnNao: {
+        backgroundColor: 'red',
+        padding: 10,
+        borderRadius: 5,
+        margin: 20,
+        alignItems: 'center',
+        flex: 2,
+    },
+
+    carrinhoBotaoTexto: {
+        fontSize: 22,
+        color: 'white',
+        padding: 5,
+    },
+
     modalText: {
         marginBottom: 15,
         fontSize: 20,
         textAlign: "center",
+        justifyContent: 'center',
         fontWeight: 'bold',
     },
     modalInput: {
@@ -419,19 +541,120 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         fontSize: 20,
     },
-    modalButton: {
+
+    modalButtonEnviar: {
         backgroundColor: "#5bc0de",
         borderRadius: 10,
         padding: 10,
         elevation: 2,
-        marginTop: 10,
-        width: '60%',
+        marginTop: 5,
+        // margin: 1,
+        width: '50%',
     },
+
+    modalButtonSemComplemento: {
+        backgroundColor: "red",
+        borderRadius: 10,
+        padding: 10,
+        elevation: 2,
+        marginTop: 10,
+        margin: 14,
+        width: '60%',
+        flex: 2,
+    },
+
+
+    carrinhoModalBtnNaoText: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+    },
+
     modalButtonText: {
         color: "white",
         fontWeight: "bold",
         textAlign: "center"
-    }
+    },
+
+    // cardápio + carrinho
+
+    cardapioColunas: {
+        flex: 1,
+        // flex: 5.5,
+        flexDirection: 'column',
+        // flexWrap: 'wrap',
+        // justifyContent: 'space-between',
+        // cor de fundo
+        backgroundColor: '#3c3c3c',
+    },
+
+    cardapioItem: {
+        width: '100%',
+        height: 160,
+        // flexDirection: 'row',
+        flex: 5,
+
+        // cor de item
+        backgroundColor: '#1c1c1c',
+        marginVertical: 5,
+        marginBottom: 10,
+        marginRight: 20,
+        justifyContent: 'center',
+        borderRadius: 10, // Adicionar um raio de borda para suavizar as bordas
+        shadowColor: '#000', // Adicionar uma sombra
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+
+    cardapioItemLista: {
+        width: '100%',
+        height: 110,
+        flexDirection: 'row',
+        flex: 5,
+        backgroundColor: '#1c1c1c',
+        marginVertical: 5,
+        marginBottom: 10,
+        marginRight: 20,
+        justifyContent: 'center',
+        borderRadius: 10, // Adicionar um raio de borda para suavizar as bordas
+        shadowColor: '#000', // Adicionar uma sombra
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
+    },
+
+    cardapioImg: {
+        flex: 1,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        margin: 10,
+        marginBottom: 0,
+        borderRadius: 10,
+        //marginBottom: 30,
+    },
+
+    cardapioDescBtn: {
+        // paddingRight: 10,
+        // paddingBottom: 10,
+        // marginBottom: 30,
+
+    },
+    cardapioBotaoAdd: {
+        backgroundColor: '#00959F',
+        padding: 10,
+        borderRadius: 5,
+        alignItems: 'center',
+    },
+
 
 });
 

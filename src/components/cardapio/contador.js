@@ -13,7 +13,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from '../../../estiloGeral';
 
-export default function Contador({item ,navigation}) {
+export default function Contador({ item, navigation }) {
   const [count, setCount] = useState(1);
 
   const handleIncrease = () => {
@@ -21,30 +21,33 @@ export default function Contador({item ,navigation}) {
   };
 
   const handleDecrease = () => {
-    if(count > 1){
+    if (count > 1) {
       setCount(count - 1);
     }
   };
 
   return (
     <>
-        <TouchableOpacity
-      onPress={handleDecrease}
-      style={[styles.cardapioBotaoCount, {flex:1}]}
-    >
-      <Text style={styles.cardapioSinal}>-</Text>
-    </TouchableOpacity>
-    <TouchableOpacity onPress={()=>{
-      // console.log(item)
-      navigation.navigate('Carrinho', {item:item, count:count})}} style={[styles.cardapioBotaoAdd, {flex:4}]}>
-      <Text style={styles.cardapioAdd}>Adicionar -- {count}</Text>
-    </TouchableOpacity>
-    <TouchableOpacity
-      onPress={handleIncrease}
-      style={[styles.cardapioBotaoCount, {flex:1}]}
-    >
-      <Text style={styles.cardapioSinal}>+</Text>
-    </TouchableOpacity>
+      <TouchableOpacity
+        onPress={handleDecrease}
+        style={[styles.cardapioBotaoCount, { flex: 0.8, backgroundColor: '#DA3446', }]}
+      >
+        <Text style={styles.cardapioSinal}>-</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => {
+        // console.log(item)
+        navigation.navigate('Carrinho', { item: item, count: count })
+      }} style={[styles.cardapioBotaoAdd, { flex: 4 }]}>
+        <Text style={styles.cardapioAdd}>Adicionar {count}</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity
+        onPress={handleIncrease}
+        style={[styles.cardapioBotaoCount, { flex: 0.8, backgroundColor: '#4ECD53', }]}
+      >
+        <Text style={styles.cardapioSinal}>+</Text>
+      </TouchableOpacity>
     </>
   );
 }
