@@ -150,7 +150,7 @@ export default function Carrinho({ route, navigation }) {
 
                                 <View style={styles.modalCenteredView}>
                                     <View style={styles.modalViewConfirmacao}>
-                                        <Text style={styles.modalText}>Deseja mesmo remover todos os itens?</Text>
+                                        <Text style={styles.modalText}>Deseja mesmo remover esse item da mesa?</Text>
 
                                         <View style={[styles.carrinhoModalBotoes, { flexDirection: 'row', }]}>
                                             <TouchableOpacity onPress={() => {
