@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-22 11:27:52
+ * @LastEditTime: 2023-05-28 23:20:32
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -63,7 +63,7 @@ export default function Carrinho({ route, navigation }) {
         });
         if (currentMesaIndex !== mesaIndex) {
             navigation.setOptions({
-                headerTitle: `Mesa ${currentMesaIndex +1}`,
+                headerTitle: `Mesa ${currentMesaIndex + 1}`,
                 headerStyle: {
                     backgroundColor: 'black',
                 },
@@ -110,6 +110,7 @@ export default function Carrinho({ route, navigation }) {
 
 
         const [showModal, setShowModal] = React.useState(false)
+        const [modalRemove, setModalRemove] = React.useState(false)
 
         return (
             <View style={[styles.cardapioItem]}>
@@ -127,7 +128,7 @@ export default function Carrinho({ route, navigation }) {
                                             <TouchableOpacity onPress={() => {
                                                 dispatch({
                                                     type: 'Decrease',
-                                                    payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
+                                                    payload: { mesaIdforDecrea: currentMesaIndex, itemDataforDecrea: item.data }
                                                 })
                                             }} style={styles.carrinhoModalBtnSim}>
                                                 <Text style={styles.carrinhoBotaoTexto}>Sim</Text>
@@ -143,7 +144,31 @@ export default function Carrinho({ route, navigation }) {
                             </Modal>
                         )
                     }
+                    {
+                        modalRemove && (
+                            <Modal animationType="slide" transparent={true}>
 
+                                <View style={styles.modalCenteredView}>
+                                    <View style={styles.modalViewConfirmacao}>
+                                        <Text style={styles.modalText}>Deseja mesmo remover todos os itens?</Text>
+
+                                        <View style={[styles.carrinhoModalBotoes, { flexDirection: 'row', }]}>
+                                            <TouchableOpacity onPress={() => {
+                                                removerItem(item.data)
+                                            }} style={styles.carrinhoModalBtnSim}>
+                                                <Text style={styles.carrinhoBotaoTexto}>Sim</Text>
+                                            </TouchableOpacity>
+
+                                            <TouchableOpacity onPress={() => setModalRemove(false)} style={styles.carrinhoModalBtnNao}>
+                                                <Text style={styles.carrinhoBotaoTexto}>Não</Text>
+                                            </TouchableOpacity>
+                                        </View>
+
+                                    </View>
+                                </View>
+                            </Modal>
+                        )
+                    }
 
                     {/* imagem */}
                     <View style={{ flex: 2 }}>
@@ -154,7 +179,7 @@ export default function Carrinho({ route, navigation }) {
                         {/* Nome e botão de remover */}
                         <View style={[styles.cardapioTitulo, { flex: 2, marginTop: 12, marginLeft: 3 }]}>
                             <Text style={styles.cardapioTexto} numberOfLines={1}>{item.nome}</Text>
-                            <TouchableOpacity onPress={() => removerItem(item.data)} style={[styles.carrinhoBotaoRemover, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]} disabled={item.removerDesativado}>
+                            <TouchableOpacity onPress={() => setModalRemove(true)} style={[styles.carrinhoBotaoRemover, item.removerDesativado && styles.cardapioBotaoAddDesativado, { flex: 3 }]} disabled={item.removerDesativado}>
                                 <Text style={[styles.cardapioAdd, item.removerDesativado && styles.cardapioItemDesativado]}>x</Text>
                             </TouchableOpacity>
                         </View>
@@ -171,7 +196,7 @@ export default function Carrinho({ route, navigation }) {
                                         } else {
                                             dispatch({
                                                 type: 'Decrease',
-                                                payload: { mesaIdforDecrea: currentMesaIndex, itemIdforDecrea: item.id }
+                                                payload: { mesaIdforDecrea: currentMesaIndex, itemDataforDecrea: item.data }
                                             })
                                         }
                                     }}
@@ -186,9 +211,10 @@ export default function Carrinho({ route, navigation }) {
                                 <TouchableOpacity
                                     disabled={item.removerDesativado}
                                     onPress={() => {
+                                        console.log(item.id, 'id', item.count, 'count', item.data, 'data')
                                         dispatch({
                                             type: 'Increase',
-                                            payload: { mesaIdforIncrea: currentMesaIndex, itemIdforIncrea: item.id }
+                                            payload: { mesaIdforIncrea: currentMesaIndex, itemDataforIncrea: item.data }
                                         })
                                     }}
                                     style={[styles.cardapioBotaoCountMais, item.removerDesativado && styles.cardapioItemDesativado, { flex: 1 }]}
@@ -223,7 +249,7 @@ export default function Carrinho({ route, navigation }) {
     }
 
     function handleEnviar() {
-        console.log('Mesa: ', currentMesaIndex)
+        console.log('Mesa: ', currentMesaIndex+1)
         console.log("Itens do carrinho:")
         state[currentMesaIndex].lista.forEach((item) => {
             if (!item.removerDesativado) {
@@ -236,8 +262,40 @@ export default function Carrinho({ route, navigation }) {
         setObservacao('')
     }
     // setLista(...[], item)
+    const [modalFinal, setModalFinal] = React.useState(false)
     return (
         <View style={styles.container}>
+
+            {
+                modalFinal && (
+                    <Modal animationType="slide" transparent={true}>
+
+                        <View style={styles.modalCenteredView}>
+                            <View style={styles.modalViewConfirmacao}>
+                                <Text style={styles.modalText}>Deseja mesmo fechar a conta?</Text>
+
+                                <View style={[styles.carrinhoModalBotoes, { flexDirection: 'row', }]}>
+                                    <TouchableOpacity onPress={() => {
+                                        dispatch({
+                                            type: 'esvazea',
+                                            payload: { mesaID: currentMesaIndex }
+                                        }),
+                                        setModalFinal(false)
+                                        Alert.alert('Conta fechada com sucesso!')
+                                    }} style={styles.carrinhoModalBtnSim}>
+                                        <Text style={styles.carrinhoBotaoTexto}>Sim</Text>
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity onPress={() => setModalFinal(false)} style={styles.carrinhoModalBtnNao}>
+                                        <Text style={styles.carrinhoBotaoTexto}>Não</Text>
+                                    </TouchableOpacity>
+                                </View>
+
+                            </View>
+                        </View>
+                    </Modal>
+                )
+            }
             <View style={[styles.carMain, styles.carBorderBottom]}>
                 <TouchableOpacity onPress={() => navigation.navigate('Cardapio')} style={styles.carAdicionar}>
                     <Text style={styles.carLetra}>Adicionar</Text>
@@ -301,13 +359,11 @@ export default function Carrinho({ route, navigation }) {
                             </View>
                             <View style={{ width: '50%', height: '100%' }}>
                                 <TouchableOpacity style={styles.carBotoesLaranja} onPress={() => {
-                                    dispatch({
-                                        type: 'esvazea',
-                                        payload: { mesaID: currentMesaIndex }
-                                    })
+                                    setModalFinal(true)
                                 }}>
                                     <Text style={styles.carTextoBotao}>Fechar Conta</Text>
                                 </TouchableOpacity>
+
                             </View>
                         </View>
                     </>
