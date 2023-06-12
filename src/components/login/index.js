@@ -50,7 +50,7 @@ export default function Login({ navigation }) {
                 <View style={styles.loginformContext}>
                     <View style={styles.loginform}>
 
-                        <Text style={styles.loginformLabel}>E-Mail:</Text>
+                        <Text style={styles.loginformLabel}>Usuário:</Text>
                         <TextInput
                             onChangeText={setLogin}
                             value={login}
