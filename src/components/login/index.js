@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 10:30:41
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-04-25 10:22:10
+ * @LastEditTime: 2023-06-12 13:37:25
  * @FilePath: \Trabalho-de-Conclusao\src\components\login\index.js
  * @Description: 
  * 
@@ -35,7 +35,7 @@ export default function Login({ navigation }) {
             setPassword(null)
             setMsgError(null)
         } else {
-            setMsgError('E-Mail ou Senha inválida!')
+            setMsgError('Usuário ou Senha inválida!')
         }
     }
 

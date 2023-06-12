@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-29 10:03:05
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-12 13:57:42
+ * @LastEditTime: 2023-06-12 11:31:37
  * @FilePath: \Trabalho-de-Conclusao\src\components\cardapio\index.js
  * @Description: 
  * 
@@ -58,6 +58,7 @@ export default function Cardapio({ navigation }) {
   }, [data, filtro]);
 
   function ListItem({ item, navigation }) {
+    // console.log(item.nome, typeof(item.preco))
     return (
       <View key={item.id} style={styles.cardapioItemLista}>
 

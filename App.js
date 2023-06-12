@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-28 23:15:07
+ * @LastEditTime: 2023-06-12 13:28:14
  * @FilePath: \Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -26,8 +26,8 @@ const reducer = (prevState, action) => {
   switch (action.type) {
     case 'inicializar':
       const mesas = [...action.payload]
-      console.log(prevState, 'prevstate')
-      console.log(action.payload, 'payload')
+      // console.log(prevState, 'prevstate')
+      // console.log(action.payload, 'payload')
       return mesas;
 
     case 'mudeEstado':
@@ -45,7 +45,7 @@ const reducer = (prevState, action) => {
         if (item.id === itemId) {
           const itemExistente = item.lista.find(listItem => listItem.nome === newItem.nome && !listItem.removerDesativado);
         
-          console.log(itemExistente, 'se existe item');
+          // console.log(itemExistente, 'se existe item');
           
           if (itemExistente) {
             // O item já existe na lista, apenas incrementar o count do item existente
@@ -76,7 +76,7 @@ const reducer = (prevState, action) => {
             if (listaItem.removerDesativado) {
               return listaItem;
             } else {
-              console.log(listaItem, 'listaitem')
+              // console.log(listaItem, 'listaitem')
               return { ...listaItem, removerDesativado: true };
             }
           });
@@ -160,7 +160,7 @@ const reducer = (prevState, action) => {
 function App({ navigation }) {
   const [state, dispatch] = React.useReducer(reducer, [])
   const [data, setData] = React.useState([]); // Inicializa o estado para armazenar os dados das mesas
-  console.log(state, 'state fora de axios', state.length, 'tamanho de state')
+  // console.log(state, 'state fora de axios', state.length, 'tamanho de state')
   const [validacao, setValidacao] = React.useState(false)
 
   React.useEffect(() => {
@@ -168,9 +168,9 @@ function App({ navigation }) {
       .get('https://testapi--carlos-alber317.repl.co/mesas')
       .then((res) => {
         setData(res.data);
-        console.log(state, 'estado dentro de axiosget')
+        // console.log(state, 'estado dentro de axiosget')
         const initialState = [...res.data]
-        console.log(initialState, 'initialstate')
+        // console.log(initialState, 'initialstate')
         dispatch({
           type: 'inicializar',
           payload: initialState

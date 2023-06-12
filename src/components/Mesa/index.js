@@ -2,14 +2,14 @@
  * @Author: SessyoinChen
  * @Date: 2023-04-11 09:40:11
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-17 09:42:24
+ * @LastEditTime: 2023-06-12 13:52:10
  * @FilePath: \Trabalho-de-Conclusao\src\components\Mesa\index.js
  * @Description: 
  * 
  */
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Button, StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground, FlatList } from 'react-native';
+import { Button, Alert, Text, View, TouchableOpacity, Image, ImageBackground, Modal } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import styles from '../../../estiloGeral';
@@ -17,7 +17,7 @@ import GlobalContext from '../contexto';
 
 function Mesa({ navigation }) {
     const { state } = React.useContext(GlobalContext)//mostra mesa
-
+    const [modalLogout, setModalLogout] = React.useState(false)
     return (
 
         <View style={styles.mesaContainer}>
@@ -33,9 +33,36 @@ function Mesa({ navigation }) {
                         
                     /> */}
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('Los Hermanos')} style={styles.mesaAdicionar}>
+                <TouchableOpacity onPress={() =>setModalLogout(true)} style={styles.mesaAdicionar}>
                     <Text style={styles.mesaLetra}>Logout</Text>
                 </TouchableOpacity>
+                {
+                modalLogout && (
+                    <Modal animationType="slide" transparent={true}>
+
+                        <View style={styles.modalCenteredView}>
+                            <View style={styles.modalViewConfirmacao}>
+                                <Text style={styles.modalText}>Deseja mesmo sair?</Text>
+
+                                <View style={[styles.carrinhoModalBotoes, { flexDirection: 'row', }]}>
+                                    <TouchableOpacity onPress={() => {
+                                        setModalLogout(false),
+                                        Alert.alert('Até mais!'),
+                                        navigation.navigate('Los Hermanos')
+                                    }} style={styles.carrinhoModalBtnSim}>
+                                        <Text style={styles.carrinhoBotaoTexto}>Sim</Text>
+                                    </TouchableOpacity>
+
+                                    <TouchableOpacity onPress={() => setModalFinal(false)} style={styles.carrinhoModalBtnNao}>
+                                        <Text style={styles.carrinhoBotaoTexto}>Não</Text>
+                                    </TouchableOpacity>
+                                </View>
+
+                            </View>
+                        </View>
+                    </Modal>
+                )
+            }
             </ImageBackground>
         </View>
     );
