@@ -23,14 +23,6 @@ export default function Cardapio({ navigation }) {
 
   const [data, setData] = React.useState([])
   const [filtro, setFiltro] = React.useState("")
-  // const [count, setCount] = React.useState(1)
-
-  // React.useEffect(() => {
-  //   axios.get('https://api.mercadolibre.com/sites/MLB/search?q=celular').then(res => {
-  //     console.log(res)
-  //     setData(res.data.results)
-  //   })
-  // }, [])
 
   useEffect(() => {
     axios({
@@ -40,7 +32,6 @@ export default function Cardapio({ navigation }) {
         'Access-Control-Allow-Origin': '*'
       }
     }).then(res => {
-      // console.log(res.data, 'dados')
       setData(res.data)
     })
   }, [])
@@ -66,8 +57,8 @@ export default function Cardapio({ navigation }) {
 
         <View style={[styles.cardapioDescBtn, { flex: 5 }]}>
           <View style={[styles.cardapioTitulo, { flex: 3 }]}>
-            <Text style={[styles.cardapioTexto, {margin: 5}]} numberOfLines={1}>{item.nome}</Text>
-            <Text style={[styles.cardapioTituloPrecoUnitario, {margin: 5}]} numberOfLines={1}>{item.preco.toLocaleString('pt-BR',
+            <Text style={[styles.cardapioTexto, { margin: 5 }]} numberOfLines={1}>{item.nome}</Text>
+            <Text style={[styles.cardapioTituloPrecoUnitario, { margin: 5 }]} numberOfLines={1}>{item.preco.toLocaleString('pt-BR',
               {
                 style: 'currency',
                 currency: 'BRL',

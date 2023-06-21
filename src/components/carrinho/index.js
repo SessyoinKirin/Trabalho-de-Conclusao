@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-27 14:14:46
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-05-28 23:20:32
+ * @LastEditTime: 2023-06-21 13:32:31
  * @FilePath: \Trabalho-de-Conclusao\src\components\carrinho\index.js
  * @Description: 
  * 
@@ -27,8 +27,7 @@ export default function Carrinho({ route, navigation }) {
 
     useEffect(() => {
         if (item) {
-            // setLista(prevState => [...prevState, { ...item, count, removerDesativado: false }]);
-            console.log('item adicionado', item)
+            
             dispatch({
                 type: 'addLista',
                 payload: { itemId: currentMesaIndex, newItem: { ...item, count, removerDesativado: false, data: new Date() } }
@@ -75,7 +74,6 @@ export default function Carrinho({ route, navigation }) {
     }, [currentMesaIndex, mesaIndex, navigation]);
 
     function removerItem(id) {
-        console.log('remove', id)
         dispatch({
             type: 'removeItem',
             payload: { id: id, mesa: currentMesaIndex }
@@ -87,9 +85,6 @@ export default function Carrinho({ route, navigation }) {
         const total = state[currentMesaIndex].lista.reduce((acc, cur) => {
             const itemPrice = Number(cur.preco);
             const itemCount = Number(cur.count);
-
-            // console.log(`itemPrice: ${itemPrice}, itemCount: ${itemCount}`);
-
             return acc + (itemPrice * itemCount);
         }, 0);
 
@@ -211,7 +206,6 @@ export default function Carrinho({ route, navigation }) {
                                 <TouchableOpacity
                                     disabled={item.removerDesativado}
                                     onPress={() => {
-                                        console.log(item.id, 'id', item.count, 'count', item.data, 'data')
                                         dispatch({
                                             type: 'Increase',
                                             payload: { mesaIdforIncrea: currentMesaIndex, itemDataforIncrea: item.data }
@@ -249,7 +243,7 @@ export default function Carrinho({ route, navigation }) {
     }
 
     function handleEnviar() {
-        console.log('Mesa: ', currentMesaIndex+1)
+        console.log('Mesa: ', currentMesaIndex + 1)
         console.log("Itens do carrinho:")
         state[currentMesaIndex].lista.forEach((item) => {
             if (!item.removerDesativado) {
@@ -280,7 +274,7 @@ export default function Carrinho({ route, navigation }) {
                                             type: 'esvazea',
                                             payload: { mesaID: currentMesaIndex }
                                         }),
-                                        setModalFinal(false)
+                                            setModalFinal(false)
                                         Alert.alert('Conta fechada com sucesso!')
                                     }} style={styles.carrinhoModalBtnSim}>
                                         <Text style={styles.carrinhoBotaoTexto}>Sim</Text>

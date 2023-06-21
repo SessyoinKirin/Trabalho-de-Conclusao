@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-03-01 09:34:09
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-06-12 13:28:14
+ * @LastEditTime: 2023-06-21 13:34:59
  * @FilePath: \Trabalho-de-Conclusao\App.js
  * @Description: 
  * 
@@ -26,8 +26,6 @@ const reducer = (prevState, action) => {
   switch (action.type) {
     case 'inicializar':
       const mesas = [...action.payload]
-      // console.log(prevState, 'prevstate')
-      // console.log(action.payload, 'payload')
       return mesas;
 
     case 'mudeEstado':
@@ -44,27 +42,18 @@ const reducer = (prevState, action) => {
       return prevState.map(item => {
         if (item.id === itemId) {
           const itemExistente = item.lista.find(listItem => listItem.nome === newItem.nome && !listItem.removerDesativado);
-        
-          // console.log(itemExistente, 'se existe item');
-          
           if (itemExistente) {
-            // O item já existe na lista, apenas incrementar o count do item existente
-            
             const listaAtualizada = item.lista.map(listItem => {
               if (listItem.nome === newItem.nome && !listItem.removerDesativado) {
                 return { ...listItem, count: listItem.count + newItem.count };
               }
               return listItem;
             });
-        
             return { ...item, lista: listaAtualizada };
           } else {
-            // O item não existe na lista, adicionar como um novo item
-            console.log('item não existe na lista');
             return { ...item, lista: [...item.lista, newItem] };
           }
         }
-        
         return item;
       });
 
@@ -136,7 +125,6 @@ const reducer = (prevState, action) => {
 
     case 'esvazea':
       const { mesaID } = action.payload;
-      console.log(mesaID, 'currente')
       return prevState.map(item => {
         if (item.id === mesaID) {
           return {
@@ -159,8 +147,7 @@ const reducer = (prevState, action) => {
 
 function App({ navigation }) {
   const [state, dispatch] = React.useReducer(reducer, [])
-  const [data, setData] = React.useState([]); // Inicializa o estado para armazenar os dados das mesas
-  // console.log(state, 'state fora de axios', state.length, 'tamanho de state')
+  const [data, setData] = React.useState([]); 
   const [validacao, setValidacao] = React.useState(false)
 
   React.useEffect(() => {
@@ -168,9 +155,7 @@ function App({ navigation }) {
       .get('https://testapi--carlos-alber317.repl.co/mesas')
       .then((res) => {
         setData(res.data);
-        // console.log(state, 'estado dentro de axiosget')
         const initialState = [...res.data]
-        // console.log(initialState, 'initialstate')
         dispatch({
           type: 'inicializar',
           payload: initialState

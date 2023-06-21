@@ -2,7 +2,7 @@
  * @Author: SessyoinChen
  * @Date: 2023-04-11 09:40:11
  * @LastEditors: SessyoinChen
- * @LastEditTime: 2023-06-12 13:52:10
+ * @LastEditTime: 2023-06-21 13:26:05
  * @FilePath: \Trabalho-de-Conclusao\src\components\Mesa\index.js
  * @Description: 
  * 
@@ -70,8 +70,6 @@ function Mesa({ navigation }) {
 
 function MesaUnidade({ index, lista, navigation }) {
     const { state, dispatch } = React.useContext(GlobalContext)
-
-    console.log(index + 1, 'lista de item = ' + lista.length);
     const mesaStyle = state[index]?.enabled ? lista.length == 0 ? styles.mesaDesocupada : styles.mesaOcupada : [styles.mesaItem, styles.mesaItemDisabled];
     const mesaTexto = state[index]?.enabled ? styles.mesaTexto : [styles.mesaTexto, styles.mesaTextoDisabled];
     return (
