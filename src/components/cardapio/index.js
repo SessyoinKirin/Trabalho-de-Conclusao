@@ -58,7 +58,7 @@ export default function Cardapio({ navigation }) {
         <View style={[styles.cardapioDescBtn, { flex: 5 }]}>
           <View style={[styles.cardapioTitulo, { flex: 3 }]}>
             <Text style={[styles.cardapioTexto, { margin: 5 }]} numberOfLines={1}>{item.nome}</Text>
-            <Text style={[styles.cardapioTituloPrecoUnitario, { margin: 5 }]} numberOfLines={1}>{item.preco.toLocaleString('pt-BR',
+            <Text style={[styles.cardapioTituloPrecoUnitario, { margin: 5 }]} numberOfLines={1}>{parseFloat(item.preco).toLocaleString('pt-BR',
               {
                 style: 'currency',
                 currency: 'BRL',

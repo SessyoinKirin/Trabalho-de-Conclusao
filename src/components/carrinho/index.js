@@ -27,7 +27,7 @@ export default function Carrinho({ route, navigation }) {
 
     useEffect(() => {
         if (item) {
-            
+
             dispatch({
                 type: 'addLista',
                 payload: { itemId: currentMesaIndex, newItem: { ...item, count, removerDesativado: false, data: new Date() } }
@@ -216,8 +216,9 @@ export default function Carrinho({ route, navigation }) {
                                     <Text style={[styles.cardapioSinal, item.removerDesativado && styles.cardapioItemDesativado]}>+</Text>
                                 </TouchableOpacity>
                             </View>
+                            {console.log(typeof (item.preco))}
 
-                            <Text style={styles.cardapioTituloPrecoUnitario} numberOfLines={1}>{item.preco.toLocaleString('pt-BR',
+                            <Text style={styles.cardapioTituloPrecoUnitario} numberOfLines={1}>{parseFloat(item.preco).toLocaleString('pt-BR',
                                 {
                                     style: 'currency',
                                     currency: 'BRL',
