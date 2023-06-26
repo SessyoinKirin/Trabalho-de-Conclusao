@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     logintextTitle: {
-        color: '#f23045',
+        color: '#FF3701',
         fontSize: 40,
         paddingTop: 50,
         fontWeight: 'bold',

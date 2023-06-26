@@ -216,7 +216,6 @@ export default function Carrinho({ route, navigation }) {
                                     <Text style={[styles.cardapioSinal, item.removerDesativado && styles.cardapioItemDesativado]}>+</Text>
                                 </TouchableOpacity>
                             </View>
-                            {console.log(typeof (item.preco))}
 
                             <Text style={styles.cardapioTituloPrecoUnitario} numberOfLines={1}>{parseFloat(item.preco).toLocaleString('pt-BR',
                                 {
