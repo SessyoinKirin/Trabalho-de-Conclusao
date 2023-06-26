@@ -53,7 +53,7 @@ function Mesa({ navigation }) {
                                         <Text style={styles.carrinhoBotaoTexto}>Sim</Text>
                                     </TouchableOpacity>
 
-                                    <TouchableOpacity onPress={() => setModalFinal(false)} style={styles.carrinhoModalBtnNao}>
+                                    <TouchableOpacity onPress={() => setModalLogout(false)} style={styles.carrinhoModalBtnNao}>
                                         <Text style={styles.carrinhoBotaoTexto}>Não</Text>
                                     </TouchableOpacity>
                                 </View>
